@@ -5,6 +5,9 @@
 **/.pnp
 .pnp.js
 
+# css output
+*.output.css
+
 # api keys
 .env
 
