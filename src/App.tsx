@@ -7,11 +7,12 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
+      // Span entier screen
     <>
-      <div className="md:flex">
+      <div className="md:flex h-screen w-screen">
         <SidebarFinal />
 
-        <div className="flex flex-col items-center w-full">
+        <div className="flex flex-col items-center w-full bg-stone-100">
           <img src={reactLogo} className="my-5 w-24" alt="logo" />
           <p>From Humble Beginnings</p>
           <input

@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import("tailwindcss").Config} */
 import defaultTheme from "tailwindcss/defaultTheme"
 
 export default {
@@ -9,11 +9,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'logo': ['GeneralSans-Semibold', 'Archivo', ...defaultTheme.fontFamily.sans],
-        'sans': ['Inter', ...defaultTheme.fontFamily.sans]
+        "logo": ["GeneralSans-Semibold", "Archivo", ...defaultTheme.fontFamily.sans],
+        "sans": ["Inter", ...defaultTheme.fontFamily.sans]
       },
       colors: {
-        'logo-blue': '#0028BE',
+        "royal-blue": "#0028BE",
       }
     },
   },
