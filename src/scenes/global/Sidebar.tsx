@@ -163,7 +163,7 @@ export const SidebarFinal: React.FC = () => {
             </Menu>
           </div>
 
-          <hr className="h-px my-1 mx-6 bg-gray-200 dark:bg-gray-700" />
+          <hr className="h-px mx-6 border-1 border-gray-200" />
           <Menu menuItemStyles={menuItemStyles}>
               <MenuItem className="my-2" icon={<LogoutIcon />}>Logout</MenuItem>
             </Menu>
