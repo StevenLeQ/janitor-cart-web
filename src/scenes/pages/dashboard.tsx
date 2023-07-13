@@ -20,7 +20,7 @@ const Dashboard = () => {
 
       {/* Grid start */}
       {/* First 4 items are the 4 blocks below banner */}
-      <div className="my-8 mx-10 grid gap-4 grid-cols-12">
+      <div className="mt-8 mx-10 grid gap-x-4 gap-y-7 grid-cols-12">
         <DashboardItem title="$12,489" subtitle="Annual Sales" />
         <DashboardItem title="34" subtitle="New Customers" />
         <DashboardItem
@@ -29,9 +29,9 @@ const Dashboard = () => {
           link="https://example.com"
         />
         <DashboardItem title="389" subtitle="Total users" />
-
-        {/* Graph of revenue */}
-        <div className="relative col-span-8 h-80 bg-white rounded-lg border p-5">
+        
+        {/* Second two items, revenue graph and leaflet chloropleth map */}
+        <div className="relative col-span-8 h-[22rem] bg-white rounded-lg border px-6 pt-3 pb-5">
           <RevenueLineChart />
         </div>
 

@@ -1,7 +1,7 @@
 // Fancy Purple Banner Thing in dashboard page
 const DashboardBanner = () => {
   return (
-    <div className="relative from-blue-500 to-purple-700 bg-gradient-to-r w-full h-64 rounded-lg overflow-hidden ">
+    <div className="relative from-blue-500 to-purple-700 bg-gradient-to-r w-full h-56 rounded-lg overflow-hidden ">
       {/* Large transparent circle on left */}
       <div className="absolute opacity-20 rounded-full w-[32rem] h-[32rem] from-transparent to-emerald-200 bg-gradient-to-r -ml-24 -mt-32" />
       {/* Smaller transparent circle on left */}
@@ -9,7 +9,7 @@ const DashboardBanner = () => {
 
       {/* Smaller circle on right */}
       <div className="flex flex-row-reverse">
-        <div className="absolute opacity-30 rounded-full w-20 h-20 from-emerald-200 to-transparent bg-gradient-to-r mr-10 mt-32" />
+        <div className="absolute opacity-30 rounded-full w-20 h-20 from-emerald-200 to-transparent bg-gradient-to-r mr-10 mt-28" />
       </div>
 
       {/* Bottom left Banner text */}

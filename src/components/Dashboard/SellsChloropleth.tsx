@@ -56,7 +56,7 @@ function SellsChloropleth() {
   const FeaturePopup = (feature: StateFeature, layer: L.Layer) => {
     layer.bindPopup(`<h1>${feature.properties.name}</h1>`);
   };
-
+  
   return (
     <MapContainer center={[50, -120]} zoom={2} className="w-full h-full br-lg">
       <TileLayer
