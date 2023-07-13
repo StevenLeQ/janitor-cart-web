@@ -1,6 +1,6 @@
 import React from "react";
-import { UserIcon } from "../../assets/UserIcon";
-import userIcon from "../../assets/userIcon.svg"
+import { UserIcon } from "../../assets/UserIcon.tsx"
+
 interface SidebarHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
   collapsed: boolean;
@@ -14,7 +14,7 @@ export const SidebarFooter: React.FC<SidebarHeaderProps> = ({
   console.log();
   return (
     <div className={`flex items-center gap-2 ${collapsed ? "mx-auto" : "mx-8"} mb-8`}>
-      <img className="w-11" src={userIcon} />
+      <UserIcon size={45}/>
       {!collapsed && (
         <div className="flex flex-col">
           <p className="text-base font-semibold ">Admin</p>

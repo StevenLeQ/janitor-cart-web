@@ -17,8 +17,8 @@ export const SidebarHeader: React.FC<SidebarHeaderProps> = ({
       <img className="w-12" src={logo} />
       {!collapsed && (
         <div className="flex flex-col mt-4">
-          <p className="font-logo text-lg font-semibold text-royal-blue">The</p>
-          <p className="font-logo text-lg font-semibold text-royal-blue -mt-2">
+          <p translate="no" className="font-logo text-lg font-semibold text-royal-blue">The</p>
+          <p translate="no" className="font-logo text-lg font-semibold text-royal-blue -mt-2">
             JanitorCart
           </p>
         </div>

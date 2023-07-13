@@ -147,7 +147,7 @@ export const SidebarFinal: React.FC = () => {
           color: themes[theme].sidebar.color,
         }}
       >
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-screen">
           
           <SidebarHeader
             style={{ marginBottom: "24px", marginTop: "16px" }}
@@ -163,6 +163,7 @@ export const SidebarFinal: React.FC = () => {
             </Menu>
           </div>
 
+          {/* Have this area at bottom of screen */}
           <hr className="h-px mx-6 border-1 border-gray-200" />
           <Menu menuItemStyles={menuItemStyles}>
               <MenuItem className="my-2" icon={<LogoutIcon />}>Logout</MenuItem>

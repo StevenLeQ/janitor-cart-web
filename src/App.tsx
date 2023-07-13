@@ -1,17 +1,20 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+// import { useState } from "react";
 import SidebarFinal from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/pages/dashboard";
+// import SellsChloropleth from "./components/Dashboard/SellsChloropleth";
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
-    // Span entier screen
+    // Span entire screen
     <>
-      <div className="md:flex h-screen w-screen">
+      <div className="md:flex">
+        <div className="h-screen sticky top-0">
         <SidebarFinal />
+        </div>
+
+        <div className="bg-stone-100 w-full h-full">
         <Dashboard />
+        </div>
       </div>
     </>
   );
