@@ -6,7 +6,7 @@ import SellsChloropleth from "../../components/Dashboard/SellsChloropleth";
 
 const Dashboard = () => {
   return (
-    <div className="w-full">
+    <div className="w-full mb-5">
       <div className="m-5 mx-10 flex flex-col items-center gap-5">
         {/* Outside Header and H-rule */}
         <Header

@@ -7,7 +7,7 @@ function App() {
   return (
     // Span entire screen
     <>
-      <div className="md:flex bg-stone-100 ">
+      <div className="md:flex bg-stone-100">
         <div className="h-screen sticky top-0">
         <SidebarFinal />
         </div>
