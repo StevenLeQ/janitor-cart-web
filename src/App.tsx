@@ -1,6 +1,9 @@
 // import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+
 import SidebarFinal from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/pages/dashboard";
+import Companies from "./scenes/pages/companies";
 // import SellsChloropleth from "./components/Dashboard/SellsChloropleth";
 function App() {
 
@@ -13,7 +16,10 @@ function App() {
         </div>
 
         <div className="w-full h-full">
-        <Dashboard />
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/companies" element={<Companies />} />
+        </Routes>
         </div>
       </div>
     </>

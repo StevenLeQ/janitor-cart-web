@@ -1,5 +1,5 @@
 import React from "react";
-import { UserIcon } from "../../assets/UserIcon.tsx"
+import { UserIcon } from "../../assets/Sidebar/UserIcon.tsx"
 
 interface SidebarHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;

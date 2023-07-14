@@ -53,14 +53,14 @@ const options = {
 
     title: {
       display: true,
-      text: "$35,8k" as const,
+      text: "$35,8K" as const,
       font: {
         size: 28,
         weight: "bold",
       },
       color: "#212B36",
-      align: "start" as const, // Set the alignment to start
-      position: "top" as const, // Set the position to top
+      align: "start" as const, 
+      position: "top" as const, 
     },
 
     subtitle: {
@@ -70,8 +70,8 @@ const options = {
         size: 16, 
         weight: "normal",
       },
-      align: "start" as const, // Set the alignment to start
-      position: "top" as const, // Set the position to top
+      align: "start" as const, 
+      position: "top" as const, 
       padding: {
         top: -7,
         bottom: 20
@@ -108,6 +108,6 @@ const data = {
   ],
 };
 
-export function RevenueLineChart() {
+export default function RevenueLineChart() {
   return <Line options={options} data={data} />;
 }

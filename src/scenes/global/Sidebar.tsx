@@ -7,14 +7,17 @@ import {
   menuClasses,
   MenuItemStyles,
 } from "react-pro-sidebar";
-// import { Switch } from "./components/Switch";
+import { Link } from "react-router-dom";
+
 import { SidebarHeader } from "../../components/Sidebar/SidebarHeader.tsx";
-import { BuildingIcon } from "../../assets/BuildingIcon.tsx";
-import { SquareIcon } from "../../assets/SquareIcon.tsx";
-import { FileIcon } from "../../assets/FileIcon.tsx";
-import { VideoIcon } from "../../assets/VideoIcon.tsx";
+
+// Icons used in Sidebar
+import { OfficeIcon } from "../../assets/Global/OfficeIcon.tsx";
+import { SquareIcon } from "../../assets/Sidebar/SquareIcon.tsx";
+import { FileIcon } from "../../assets/Sidebar/FileIcon.tsx";
+import { VideoIcon } from "../../assets/Sidebar/VideoIcon.tsx";
 import { SidebarFooter } from "../../components/Sidebar/SidebarFooter.tsx";
-import { LogoutIcon } from "../../assets/LogoutIcon.tsx";
+import { LogoutIcon } from "../../assets/Sidebar/LogoutIcon.tsx";
 
 type Theme = "light" | "dark";
 
@@ -67,10 +70,8 @@ const hexToRgba = (hex: string, alpha: number) => {
 export const SidebarFinal: React.FC = () => {
   const [collapsed, setCollapsed] = React.useState(false);
   const [toggled, setToggled] = React.useState(false);
-  const [broken, setBroken] = React.useState(false);
   const [hasImage, setHasImage] = React.useState(false);
   const [theme, setTheme] = React.useState<Theme>("light");
-
 
   // handle on theme change event
   const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,7 +87,7 @@ export const SidebarFinal: React.FC = () => {
     root: {
       fontSize: "0.95rem",
       fontWeight: 500,
-      color: "#4F494F"
+      color: "#4F494F",
     },
     icon: {
       // Hacky Margin Stuff
@@ -130,13 +131,11 @@ export const SidebarFinal: React.FC = () => {
   };
 
   return (
-    <div className="flex h-full"
-    >
+    <div className="flex h-full">
       <Sidebar
         collapsed={collapsed}
         toggled={toggled}
         onBackdropClick={() => setToggled(false)}
-        onBreakPoint={setBroken}
         image="https://user-images.githubusercontent.com/25878302/144499035-2911184c-76d3-4611-86e7-bc4e8ff84ff5.jpg"
         breakPoint="md"
         backgroundColor={hexToRgba(
@@ -148,7 +147,6 @@ export const SidebarFinal: React.FC = () => {
         }}
       >
         <div className="flex flex-col h-screen">
-          
           <SidebarHeader
             style={{ marginBottom: "24px", marginTop: "16px" }}
             collapsed={collapsed}
@@ -156,18 +154,30 @@ export const SidebarFinal: React.FC = () => {
 
           <div className="flex-1 mb-8">
             <Menu menuItemStyles={menuItemStyles}>
-              <MenuItem icon={<SquareIcon />}>Dashboard</MenuItem>
-              <MenuItem icon={<BuildingIcon />}>Companies</MenuItem>
-              <MenuItem icon={<FileIcon />}>Work Rights Files</MenuItem>
-              <MenuItem icon={<VideoIcon />}>Videos</MenuItem>
+              <Link to={"/"}>
+                <MenuItem icon={<SquareIcon />}>Dashboard</MenuItem>
+              </Link>
+
+              <Link to={"/companies"}>
+                <MenuItem icon={<OfficeIcon />}>Companies</MenuItem>
+              </Link>
+              
+              <MenuItem icon={<FileIcon /> }>
+                Work Rights Files <Link to={"/dashboard"} />
+              </MenuItem>
+              <MenuItem icon={<VideoIcon />}>
+                Videos <Link to={"/dashboard"} />
+              </MenuItem>
             </Menu>
           </div>
 
           {/* Have this area at bottom of screen */}
           <hr className="h-px mx-6 border-1 border-gray-200" />
           <Menu menuItemStyles={menuItemStyles}>
-              <MenuItem className="my-2" icon={<LogoutIcon />}>Logout</MenuItem>
-            </Menu>
+            <MenuItem className="my-2" icon={<LogoutIcon />}>
+              Log out
+            </MenuItem>
+          </Menu>
 
           <SidebarFooter collapsed={collapsed} />
         </div>

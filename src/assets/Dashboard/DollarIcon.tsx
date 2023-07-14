@@ -1,5 +1,5 @@
 import React from "react";
-import { IconProps } from "./types";
+import { IconProps } from "../types";
 
 export const DollarIcon: React.FC<IconProps> = ({ size = 22 }) => {
   return (
@@ -10,6 +10,7 @@ export const DollarIcon: React.FC<IconProps> = ({ size = 22 }) => {
       height={size}
       viewBox="0 0 24 24"
       stroke-width="1.5"
+      stroke="currentColor"
     >
       <path
         stroke-linecap="round"

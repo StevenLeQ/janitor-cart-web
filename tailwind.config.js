@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        "logo": ["GeneralSans-Semibold", "Archivo", ...defaultTheme.fontFamily.sans],
+        "logo": ["GeneralSans", "Archivo", ...defaultTheme.fontFamily.sans],
         "sans": ["Inter", ...defaultTheme.fontFamily.sans]
       },
       colors: {
