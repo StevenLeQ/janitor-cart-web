@@ -1,3 +1,4 @@
+// Library Imports
 import React from "react";
 import {
   Sidebar,
@@ -9,15 +10,12 @@ import {
 } from "react-pro-sidebar";
 import { Link } from "react-router-dom";
 
+// Components for sidebar
 import { SidebarHeader } from "../../components/Sidebar/SidebarHeader.tsx";
+import { SidebarFooter } from "../../components/Sidebar/SidebarFooter.tsx";
 
 // Icons used in Sidebar
-import { OfficeIcon } from "../../assets/Global/OfficeIcon.tsx";
-import { SquareIcon } from "../../assets/Sidebar/SquareIcon.tsx";
-import { FileIcon } from "../../assets/Sidebar/FileIcon.tsx";
-import { VideoIcon } from "../../assets/Sidebar/VideoIcon.tsx";
-import { SidebarFooter } from "../../components/Sidebar/SidebarFooter.tsx";
-import { LogoutIcon } from "../../assets/Sidebar/LogoutIcon.tsx";
+import { BuildingOfficeIcon, Squares2X2Icon, FolderIcon, FilmIcon, ArrowRightOnRectangleIcon} from '@heroicons/react/24/outline'
 
 type Theme = "light" | "dark";
 
@@ -68,7 +66,7 @@ const hexToRgba = (hex: string, alpha: number) => {
 };
 
 export const SidebarFinal: React.FC = () => {
-  const [collapsed, setCollapsed] = React.useState(false);
+  const [collapsed, setCollapsed] = React.useState(true);
   const [toggled, setToggled] = React.useState(false);
   const [hasImage, setHasImage] = React.useState(false);
   const [theme, setTheme] = React.useState<Theme>("light");
@@ -155,17 +153,17 @@ export const SidebarFinal: React.FC = () => {
           <div className="flex-1 mb-8">
             <Menu menuItemStyles={menuItemStyles}>
               <Link to={"/"}>
-                <MenuItem icon={<SquareIcon />}>Dashboard</MenuItem>
+                <MenuItem icon={<Squares2X2Icon className="w-6 h-6" />}>Dashboard</MenuItem>
               </Link>
 
               <Link to={"/companies"}>
-                <MenuItem icon={<OfficeIcon />}>Companies</MenuItem>
+                <MenuItem icon={<BuildingOfficeIcon className="w-6 h-6" />}>Companies</MenuItem>
               </Link>
               
-              <MenuItem icon={<FileIcon /> }>
+              <MenuItem icon={<FolderIcon className="w-6 h-6" /> }>
                 Work Rights Files <Link to={"/dashboard"} />
               </MenuItem>
-              <MenuItem icon={<VideoIcon />}>
+              <MenuItem icon={<FilmIcon className="w-6 h-6" />}>
                 Videos <Link to={"/dashboard"} />
               </MenuItem>
             </Menu>
@@ -174,7 +172,7 @@ export const SidebarFinal: React.FC = () => {
           {/* Have this area at bottom of screen */}
           <hr className="h-px mx-6 border-1 border-gray-200" />
           <Menu menuItemStyles={menuItemStyles}>
-            <MenuItem className="my-2" icon={<LogoutIcon />}>
+            <MenuItem className="my-2" icon={<ArrowRightOnRectangleIcon className="w-6 h-6" />}>
               Log out
             </MenuItem>
           </Menu>

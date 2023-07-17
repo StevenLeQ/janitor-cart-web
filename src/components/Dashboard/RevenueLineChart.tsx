@@ -7,6 +7,7 @@ import {
   Title,
   SubTitle,
   Tooltip,
+  Point,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
@@ -20,6 +21,22 @@ ChartJS.register(
   SubTitle,
   Tooltip
 );
+
+// TODO replace this any 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const gradient = (context: any) => {
+  const chart = context.chart as ChartJS<'line'>;
+  const ctx = chart.ctx;
+  const gradient = ctx.createLinearGradient(
+    0,
+    0,
+    0,
+    chart.height || 0
+  );
+  gradient.addColorStop(0.2, "rgba(0, 0, 0, 0)");
+  gradient.addColorStop(1, "rgba(0, 0, 0, 0.1)");
+  return gradient;
+}
 
 const options = {
   responsive: true,
@@ -37,6 +54,9 @@ const options = {
 
   scales: {
     x: {
+      grid: {
+        color: gradient,
+      },
       border: {
         display: false,
       },

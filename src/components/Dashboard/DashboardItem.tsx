@@ -1,8 +1,9 @@
 import React from "react";
 
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
+// Custom Icons
 import { ArrowUpIcon } from "../../assets/Dashboard/ArrowUpIcon.tsx";
 // import { ArrowDownIcon } from "../../assets/ArrowDownIcon.tsx";
-import { DashboardLinkIcon } from "../../assets/Dashboard/DashboardLinkIcon.tsx";
 
 interface HeaderProps {
   title?: string;
@@ -35,7 +36,7 @@ const DashboardItem: React.FC<HeaderProps> = ({
             {link && (
               <div className="text-royal-blue">
                 <a href={link}>
-                  <DashboardLinkIcon size={28} />
+                  <ArrowTopRightOnSquareIcon className="w-7 h-7" />
                 </a>
               </div>
             )}
