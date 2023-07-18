@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
-import { statesData } from "../../data/us-states";
 import "leaflet/dist/leaflet.css";
 import { PathOptions } from "leaflet";
+
+// GeoJson data
+import { statesData } from "../../data/us-states";
+
 
 interface StateProperties {
   name: string;

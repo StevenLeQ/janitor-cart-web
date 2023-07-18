@@ -11,7 +11,6 @@ export const SidebarHeader: React.FC<SidebarHeaderProps> = ({
   collapsed,
   ...rest
 }) => {
-  console.log();
   return (
     <div className="flex items-center gap-2 my-8 mx-auto">
       <img className="w-12" src={logo} />

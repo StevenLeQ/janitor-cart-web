@@ -16,6 +16,7 @@ export default {
         "royal-blue": "#0028BE",
         "grayish-blue": "#E6EAF9",
         "font-gray": "#607489",
+        "font-gray-200": "#4F494F",
         "font-black": "#212B36",
       }
     },

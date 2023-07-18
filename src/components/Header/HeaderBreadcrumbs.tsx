@@ -1,29 +1,30 @@
-import { ChevronRightIcon, HomeIcon } from '@heroicons/react/20/solid'
+import { ChevronRightIcon, Squares2X2Icon } from '@heroicons/react/24/outline'
 
 const pages = [
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Project Nero', href: '#', current: true },
+  { name: 'Companies', href: '/companies', current: false },
+  { name: 'Company Name', href: '#', current: true },
 ]
 
 export default function HeaderBreadcrumbs() {
   return (
     <nav className="flex" aria-label="Breadcrumb">
-      <ol role="list" className="flex items-center space-x-4">
+      <ol role="list" className="flex items-center space-x-2">
         <li>
           <div>
-            <a href="#" className="text-gray-400 hover:text-gray-500">
-              <HomeIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
-              <span className="sr-only">Home</span>
+            <a href="/" className="flex text-sm font-medium text-font-gray-200 hover:text-royal-blue">
+              <Squares2X2Icon className="h-5 w-5 mr-1 flex-shrink-0" aria-hidden="true" />
+              <span className="sr-only">Dashboard</span>
+              Dashboard
             </a>
           </div>
         </li>
         {pages.map((page) => (
           <li key={page.name}>
             <div className="flex items-center">
-              <ChevronRightIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
+              <ChevronRightIcon className="h-4 w-4 flex-shrink-0 text-font-gray-200 stroke-[0.16em]" aria-hidden="true" />
               <a
                 href={page.href}
-                className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
+                className="ml-2 text-sm font-medium text-font-gray-200 hover:text-royal-blue"
                 aria-current={page.current ? 'page' : undefined}
               >
                 {page.name}
