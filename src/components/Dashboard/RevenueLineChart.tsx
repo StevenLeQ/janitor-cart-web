@@ -59,7 +59,7 @@ const options = {
       },
       border: {
         display: false,
-      },
+      }
     },
     y: {
       display: false,
