@@ -38,16 +38,16 @@ function MinimapController(props: {
   return (
     <div className="absolute z-[400] right-2 top-2 shadow-lg bg-white/80 p-0.5 rounded-md">
       <p className="font-semibold text-base text-font-black">Sells by State</p>
-      <div className="font-regular text-sm text-font-gray">
+      <div className="flex flex-col font-regular text-sm text-font-gray">
         {props.stateName ? (
-          <p>State: {props.stateName}</p>
+          <span>State: {props.stateName}</span>
         ) : (
           "Hover over a state"
         )}
         {props.density !== null && (
-          <p>
+          <span>
             Customers: {props.density} 
-          </p>
+          </span>
         )}
       </div>
     </div>

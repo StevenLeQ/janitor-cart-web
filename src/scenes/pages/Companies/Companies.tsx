@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 
-import Header from "../../components/Header/Header";
-import CompaniesTable from "../../components/Companies/CompaniesTable";
+import Header from "../../../components/Header/Header";
+import CompaniesTable from "../../../components/Companies/CompaniesTable";
 
 const generatePeople = (count: number) => {
   const people = [];
@@ -20,6 +20,10 @@ const generatePeople = (count: number) => {
 
 const people = generatePeople(1000); // Generate an array of x people
 
+const bread = [
+  { name: 'Companies', link: '/companies', current: true },
+]
+
 const Companies = () => {
   return (
     <div className="w-full mb-5">
@@ -28,6 +32,7 @@ const Companies = () => {
         <Header
           title="Companies"
           subtitle="List of companies currently using The Janitor Cart services"
+          breadcrumbs={bread}
         />
       </div>
 

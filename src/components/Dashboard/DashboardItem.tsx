@@ -1,25 +1,25 @@
 import React from "react";
 
-import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 // Custom Icons
 import { ArrowUpIcon } from "../../assets/Dashboard/ArrowUpIcon.tsx";
-// import { ArrowDownIcon } from "../../assets/ArrowDownIcon.tsx";
+import { ArrowDownIcon } from "../../assets/Dashboard/ArrowDownIcon.tsx";
 
 interface HeaderProps {
-  title?: string;
+  title?: number;
+  salesBool?: boolean;
   subtitle?: string;
   link?: string;
   percent?: number;
-  // fracBool?: boolean;
   icon?: React.ReactNode;
 }
 
 const DashboardItem: React.FC<HeaderProps> = ({
   title,
+  salesBool,
   subtitle,
   link,
   percent,
-  // fracBool,
   icon,
 }) => {
   return (
@@ -42,17 +42,25 @@ const DashboardItem: React.FC<HeaderProps> = ({
             )}
           </div>
           {/* Big Number */}
-          <p className="text-2xl font-bold mt-4 text-font-black">{title}</p>
+          {salesBool ? (
+            // Special case for the dollar sign
+            <p className="text-2xl font-bold mt-4 text-font-black">{"$"}{title?.toLocaleString()}</p>
+          ) : (
+            <p className="text-2xl font-bold mt-4 text-font-black">{title?.toLocaleString()}</p>
+          )}
           <div className="flex justify-between mb-7">
             {/* Subtitle */}
-            <p className="text-sm font-medium text-font-gray">
-              {subtitle}
-            </p>
+            <p className="text-sm font-medium text-font-gray">{subtitle}</p>
             {/* Percent */}
-            <div className="flex text-emerald-400">
-            <p className="text-sm font-medium">{percent}%</p>
+            {percent && percent > 0 ? <div className="flex text-emerald-400">
+              <p className="text-sm font-medium">{percent}%</p>
               <ArrowUpIcon size={18} />
             </div>
+            : <div className="flex text-red-400">
+            <p className="text-sm font-medium">{percent}%</p>
+            <ArrowDownIcon size={18} />
+          </div> }
+            
           </div>
         </div>
       </div>

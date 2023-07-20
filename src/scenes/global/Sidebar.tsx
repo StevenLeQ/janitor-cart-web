@@ -15,7 +15,7 @@ import { SidebarHeader } from "../../components/Sidebar/SidebarHeader.tsx";
 import { SidebarFooter } from "../../components/Sidebar/SidebarFooter.tsx";
 
 // Icons used in Sidebar
-import { BuildingOfficeIcon, Squares2X2Icon, FolderIcon, FilmIcon, ArrowRightOnRectangleIcon} from '@heroicons/react/24/outline'
+import { BuildingOfficeIcon, Squares2X2Icon, FolderIcon, FilmIcon, ArrowLeftOnRectangleIcon} from '@heroicons/react/24/outline'
 
 type Theme = "light" | "dark";
 
@@ -172,7 +172,7 @@ export const SidebarFinal: React.FC = () => {
           {/* Have this area at bottom of screen */}
           <hr className="h-px mx-6 border-1 border-gray-200" />
           <Menu menuItemStyles={menuItemStyles}>
-            <MenuItem className="my-2" icon={<ArrowRightOnRectangleIcon className="w-6 h-6" />}>
+            <MenuItem className="my-2" icon={<ArrowLeftOnRectangleIcon className="w-6 h-6" />}>
               Log out
             </MenuItem>
           </Menu>

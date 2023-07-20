@@ -23,13 +23,18 @@ import {
   rankItem,
   compareItems,
 } from "@tanstack/match-sorter-utils";
+import { Link } from "react-router-dom";
 
 import DebouncedInput from "./DebouncedInput";
+import GeneratePaginationButtons from "./CompaniesPagination";
+import CDetailButton from "./CDetailButton";
 
 import {
   EllipsisVerticalIcon,
   ChevronUpIcon,
   ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
 } from "@heroicons/react/24/solid";
 
 declare module "@tanstack/table-core" {
@@ -169,20 +174,20 @@ const CompaniesTable: React.FC<ChildComponentProps> = ({ people }) => {
       <div className="justify-end sm:flex sm:items-center">
         <div className="flex my-5 mr-4 gap-4 sm:ml-16 sm:mt-0 sm:flex-none">
           {/* Top side of table, Filter Search and New Company */}
-          <div>
-            <DebouncedInput
-              value={globalFilter ?? ""}
-              onChange={(value) => setGlobalFilter(String(value))}
-              className="p-2 font-lg shadow border border-block rounded w-72"
-              placeholder="Search all columns..."
-            />
-          </div>
-          <button
-            type="button"
-            className="rounded-md bg-royal-blue px-5 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            New Company
-          </button>
+          <DebouncedInput
+            value={globalFilter ?? ""}
+            onChange={(value) => setGlobalFilter(String(value))}
+            className="p-2 font-lg shadow border border-block focus:outline-royal-blue rounded w-72"
+            placeholder="Search all columns..."
+          />
+          <Link to={"/newCompany"}>
+            <button
+              type="button"
+              className="rounded-md mt-1 bg-royal-blue px-5 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              New Company
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -190,25 +195,6 @@ const CompaniesTable: React.FC<ChildComponentProps> = ({ people }) => {
         <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
           <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
             <table className="min-w-full divide-y divide-gray-300">
-              {/* <thead>
-                {table.getHeaderGroups().map((headerGroup) => (
-                  <tr key={headerGroup.id}>
-                    {headerGroup.headers.map((header) => (
-                      <th
-                        className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
-                        key={header.id}
-                      >
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                      </th>
-                    ))}
-                  </tr>
-                ))}
-              </thead> */}
               <thead>
                 {table.getHeaderGroups().map((headerGroup) => (
                   <tr key={headerGroup.id}>
@@ -264,7 +250,8 @@ const CompaniesTable: React.FC<ChildComponentProps> = ({ people }) => {
                     ))}
                     <td className="relative whitespace-nowrap text-right text-sm font-medium">
                       <a href="#">
-                        <EllipsisVerticalIcon className="text-font-gray h-5 hover:text-indigo-600" />
+                        {/* <EllipsisVerticalIcon className="text-font-gray h-5 hover:text-indigo-600" /> */}
+                        <CDetailButton />
                       </a>
                     </td>
                   </tr>
@@ -272,72 +259,103 @@ const CompaniesTable: React.FC<ChildComponentProps> = ({ people }) => {
               </tbody>
             </table>
           </div>
-        </div>
-        <div className="flex ml-10 m-2 items-center gap-2">
-              <button
-                className="border rounded p-1"
-                onClick={() => table.setPageIndex(0)}
-                disabled={!table.getCanPreviousPage()}
-              >
-                {"<<"}
-              </button>
-              <button
-                className="border rounded p-1"
-                onClick={() => table.previousPage()}
-                disabled={!table.getCanPreviousPage()}
-              >
-                {"<"}
-              </button>
-              <button
-                className="border rounded p-1"
-                onClick={() => table.nextPage()}
-                disabled={!table.getCanNextPage()}
-              >
-                {">"}
-              </button>
-              <button
-                className="border rounded p-1"
-                onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-                disabled={!table.getCanNextPage()}
-              >
-                {">>"}
-              </button>
-              <span className="flex items-center gap-1">
-                <div>Page</div>
-                <strong>
-                  {table.getState().pagination.pageIndex + 1} of{" "}
-                  {table.getPageCount()}
-                </strong>
-              </span>
-              <span className="flex items-center gap-1">
-                | Go to page:
-                <input
-                  type="number"
-                  defaultValue={table.getState().pagination.pageIndex + 1}
+
+          <div className="flex items-center justify-between border-t px-4 py-3 sm:px-6">
+            <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+              {/* Bottom left helper text for table */}
+              <div className="flex text-sm">
+                <p className="text-sm text-gray-700">
+                  Showing{" "}
+                  <span className="font-medium">
+                    {Math.min(
+                      table.getState().pagination.pageSize *
+                        table.getState().pagination.pageIndex +
+                        1,
+                      table.getPrePaginationRowModel().rows.length
+                    )}
+                  </span>{" "}
+                  to{" "}
+                  <span className="font-medium">
+                    {/* Bind showing to min and max of table row lengths */}
+                    {Math.min(
+                      table.getPrePaginationRowModel().rows.length,
+                      table.getState().pagination.pageSize *
+                        (table.getState().pagination.pageIndex + 1)
+                    )}
+                  </span>{" "}
+                  of{" "}
+                  <span className="font-medium">
+                    {table.getPrePaginationRowModel().rows.length}
+                  </span>{" "}
+                  results
+                </p>
+                <span className="flex gap-2 ml-2">
+                  | Go to page:
+                  <input
+                    type="number"
+                    defaultValue={table.getState().pagination.pageIndex + 1}
+                    onChange={(e) => {
+                      const page = e.target.value
+                        ? Number(e.target.value) - 1
+                        : 0;
+                      // Constrains the go to page to bounds of table row
+                      page < table.getPageCount()
+                        ? table.setPageIndex(page)
+                        : table.getPageCount();
+                    }}
+                    className="border outline-royal-blue p-1 rounded w-16 h-5"
+                  />
+                </span>
+                <select
+                  value={table.getState().pagination.pageSize}
+                  className="h-5 ml-3 rounded border-0 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-royal-blue sm:text-sm sm:leading-6"
                   onChange={(e) => {
-                    const page = e.target.value
-                      ? Number(e.target.value) - 1
-                      : 0;
-                    table.setPageIndex(page);
+                    table.setPageSize(Number(e.target.value));
                   }}
-                  className="border p-1 rounded w-16"
-                />
-              </span>
-              <select
-                value={table.getState().pagination.pageSize}
-                onChange={(e) => {
-                  table.setPageSize(Number(e.target.value));
-                }}
-              >
-                {[10, 20, 30, 40, 50].map((pageSize) => (
-                  <option key={pageSize} value={pageSize}>
-                    Show {pageSize}
-                  </option>
-                ))}
-              </select>
+                >
+                  {[10, 20, 30, 40, 50].map((pageSize) => (
+                    <option key={pageSize} value={pageSize}>
+                      Show {pageSize}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Pagination */}
+              <></>
+              <div className="bg-white mt-1">
+                <nav
+                  className="isolate inline-flex -space-x-px rounded-md shadow-sm"
+                  aria-label="Pagination"
+                >
+                  {/* Table back button */}
+                  <button
+                    className="relative inline-flex items-center rounded-l-md px-2 py-2 text-font-gray ring-1 ring-inset ring-gray-300 hover:enabled:text-blue-700 hover:enabled:bg-indigo-200 disabled:bg-gray-200 focus:z-20 focus:outline-offset-0"
+                    onClick={() => table.previousPage()}
+                    disabled={!table.getCanPreviousPage()}
+                  >
+                    <span className="sr-only">Previous</span>
+                    <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
+                  </button>
+
+                  {/* Generates all the number buttons */}
+                  {GeneratePaginationButtons(table, 5)}
+
+                  {/* Table forward button */}
+                  <button
+                    className="relative inline-flex items-center rounded-r-md px-2 py-2 text-font-gray ring-1 ring-inset ring-gray-300 hover:enabled:text-blue-700 hover:enabled:bg-indigo-200 disabled:bg-gray-200 focus:z-20 focus:outline-offset-0"
+                    onClick={() => table.nextPage()}
+                    disabled={!table.getCanNextPage()}
+                  >
+                    <span className="sr-only">Next</span>
+                    <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+                  </button>
+                </nav>
+              </div>
             </div>
+          </div>
+        </div>
       </div>
-      
     </div>
   );
 };

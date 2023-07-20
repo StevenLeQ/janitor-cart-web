@@ -1,10 +1,12 @@
-import React from 'react'
+import React from "react";
+
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 
 type Props = {
-  value: string | number
-  onChange: (value: string | number) => void
-  debounce?: number
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>
+  value: string | number;
+  onChange: (value: string | number) => void;
+  debounce?: number;
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange">;
 
 export const DebouncedInput: React.FC<Props> = ({
   value: initialValue,
@@ -12,24 +14,34 @@ export const DebouncedInput: React.FC<Props> = ({
   debounce = 500,
   ...props
 }) => {
-  const [value, setValue] = React.useState<number | string>(initialValue)
+  const [value, setValue] = React.useState<number | string>(initialValue);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setValue(event.target.value)
+    setValue(event.target.value);
 
   React.useEffect(() => {
-    setValue(initialValue)
-  }, [initialValue])
+    setValue(initialValue);
+  }, [initialValue]);
 
   React.useEffect(() => {
     const timeout = setTimeout(() => {
-      onChange(value)
-    }, debounce)
+      onChange(value);
+    }, debounce);
 
-    return () => clearTimeout(timeout)
-  }, [value])
+    return () => clearTimeout(timeout);
+  }, [value]);
 
-  return <input {...props} value={value} onChange={handleInputChange} />
-}
+  return (
+    <div className="relative">
+      <input {...props} value={value} onChange={handleInputChange} />
+      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+        <MagnifyingGlassIcon
+          className="h-6 w-6 text-gray-400"
+          aria-hidden="true"
+        />
+      </div>
+    </div>
+  );
+};
 
-export default DebouncedInput
+export default DebouncedInput;
