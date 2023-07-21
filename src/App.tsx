@@ -11,8 +11,8 @@ function App() {
   return (
     // Span entire screen
     <>
-      <div className="md:flex bg-stone-100">
-        <div className="h-screen sticky top-0 invisible lg:visible">
+      <div className="flex bg-stone-100">
+        <div className="h-screen sticky top-0">
         <SidebarFinal />
         </div>
 

@@ -51,7 +51,7 @@ const Dashboard = () => {
           subtitle="Total Customers"
           percent={faker.number.float({ min: -100, max: 100, precision: 0.01 })}
           icon={<BuildingOfficeIcon className="w-10 h-10" />}
-          link="https://example.com"
+          link="/companies"
         />
         <DashboardItem
           title={faker.number.int({ min: 100, max: 1000000})}
@@ -61,11 +61,11 @@ const Dashboard = () => {
         />
 
         {/* Second two items, revenue graph and leaflet chloropleth map */}
-        <div className="relative col-span-8 h-[22rem] bg-white rounded-lg border px-6 pt-3 pb-5">
+        <div className="lg:col-span-8 col-span-12 h-[22rem] bg-white rounded-lg border px-6 pt-3 pb-5">
           <RevenueLineChart />
         </div>
 
-        <div className="relative col-span-4 h-full rounded-lg overflow-hidden">
+        <div className="lg:col-span-4 col-span-12 h-[22rem] rounded-lg overflow-hidden">
           <SellsChloropleth />
         </div>
       </div>

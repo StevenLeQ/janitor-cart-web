@@ -23,7 +23,7 @@ const DashboardItem: React.FC<HeaderProps> = ({
   icon,
 }) => {
   return (
-    <div className="flex col-span-3 justify-evenly items-center bg-white rounded-lg w-full h-full p-1 border">
+    <div className="flex lg:col-span-3 sm:col-span-6 col-span-12 justify-evenly items-center bg-white rounded-lg w-full h-full p-1 border">
       <div className="flex flex-col h-4/5 w-full">
         {/* Royal Blue Icons w/ light blue bg */}
         <div className="flex flex-col mx-5 my-1">
