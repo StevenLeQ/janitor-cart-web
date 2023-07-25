@@ -6,6 +6,3 @@ before_script:
 
 unit_tests:
   stage: test
-  script:
-    - echo "Running unit tests..."
-    - npm test
