@@ -1,14 +1,18 @@
 # .gitlab-ci.yml
-image: node:14
-
-before_script:
-  - npm install
+image: node:18
 
 stages:
   - test
+
+cache:
+  paths:
+    - node_modules/
+
+before_script:
+  - npm install
 
 unit_tests:
   stage: test
   script:
     - echo "Running unit tests..."
-    - npm test # Command to run the unit tests using your preferred testing library (e.g., Jest)
+    - npm test
