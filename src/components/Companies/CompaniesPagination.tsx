@@ -1,5 +1,5 @@
 // Component to generate the paginated buttons at the bottom right of companies
-const GeneratePaginationButtons = (table:any, totalButtons: number) => {
+const GeneratePaginationButtons = (table: any, totalButtons: number) => {
   const buttons = [];
   const halfButtons = Math.floor(totalButtons / 2);
 
@@ -17,7 +17,7 @@ const GeneratePaginationButtons = (table:any, totalButtons: number) => {
     buttons.push(
       <button
         key={0}
-        className="relative inline-flex items-center px-4 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 hover:text-blue-700 hover:bg-indigo-200 focus:z-20 focus:outline-offset-0 text-font-gray "
+        className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-font-gray ring-1 ring-inset ring-gray-300 hover:bg-indigo-200 hover:text-blue-700 focus:z-20 focus:outline-offset-0 "
         onClick={() => table.setPageIndex(0)}
         disabled={!table.getCanPreviousPage()}
       >
@@ -27,7 +27,7 @@ const GeneratePaginationButtons = (table:any, totalButtons: number) => {
     buttons.push(
       <span
         key="ell1"
-        className="relative inline-flex items-center px-4 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 focus:outline-offset-0 select-none"
+        className="relative inline-flex select-none items-center px-4 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 focus:outline-offset-0"
       >
         ...
       </span>
@@ -40,8 +40,8 @@ const GeneratePaginationButtons = (table:any, totalButtons: number) => {
         key={i}
         className={`relative inline-flex items-center ${
           table.getState().pagination.pageIndex === i
-            ? "bg-royal-blue text-white"
-            : "text-font-gray hover:text-blue-700 hover:bg-indigo-200"
+            ? 'bg-royal-blue text-white'
+            : 'text-font-gray hover:bg-indigo-200 hover:text-blue-700'
         } px-4 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0`}
         onClick={() => table.setPageIndex(i)}
       >
@@ -54,7 +54,7 @@ const GeneratePaginationButtons = (table:any, totalButtons: number) => {
     buttons.push(
       <span
         key="ell2"
-        className="relative inline-flex items-center px-4 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 focus:outline-offset-0 select-none"
+        className="relative inline-flex select-none items-center px-4 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 focus:outline-offset-0"
       >
         ...
       </span>
@@ -63,8 +63,8 @@ const GeneratePaginationButtons = (table:any, totalButtons: number) => {
       <button
         key={max}
         className={`relative inline-flex items-center ${
-          current === max ? "bg-royal-blue text-white" : "text-font-gray "
-        } px-4 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 hover:text-blue-700 hover:bg-indigo-200 focus:z-20 focus:outline-offset-0`}
+          current === max ? 'bg-royal-blue text-white' : 'text-font-gray '
+        } px-4 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 hover:bg-indigo-200 hover:text-blue-700 focus:z-20 focus:outline-offset-0`}
         onClick={() => {
           table.setPageIndex(max);
         }}

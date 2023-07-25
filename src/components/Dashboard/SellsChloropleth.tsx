@@ -1,11 +1,10 @@
-import { useState } from "react";
-import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import { PathOptions } from "leaflet";
+import { useState } from 'react';
+import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import { PathOptions } from 'leaflet';
 
 // GeoJson data
-import { statesData } from "../../data/us-states";
-
+import { statesData } from '../../data/us-states';
 
 interface StateProperties {
   name: string;
@@ -36,19 +35,15 @@ function MinimapController(props: {
   density: number | null;
 }) {
   return (
-    <div className="absolute z-[400] right-2 top-2 shadow-lg bg-white/80 p-0.5 rounded-md">
-      <p className="font-semibold text-base text-font-black">Sells by State</p>
-      <div className="flex flex-col font-regular text-sm text-font-gray">
+    <div className="absolute right-2 top-2 z-[400] rounded-md bg-white/80 p-0.5 shadow-lg">
+      <p className="text-base font-semibold text-font-black">Sells by State</p>
+      <div className="font-regular flex flex-col text-sm text-font-gray">
         {props.stateName ? (
           <span>State: {props.stateName}</span>
         ) : (
-          "Hover over a state"
+          'Hover over a state'
         )}
-        {props.density !== null && (
-          <span>
-            Customers: {props.density} 
-          </span>
-        )}
+        {props.density !== null && <span>Customers: {props.density}</span>}
       </div>
     </div>
   );
@@ -66,24 +61,24 @@ function SellsChloropleth() {
   // Function to assign colors based on values
   const getColor = (color: number | null) => {
     if (color === null) {
-      return "#CCCCCC"; // Default color for null values
+      return '#CCCCCC'; // Default color for null values
     }
 
     return color > 1000
-      ? "#800026"
+      ? '#800026'
       : color > 500
-      ? "#Bcolor0026"
+      ? '#Bcolor0026'
       : color > 200
-      ? "#E31A1C"
+      ? '#E31A1C'
       : color > 100
-      ? "#FC4E2A"
+      ? '#FC4E2A'
       : color > 50
-      ? "#FD8D3C"
+      ? '#FD8D3C'
       : color > 20
-      ? "#FEB24C"
+      ? '#FEB24C'
       : color > 10
-      ? "#FED976"
-      : "#FFEDA0";
+      ? '#FED976'
+      : '#FFEDA0';
   };
 
   // Binds color and sets style for the GeoJSON
@@ -96,9 +91,9 @@ function SellsChloropleth() {
       fillColor: getColor(stateFeature.properties.density),
       // Handles border settings on mouseover of a state
       weight: isHighlighted ? 5 : 2,
-      color: isHighlighted ? "#666" : "white",
-      dashArray: isHighlighted ? "0" : "3",
-      fillOpacity: 0.7,
+      color: isHighlighted ? '#666' : 'white',
+      dashArray: isHighlighted ? '0' : '3',
+      fillOpacity: 0.7
     };
   };
 
@@ -117,12 +112,12 @@ function SellsChloropleth() {
         setSelectedState(undefined);
         setSelectedDensity(null);
       },
-      click: zoomToFeature,
+      click: zoomToFeature
     });
   };
 
   return (
-    <MapContainer center={[50, -120]} zoom={2} className="w-full h-full br-lg">
+    <MapContainer center={[50, -120]} zoom={2} className="br-lg h-full w-full">
       {/* The lower layer map */}
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

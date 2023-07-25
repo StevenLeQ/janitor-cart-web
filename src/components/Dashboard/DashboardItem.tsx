@@ -1,9 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
+
 // Custom Icons
-import { ArrowUpIcon } from "../../assets/Dashboard/ArrowUpIcon.tsx";
-import { ArrowDownIcon } from "../../assets/Dashboard/ArrowDownIcon.tsx";
+import { ArrowUpIcon } from '../../assets/Dashboard/ArrowUpIcon.tsx';
+import { ArrowDownIcon } from '../../assets/Dashboard/ArrowDownIcon.tsx';
 
 interface HeaderProps {
   title?: number;
@@ -20,15 +21,15 @@ const DashboardItem: React.FC<HeaderProps> = ({
   subtitle,
   link,
   percent,
-  icon,
+  icon
 }) => {
   return (
-    <div className="flex lg:col-span-3 sm:col-span-6 col-span-12 justify-evenly items-center bg-white rounded-lg w-full h-full p-1 border">
-      <div className="flex flex-col h-4/5 w-full">
+    <div className="col-span-12 flex h-full w-full items-center justify-evenly rounded-lg border bg-white p-1 sm:col-span-6 lg:col-span-3">
+      <div className="flex h-4/5 w-full flex-col">
         {/* Royal Blue Icons w/ light blue bg */}
-        <div className="flex flex-col mx-5 my-1">
+        <div className="mx-5 my-1 flex flex-col">
           <div className="flex justify-between">
-            <div className="flex items-center text-royal-blue bg-grayish-blue w-[3.25rem] h-[3.25rem] p-3 rounded-lg">
+            <div className="flex h-[3.25rem] w-[3.25rem] items-center rounded-lg bg-grayish-blue p-3 text-royal-blue">
               {/* <DollarIcon size={50} /> */}
               {icon}
             </div>
@@ -36,7 +37,7 @@ const DashboardItem: React.FC<HeaderProps> = ({
             {link && (
               <div className="text-royal-blue">
                 <a href={link}>
-                  <ArrowTopRightOnSquareIcon className="w-7 h-7" />
+                  <ArrowTopRightOnSquareIcon className="h-7 w-7" />
                 </a>
               </div>
             )}
@@ -44,23 +45,30 @@ const DashboardItem: React.FC<HeaderProps> = ({
           {/* Big Number */}
           {salesBool ? (
             // Special case for the dollar sign
-            <p className="text-2xl font-bold mt-4 text-font-black">{"$"}{title?.toLocaleString()}</p>
+            <p className="mt-4 text-2xl font-bold text-font-black">
+              {'$'}
+              {title?.toLocaleString()}
+            </p>
           ) : (
-            <p className="text-2xl font-bold mt-4 text-font-black">{title?.toLocaleString()}</p>
+            <p className="mt-4 text-2xl font-bold text-font-black">
+              {title?.toLocaleString()}
+            </p>
           )}
-          <div className="flex justify-between mb-7">
+          <div className="mb-7 flex justify-between">
             {/* Subtitle */}
             <p className="text-sm font-medium text-font-gray">{subtitle}</p>
             {/* Percent */}
-            {percent && percent > 0 ? <div className="flex text-emerald-400">
-              <p className="text-sm font-medium">{percent}%</p>
-              <ArrowUpIcon size={18} />
-            </div>
-            : <div className="flex text-red-400">
-            <p className="text-sm font-medium">{percent}%</p>
-            <ArrowDownIcon size={18} />
-          </div> }
-            
+            {percent && percent > 0 ? (
+              <div className="flex text-emerald-400">
+                <p className="text-sm font-medium">{percent}%</p>
+                <ArrowUpIcon size={18} />
+              </div>
+            ) : (
+              <div className="flex text-red-400">
+                <p className="text-sm font-medium">{percent}%</p>
+                <ArrowDownIcon size={18} />
+              </div>
+            )}
           </div>
         </div>
       </div>

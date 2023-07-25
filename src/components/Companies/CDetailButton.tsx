@@ -1,11 +1,11 @@
 // This component is the ellipsis used in each table row
 
-import { Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
-import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
+import { Fragment } from 'react';
+import { Menu, Transition } from '@headlessui/react';
+import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
 
-function classNames(...classes : any) {
-  return classes.filter(Boolean).join(' ')
+function classNames(...classes: any) {
+  return classes.filter(Boolean).join(' ');
 }
 
 export default function CDetailButton() {
@@ -27,7 +27,7 @@ export default function CDetailButton() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-5 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden">
+        <Menu.Items className="absolute right-5 z-10 mt-2 w-56 origin-top-right overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="">
             <Menu.Item>
               {({ active }) => (
@@ -87,5 +87,5 @@ export default function CDetailButton() {
         </Menu.Items>
       </Transition>
     </Menu>
-  )
+  );
 }

@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 
 type Props = {
   value: string | number;
   onChange: (value: string | number) => void;
   debounce?: number;
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange">;
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>;
 
 export const DebouncedInput: React.FC<Props> = ({
   value: initialValue,

@@ -1,5 +1,5 @@
-import React from "react";
-import { IconProps } from "../types";
+import React from 'react';
+import { IconProps } from '../types';
 
 export const ArrowUpIcon: React.FC<IconProps> = ({ size = 22 }) => {
   return (
