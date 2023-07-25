@@ -110,7 +110,6 @@ describe('Footer', () => {
   test('Renders the SidebarFooter component', () => {
     render(<SidebarFooter collapsed={false} />);
     const userIcon = screen.getByRole('img', { hidden: true });
-    console.log(userIcon);
     expect(userIcon).toBeInTheDocument();
   });
 

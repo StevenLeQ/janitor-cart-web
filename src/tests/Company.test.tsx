@@ -1,13 +1,12 @@
 import { vi, expect, test } from 'vitest';
-
 import { render, screen, fireEvent, act } from '@testing-library/react';
 
 import GeneratePaginationButtons from '../components/Companies/CompaniesPagination';
 import DebouncedInput from '../components/Companies/DebouncedInput';
 import CDetailButton from '../components/Companies/CDetailButton';
 
-describe('Eliipsis Menu', () => {
-  test('Displays menu items when button is clicked', () => {
+describe('Eliipsis Menu', async () => {
+  test('Displays menu items when button is clicked', async () => {
     render(<CDetailButton />);
 
     // Find the ellipsis button
@@ -24,7 +23,9 @@ describe('Eliipsis Menu', () => {
     expect(screen.queryByText('THIS TEXT IS UNSET')).not.toBeInTheDocument();
 
     // Click the ellipsis button to open the menu
-    fireEvent.click(ellipsisButton);
+    await act(() => {
+      fireEvent.click(ellipsisButton);
+    });
 
     // Check if the menu items are displayed after the click
     expect(screen.getByText('Edit Company...')).toBeInTheDocument();
