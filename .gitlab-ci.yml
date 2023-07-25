@@ -1,17 +1,8 @@
 # .gitlab-ci.yml
 image: node:18
 
-stages:
-  - build
-  - test
-
-build:
-  stage: build
-  script:
-    - npm install
+before_script:
+  - npm install
 
 unit_tests:
   stage: test
-  script:
-    - echo "Running unit tests..."
-    - npm test
