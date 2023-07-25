@@ -1,13 +1,6 @@
 # .gitlab-ci.yml
 image: node:18
 
-stages:
-  - test
-
-cache:
-  paths:
-    - node_modules/
-
 before_script:
   - npm install
 
