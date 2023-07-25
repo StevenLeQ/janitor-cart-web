@@ -158,30 +158,36 @@ export const SidebarFinal: React.FC = () => {
 
           <div className="mb-8 flex-1">
             <Menu menuItemStyles={menuItemStyles}>
-              <Link to={'/'}>
-                <MenuItem
-                  aria-label="dashboard-icon"
-                  icon={<Squares2X2Icon className="h-6 w-6" />}
-                >
-                  Dashboard
-                </MenuItem>
-              </Link>
-
-              <Link to={'/companies'}>
-                <MenuItem
-                  aria-label="companies-icon"
-                  icon={<BuildingOfficeIcon className="h-6 w-6" />}
-                >
-                  Companies
-                </MenuItem>
-              </Link>
-
-              <MenuItem icon={<FolderIcon className="h-6 w-6" />}>
-                Work Rights Files{' '}
-                <Link aria-label="work-rights-files-icon" to={'/dashboard'} />
+              <MenuItem
+                component={<Link to={'/'} />}
+                aria-label="dashboard-icon"
+                icon={<Squares2X2Icon className="h-6 w-6" />}
+              >
+                Dashboard
               </MenuItem>
-              <MenuItem icon={<FilmIcon className="h-6 w-6" />}>
-                Videos <Link aria-label="videos-icon" to={'/dashboard'} />
+
+              <MenuItem
+                component={<Link to={'/companies'} />}
+                aria-label="companies-icon"
+                icon={<BuildingOfficeIcon className="h-6 w-6" />}
+              >
+                Companies
+              </MenuItem>
+
+              <MenuItem
+                component={<Link to={'/dashboard'} />}
+                aria-label="work-rights-files-icon"
+                icon={<FolderIcon className="h-6 w-6" />}
+              >
+                Work Rights Files
+              </MenuItem>
+
+              <MenuItem
+                component={<Link to={'/companies'} />}
+                aria-label="videos-icon"
+                icon={<FilmIcon className="h-6 w-6" />}
+              >
+                Videos
               </MenuItem>
             </Menu>
           </div>
