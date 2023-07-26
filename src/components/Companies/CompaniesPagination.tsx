@@ -63,7 +63,7 @@ const GeneratePaginationButtons = (table: any, totalButtons: number) => {
       <button
         key={max}
         className={`relative inline-flex items-center ${
-          current === max ? 'bg-royal-blue text-white' : 'text-font-gray '
+          current === max ? 'bg-royal-blue text-white' : 'text-font-gray'
         } px-4 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 hover:bg-indigo-200 hover:text-blue-700 focus:z-20 focus:outline-offset-0`}
         onClick={() => {
           table.setPageIndex(max);

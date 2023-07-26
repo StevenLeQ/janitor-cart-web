@@ -39,7 +39,7 @@ describe('Header', () => {
     expect(screen.queryByLabelText('Dashboard')).not.toBeInTheDocument();
   });
 
-  test('Render breadcrumbs if not passed', () => {
+  test('Render breadcrumbs if passed', () => {
     const title = 'Sample Title';
     const subtitle = 'Sample Subtitle';
 

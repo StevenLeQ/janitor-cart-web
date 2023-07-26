@@ -1,9 +1,131 @@
 import { vi, expect, test } from 'vitest';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  act,
+  getByText,
+  getAllByRole
+} from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 
+import CompaniesTable from '../components/Companies/CompaniesTable';
 import GeneratePaginationButtons from '../components/Companies/CompaniesPagination';
 import DebouncedInput from '../components/Companies/DebouncedInput';
 import CDetailButton from '../components/Companies/CDetailButton';
+
+// Mock the ChildComponentProps.people data for testing
+const testData = [
+  { name: 'Company A', active: true, email: 'companya@example.com' },
+  { name: 'Company B', active: false, email: 'companyb@example.com' }
+  // Add more test data as needed
+];
+
+describe('Companies Table', () => {
+  test('Renders the table header correctly', () => {
+    render(
+      <BrowserRouter>
+        <CompaniesTable people={testData} />
+      </BrowserRouter>
+    );
+    expect(screen.getByText('COMPANY')).toBeInTheDocument();
+    expect(screen.getByText('EMAIL')).toBeInTheDocument();
+    expect(screen.getByText('ACTIVE')).toBeInTheDocument();
+  });
+
+  test('Renders the data rows correctly', () => {
+    render(
+      <BrowserRouter>
+        <CompaniesTable people={testData} />
+      </BrowserRouter>
+    );
+    // Assuming there are two data rows based on the provided testData
+    expect(screen.getAllByRole('row')).toHaveLength(3); // Including the header row
+
+    // Assuming there are two test data rows
+    expect(screen.getByText('Company A')).toBeInTheDocument();
+    expect(screen.getByText('Company B')).toBeInTheDocument();
+  });
+
+  test('Renders "Active" status correctly', () => {
+    render(
+      <BrowserRouter>
+        <CompaniesTable people={testData} />
+      </BrowserRouter>
+    );
+    // Assuming there are two test data rows
+    expect(screen.getByText('Active')).toBeInTheDocument();
+    expect(screen.getByText('Inactive')).toBeInTheDocument();
+  });
+
+  test('Allows filtering by company name', async () => {
+    render(
+      <BrowserRouter>
+        <CompaniesTable people={testData} />
+      </BrowserRouter>
+    );
+    const searchInput = screen.getByPlaceholderText('Search all columns...');
+
+    await act(() => {
+      fireEvent.change(searchInput, { target: { value: 'Company A' } });
+    });
+
+    // Ensure that only Company A is visible after filtering
+    expect(screen.getByText('Company A')).toBeInTheDocument();
+    expect(screen.queryByDisplayValue('Company B')).not.toBeInTheDocument();
+  });
+
+  test.todo('displays correct sorting icon when sorted by company name', () => {
+    render(
+      <BrowserRouter>
+        <CompaniesTable people={testData} />
+      </BrowserRouter>
+    );
+
+    // The Company column should be sortable
+    const companyColumnHeader = screen.getByText('COMPANY');
+    expect(companyColumnHeader).toHaveAttribute('aria-sort', 'none');
+
+    // Click on the Company column header to sort it
+    fireEvent.click(companyColumnHeader);
+
+    // Now, the column should be sorted in ascending order
+    expect(companyColumnHeader).toHaveAttribute('aria-sort', 'ascending');
+
+    // Click on the Company column header again to sort it in descending order
+    fireEvent.click(companyColumnHeader);
+
+    // Now, the column should be sorted in descending order
+    expect(companyColumnHeader).toHaveAttribute('aria-sort', 'descending');
+  });
+
+  test('Displays correct "Active" status after filtering', async () => {
+    render(
+      <BrowserRouter>
+        <CompaniesTable people={testData} />
+      </BrowserRouter>
+    );
+
+    // Initially, Company A is active and Company B is inactive
+    expect(screen.getByText('Active')).toBeInTheDocument();
+    expect(screen.getByText('Inactive')).toBeInTheDocument();
+
+    // Filter to show only active companies
+    const searchInput = screen.getByPlaceholderText('Search all columns...');
+
+    await act(() => {
+      fireEvent.change(searchInput, { target: { value: 'Active' } });
+    });
+
+    // Now, only Company A should be visible and its status should be "Active"
+    expect(screen.getByText('Company A')).toBeInTheDocument();
+    expect(screen.getByText('Active')).toBeInTheDocument();
+
+    // Ensure that Company B is no longer visible
+    expect(screen.queryByDisplayValue('Company B')).not.toBeInTheDocument();
+    expect(screen.queryByDisplayValue('Inactive')).not.toBeInTheDocument();
+  });
+});
 
 describe('Eliipsis Menu', async () => {
   test('Displays menu items when button is clicked', async () => {
@@ -121,23 +243,45 @@ describe('Debounced Input', () => {
   });
 });
 
+const mockTable = {
+  getState: () => ({
+    pagination: {
+      pageIndex: 0
+    }
+  }),
+  setPageIndex: vi.fn(),
+  getPageCount: () => 5
+};
+
 describe('Table Pagination', () => {
-  test('Renders 5 pagination buttons starting at 0', () => {
-    const tableMock = {
-      getState: () => ({ pagination: { pageIndex: 2 } }),
-      getPageCount: () => 10,
-      setPageIndex: vi.fn()
-    };
-
+  test('Generates correct number of buttons', () => {
     const totalButtons = 5;
+    const buttons = GeneratePaginationButtons(mockTable, totalButtons);
+    expect(buttons.length).toBe(totalButtons + 2);
+  });
 
-    render(<div>{GeneratePaginationButtons(tableMock, totalButtons)}</div>);
+  test('Calls setPageIndex correctly on button click', () => {
+    const totalButtons = 5;
+    const buttons = GeneratePaginationButtons(mockTable, totalButtons);
 
-    // Check if the correct buttons are rendered based on the current page index and total number of pages
-    expect(screen.queryByText('1')).toBeInTheDocument();
-    expect(screen.queryByText('...')).toBeInTheDocument();
-    expect(screen.queryByText('3')).toBeInTheDocument();
-    expect(screen.queryByText('4')).toBeInTheDocument();
-    expect(screen.queryByText('5')).toBeInTheDocument();
+    // Simulate clicking on the second button
+    buttons[1].props.onClick();
+
+    // Expect setPageIndex to be called with the correct index (1)
+    expect(mockTable.setPageIndex).toHaveBeenCalledWith(1);
+
+    // Simulate clicking on another button
+    buttons[4].props.onClick();
+
+    // Expect setPageIndex to be called with the correct index (1)
+    expect(mockTable.setPageIndex).toHaveBeenCalledWith(4);
+  });
+
+  test('Correctly renders the ellipsis button', () => {
+    const totalButtons = 5;
+    const buttons = GeneratePaginationButtons(mockTable, totalButtons);
+
+    // The ellipsis span should be present in the end
+    expect(buttons[totalButtons].props.children).toBe('...');
   });
 });

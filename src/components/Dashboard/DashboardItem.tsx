@@ -36,7 +36,7 @@ const DashboardItem: React.FC<HeaderProps> = ({
             {/* Link to some other page if there is a link*/}
             {link && (
               <div className="text-royal-blue">
-                <a href={link}>
+                <a href={link} data-testid="link-icon">
                   <ArrowTopRightOnSquareIcon className="h-7 w-7" />
                 </a>
               </div>
@@ -59,14 +59,17 @@ const DashboardItem: React.FC<HeaderProps> = ({
             <p className="text-sm font-medium text-font-gray">{subtitle}</p>
             {/* Percent */}
             {percent && percent > 0 ? (
-              <div className="flex text-emerald-400">
-                <p className="text-sm font-medium">{percent}%</p>
+              <div
+                className="flex text-emerald-400"
+                data-testid="arrow-up-icon"
+              >
+                <span className="text-sm font-medium">{percent}%</span>
                 <ArrowUpIcon size={18} />
               </div>
             ) : (
-              <div className="flex text-red-400">
-                <p className="text-sm font-medium">{percent}%</p>
-                <ArrowDownIcon size={18} />
+              <div className="flex text-red-400" data-testid="arrow-down-icon">
+                <span className="text-sm font-medium">{percent}%</span>
+                <ArrowDownIcon size={18} data-testid="arrow-down-icon" />
               </div>
             )}
           </div>
