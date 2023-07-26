@@ -1,7 +1,8 @@
 import React from 'react';
-import { IconProps } from '../types';
+import { IconProps } from '../types/types';
 
-export const ArrowDownIcon: React.FC<IconProps> = ({ size = 22 }) => {
+// Styled Icon
+export const ArrowUpIcon: React.FC<IconProps> = ({ size = 22 }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +16,7 @@ export const ArrowDownIcon: React.FC<IconProps> = ({ size = 22 }) => {
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M12 4.5v15m0 0l6.75-6.75M12 19.5l-6.75-6.75"
+        d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75"
       />
     </svg>
   );

@@ -27,7 +27,7 @@ import { Link } from 'react-router-dom';
 
 import DebouncedInput from './DebouncedInput';
 import GeneratePaginationButtons from './CompaniesPagination';
-import CDetailButton from './CDetailButton';
+import TableEllipsisButton from './TableEllipsisButton';
 
 import {
   EllipsisVerticalIcon,
@@ -251,7 +251,7 @@ const CompaniesTable: React.FC<ChildComponentProps> = ({ people }) => {
                     ))}
                     <td className="relative whitespace-nowrap text-right text-sm font-medium">
                       <a href="#">
-                        <CDetailButton />
+                        <TableEllipsisButton />
                       </a>
                     </td>
                   </tr>

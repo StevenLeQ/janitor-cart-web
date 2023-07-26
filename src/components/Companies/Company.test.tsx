@@ -9,10 +9,10 @@ import {
 } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
-import CompaniesTable from '../components/Companies/CompaniesTable';
-import GeneratePaginationButtons from '../components/Companies/CompaniesPagination';
-import DebouncedInput from '../components/Companies/DebouncedInput';
-import CDetailButton from '../components/Companies/CDetailButton';
+import CompaniesTable from './CompaniesTable';
+import GeneratePaginationButtons from './CompaniesPagination';
+import DebouncedInput from './DebouncedInput';
+import CDetailButton from './TableEllipsisButton';
 
 // Mock the ChildComponentProps.people data for testing
 const testData = [

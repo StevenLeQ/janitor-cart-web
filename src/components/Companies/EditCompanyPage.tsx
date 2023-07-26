@@ -1,16 +1,16 @@
 // import { faker } from "@faker-js/faker";
 
-import Header from '../../../../components/Header/Header';
+import Header from '../header/Header';
 
 const bread = [
   { name: 'Companies', link: '/companies', current: true },
-  { name: 'New Company', link: '/editCompany', current: true }
+  { name: 'Edit Company', link: '/editCompany', current: true }
 ];
 
 const EditCompany = () => {
   return (
-    <div className="mb-5 w-full">
-      <div className="m-5 mx-10 flex flex-col items-center gap-5">
+    <div className="">
+      <div className="m-5 mx-10 mb-5 flex w-full flex-col items-center gap-5">
         {/* Outside Header and H-rule */}
         <Header
           title="Edit Company"

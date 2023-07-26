@@ -4,9 +4,9 @@ import { describe, expect, test } from 'vitest';
 import { BrowserRouter } from 'react-router-dom';
 
 // Components and pages to test
-import SidebarFinal from '../scenes/global/Sidebar';
-import { SidebarHeader } from '../components/Sidebar/SidebarHeader';
-import { SidebarFooter } from '../components/Sidebar/SidebarFooter';
+import SidebarFinal from './Sidebar';
+import { SidebarHeader } from './SidebarHeader';
+import { SidebarFooter } from './SidebarFooter';
 
 describe('Main Sidebar', () => {
   test('Renders menu items correctly', () => {

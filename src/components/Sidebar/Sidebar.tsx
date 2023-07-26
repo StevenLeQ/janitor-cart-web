@@ -11,8 +11,8 @@ import {
 import { Link } from 'react-router-dom';
 
 // Components for sidebar
-import { SidebarHeader } from '../../components/Sidebar/SidebarHeader.tsx';
-import { SidebarFooter } from '../../components/Sidebar/SidebarFooter.tsx';
+import { SidebarHeader } from './SidebarHeader.tsx';
+import { SidebarFooter } from './SidebarFooter.tsx';
 
 // Icons used in Sidebar
 import {

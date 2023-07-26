@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/./Sidebar/logo.svg';
+import logo from '../../shared/assets/logo.svg';
 
 interface SidebarHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;

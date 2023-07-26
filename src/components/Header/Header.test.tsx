@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import Header from '../components/Header/Header';
-import HeaderBreadcrumbs from '../components/Header/HeaderBreadcrumbs';
+import Header from './Header';
+import HeaderBreadcrumbs from './HeaderBreadcrumbs';
 
 const breadcrumbs = [
   { name: 'Home', link: '/', current: false },

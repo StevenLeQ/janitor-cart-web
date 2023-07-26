@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { PathOptions } from 'leaflet';
 
 // GeoJson data
-import { statesData } from '../../data/us-states';
+import { statesData } from './us-states';
 
 interface StateProperties {
   name: string;

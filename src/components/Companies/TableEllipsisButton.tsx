@@ -8,7 +8,7 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function CDetailButton() {
+export default function TableEllipsisButton() {
   return (
     <Menu as="div" className="relative text-left">
       <div>

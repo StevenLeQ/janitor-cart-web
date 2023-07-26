@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
-import DashboardItem from '../components/Dashboard/DashboardItem';
-import DashboardBanner from '../components/Dashboard/DashboardBanner';
+import DashboardItem from './DashboardItem';
+import DashboardBanner from './DashboardBanner';
 
 describe('Dashboard Items', () => {
   test('Renders the title correctly', () => {

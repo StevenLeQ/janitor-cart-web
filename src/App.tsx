@@ -1,11 +1,11 @@
 // import { useState } from "react";
 import { Routes, Route } from 'react-router-dom';
 
-import SidebarFinal from './scenes/global/Sidebar';
-import Dashboard from './scenes/pages/Dashboard';
-import Companies from './scenes/pages/Companies/Companies';
-import CreateCompany from './scenes/pages/Companies/Sub/CreateCompany';
-import EditCompany from './scenes/pages/Companies/Sub/EditCompany';
+import SidebarFinal from './components/sidebar/Sidebar';
+import Dashboard from './components/dashboard/DashboardPage';
+import Companies from './components/companies/CompaniesPage';
+import CreateCompany from './components/companies/CreateCompanyPage';
+import EditCompany from './components/companies/EditCompanyPage';
 
 const App = () => {
   return (

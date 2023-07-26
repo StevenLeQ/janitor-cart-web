@@ -3,8 +3,8 @@ import React from 'react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 
 // Custom Icons
-import { ArrowUpIcon } from '../../assets/Dashboard/ArrowUpIcon.tsx';
-import { ArrowDownIcon } from '../../assets/Dashboard/ArrowDownIcon.tsx';
+import { ArrowUpIcon } from '../../shared/assets/ArrowUpIcon.tsx';
+import { ArrowDownIcon } from '../../shared/assets/ArrowDownIcon.tsx';
 
 interface HeaderProps {
   title?: number;
@@ -64,7 +64,7 @@ const DashboardItem: React.FC<HeaderProps> = ({
                 data-testid="arrow-up-icon"
               >
                 <span className="text-sm font-medium">{percent}%</span>
-                <ArrowUpIcon size={18} />
+                <ArrowUpIcon size={18} data-testid="arrow-up-icon" />
               </div>
             ) : (
               <div className="flex text-red-400" data-testid="arrow-down-icon">
