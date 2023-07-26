@@ -1,6 +1,8 @@
 // import { faker } from "@faker-js/faker";
+import { Link } from 'react-router-dom';
 
 import Header from '../../../../components/Header/Header';
+import Toggle from '../../../../components/global/Toggle';
 
 import {
   UserIcon,
@@ -15,6 +17,7 @@ const bread = [
   { name: 'New Company', link: '/newCompany', current: true }
 ];
 
+// TODO This is a mess split up into components
 const CreateCompany = () => {
   return (
     <div className="mb-5 w-full">
@@ -27,7 +30,7 @@ const CreateCompany = () => {
         />
       </div>
 
-      {/* The whole form layout */}
+      {/* The Company form layout */}
       <div className="m-3 ml-1 space-y-10 divide-y divide-gray-900/10 text-font-black sm:m-5 sm:ml-11">
         {/* Set the width depending on screen size */}
         <div className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3 2xl:grid-cols-5">
@@ -142,7 +145,7 @@ const CreateCompany = () => {
                 <div className="sm:col-span-6">
                   <label
                     htmlFor="rights"
-                    className="block text-sm font-medium leading-6 "
+                    className="block text-sm font-medium leading-6"
                   >
                     Work Rights Category
                   </label>
@@ -167,6 +170,111 @@ const CreateCompany = () => {
               </div>
             </div>
           </form>
+        </div>
+      </div>
+
+      {/* The features form layout */}
+      <div className="m-3 ml-1 space-y-10 divide-y divide-gray-900/10 text-font-black sm:m-5 sm:ml-11">
+        {/* Set the width depending on screen size */}
+        <div className="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3 2xl:grid-cols-5">
+          <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-lg md:col-span-2">
+            {/* Header of form */}
+            <div className="h-5 w-full py-5">
+              <span className="m-5 text-base font-medium">Features</span>
+              <hr className="border-1 mt-3 h-px border-gray-200" />
+            </div>
+
+            <div className="mb-2 mt-3 px-3 py-6 sm:p-5">
+              <div className="grid max-w-2xl grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-6">
+                {/* Announcements */}
+                <div className="mt-3 sm:col-span-6">
+                  <div className="flex justify-between">
+                    <span className="block text-base font-medium leading-6">
+                      Announcements
+                    </span>
+                    <Toggle />
+                  </div>
+                </div>
+
+                <div className="sm:col-span-6">
+                  <div className="flex justify-between">
+                    <span className="block text-base font-medium leading-6">
+                      Employee Handbook
+                    </span>
+                    <Toggle />
+                  </div>
+                </div>
+
+                <div className="sm:col-span-6">
+                  <div className="flex justify-between">
+                    <span className="block text-base font-medium leading-6">
+                      Payroll
+                    </span>
+                    <Toggle />
+                  </div>
+                </div>
+
+                <div className="sm:col-span-6">
+                  <div className="flex justify-between">
+                    <span className="block text-base font-medium leading-6">
+                      Procedures
+                    </span>
+                    <Toggle />
+                  </div>
+                </div>
+
+                <div className="sm:col-span-6">
+                  <div className="flex justify-between">
+                    <span className="block text-base font-medium leading-6">
+                      SDS
+                    </span>
+                    <Toggle />
+                  </div>
+                </div>
+
+                <div className="sm:col-span-6">
+                  <div className="flex justify-between">
+                    <span className="block text-base font-medium leading-6">
+                      Time Clock
+                    </span>
+                    <Toggle />
+                  </div>
+                </div>
+
+                <div className="sm:col-span-6">
+                  <div className="flex justify-between">
+                    <span className="block text-base font-medium leading-6">
+                      Work Orders
+                    </span>
+                    <Toggle />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      {/* Buttons */}
+      <div className="m-3 ml-1 grid grid-cols-1 gap-x-8 gap-y-8 sm:m-5 sm:ml-11 md:grid-cols-4 2xl:grid-cols-5">
+        <div className="col-span-2 ml-auto">
+          <Link to={'/newCompany'}>
+            <button
+              type="button"
+              className="mr-3 rounded-md border-2 px-5 py-2 text-center text-sm font-semibold text-royal-blue ring-1 ring-inset ring-royal-blue hover:bg-indigo-100"
+            >
+              Cancel
+            </button>
+          </Link>
+
+          <Link to={'/newCompany'}>
+            <button
+              type="button"
+              className="rounded-md bg-royal-blue px-5 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Save
+            </button>
+          </Link>
         </div>
       </div>
     </div>
