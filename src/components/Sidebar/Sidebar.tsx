@@ -175,7 +175,7 @@ export const SidebarFinal: React.FC = () => {
               </MenuItem>
 
               <MenuItem
-                component={<Link to={'/dashboard'} />}
+                component={<Link to={'/rights'} />}
                 aria-label="work-rights-files-icon"
                 icon={<FolderIcon className="h-6 w-6" />}
               >

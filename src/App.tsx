@@ -2,10 +2,13 @@
 import { Routes, Route } from 'react-router-dom';
 
 import SidebarFinal from './components/sidebar/Sidebar';
-import Dashboard from './components/dashboard/DashboardPage';
-import Companies from './components/companies/CompaniesPage';
-import CreateCompany from './components/companies/CreateCompanyPage';
-import EditCompany from './components/companies/EditCompanyPage';
+import Dashboard from './pages/dashboard/DashboardPage';
+import Companies from './pages/companies/CompaniesPage';
+import CreateCompany from './pages/companies/CreateCompanyPage';
+import EditCompany from './pages/companies/EditCompanyPage';
+import Rights from './pages/rights/RightsPage';
+import CreateRights from './pages/rights/CreateRightsPage';
+import EditRights from './pages/rights/EditRightsPage';
 
 const App = () => {
   return (
@@ -21,8 +24,11 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/companies" element={<Companies />} />
-            <Route path="/newCompany" element={<CreateCompany />} />
-            <Route path="/editCompany" element={<EditCompany />} />
+            <Route path="/companies/newCompany" element={<CreateCompany />} />
+            <Route path="/companies/editCompany" element={<EditCompany />} />
+            <Route path="/rights" element={<Rights />} />
+            <Route path="/rights/newRights" element={<CreateRights />} />
+            <Route path="/rights/editRights" element={<EditRights />} />
           </Routes>
         </div>
       </div>

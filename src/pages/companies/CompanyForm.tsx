@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import Toggle from '../layout/Toggle';
+import Toggle from '../../components/common/Toggle';
 
 import {
   UserIcon,
@@ -64,7 +64,7 @@ const CompanyFormDropdown = () => {
         <select
           id="rights"
           name="rights"
-          className="mt-2 block w-full rounded-md border-0 py-2 pl-10 pr-10  shadow-sm outline-none ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          className="mt-2 block w-full rounded-md border-0 py-2 pl-10 pr-10 shadow-sm outline-none ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
           defaultValue="Canada"
         >
           <option>Federal</option>

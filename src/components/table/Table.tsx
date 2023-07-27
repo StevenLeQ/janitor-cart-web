@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-  Column,
-  Table,
   useReactTable,
   ColumnFiltersState,
   getCoreRowModel,
@@ -15,8 +13,7 @@ import {
   FilterFn,
   SortingFn,
   ColumnDef,
-  flexRender,
-  FilterFns
+  flexRender
 } from '@tanstack/react-table';
 import {
   RankingInfo,
@@ -26,11 +23,10 @@ import {
 import { Link } from 'react-router-dom';
 
 import DebouncedInput from './DebouncedInput';
-import GeneratePaginationButtons from './CompaniesPagination';
+import GeneratePaginationButtons from './Pagination';
 import TableEllipsisButton from './TableEllipsisButton';
 
 import {
-  EllipsisVerticalIcon,
   ChevronUpIcon,
   ChevronDownIcon,
   ChevronLeftIcon,
@@ -76,66 +72,60 @@ const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
   return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir;
 };
 
-interface Person {
-  name: string;
-  active: boolean;
-  email: string;
+interface GenericData {
+  [key: string]: string | boolean | number;
 }
 
-interface ChildComponentProps {
-  people: Person[];
+interface LinkWrapper {
+  title: string;
+  link: string;
 }
 
-const CompaniesTable: React.FC<ChildComponentProps> = ({ people }) => {
-  const [data, setData] = React.useState(() => [...people]);
-  const rerender = React.useReducer(() => ({}), {})[1];
+interface TableProps {
+  dataArray: GenericData[];
+  button: LinkWrapper;
+  ellipsis_data?: LinkWrapper[];
+}
+
+const Table: React.FC<TableProps> = ({ dataArray, button, ellipsis_data }) => {
+  const [data] = React.useState(() => [...dataArray]);
 
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
   const [globalFilter, setGlobalFilter] = React.useState('');
 
-  const columns = React.useMemo<ColumnDef<Person, any>[]>(
-    () => [
-      {
-        accessorKey: 'name',
-        cell: (info) => info.getValue(),
-        header: () => <span>COMPANY</span>,
-        filterFn: 'fuzzy',
-        sortingFn: fuzzySort
-      },
-      {
-        accessorFn: (row) => row.email,
-        id: 'email',
-        cell: (info) => info.getValue(),
-        header: () => <span>EMAIL</span>,
-        filterFn: 'fuzzy',
-        sortingFn: fuzzySort
-      },
-      {
-        // Active boolean is really a isDisabled boolean, false means active here
-        accessorFn: (row) => row.active,
-        id: 'active',
-        header: 'ACTIVE',
+  // Generate the columns based on the keys of the first data item
+  const columns = React.useMemo<ColumnDef<GenericData, any>[]>(() => {
+    if (dataArray.length > 0) {
+      const keys = Object.keys(dataArray[0]);
+      return keys.map((key) => ({
+        accessorKey: key,
         cell: (info) => {
-          return (
-            <>
-              {info.getValue() ? (
-                <span className="inline-flex items-center rounded-full bg-red-100 px-4 py-1.5 text-xs font-semibold text-red-600">
-                  Inactive
-                </span>
-              ) : (
-                <span className="inline-flex items-center rounded-full bg-green-100 px-4 py-1.5 text-xs font-semibold text-green-600">
-                  Active
-                </span>
-              )}
-            </>
-          );
-        }
-      }
-    ],
-    []
-  );
+          const value = info.getValue();
+          // Check if the value is a boolean and handle it accordingly
+          if (typeof value === 'boolean') {
+            // Render different content for true and false values
+            return value ? (
+              <span className="inline-flex items-center rounded-full bg-green-100 px-4 py-1.5 text-xs font-semibold text-green-600">
+                Active
+              </span>
+            ) : (
+              <span className="inline-flex items-center rounded-full bg-red-100 px-4 py-1.5 text-xs font-semibold text-red-600">
+                Inactive
+              </span>
+            );
+          }
+          // For non-boolean values, render the value as-is
+          return value;
+        },
+        header: () => <span>{key.replace(/_/g, ' ').toUpperCase()}</span>,
+        filterFn: 'fuzzy',
+        sortingFn: fuzzySort
+      }));
+    }
+    return [];
+  }, [dataArray]);
 
   const table = useReactTable({
     data,
@@ -181,12 +171,12 @@ const CompaniesTable: React.FC<ChildComponentProps> = ({ people }) => {
             className="font-lg border-block w-72 rounded border p-2 shadow focus:outline-royal-blue"
             placeholder="Search all columns..."
           />
-          <Link to={'/newCompany'}>
+          <Link to={button.link}>
             <button
               type="button"
               className="mt-1 rounded-md bg-royal-blue px-5 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              New Company
+              {button.title}
             </button>
           </Link>
         </div>
@@ -200,6 +190,7 @@ const CompaniesTable: React.FC<ChildComponentProps> = ({ people }) => {
                 {table.getHeaderGroups().map((headerGroup) => (
                   <tr key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
+                      console.log(header);
                       return (
                         <th
                           className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
@@ -251,7 +242,7 @@ const CompaniesTable: React.FC<ChildComponentProps> = ({ people }) => {
                     ))}
                     <td className="relative whitespace-nowrap text-right text-sm font-medium">
                       <a href="#">
-                        <TableEllipsisButton />
+                        <TableEllipsisButton ellipsis_data={ellipsis_data} />
                       </a>
                     </td>
                   </tr>
@@ -360,4 +351,4 @@ const CompaniesTable: React.FC<ChildComponentProps> = ({ people }) => {
   );
 };
 
-export default CompaniesTable;
+export default Table;

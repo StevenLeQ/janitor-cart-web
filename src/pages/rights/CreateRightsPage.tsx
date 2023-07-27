@@ -1,22 +1,22 @@
 // import { faker } from "@faker-js/faker";
-import CompanyForm from './CompanyForm';
+import CompanyForm from './RightsForm';
 
-import Header from '../header/Header';
+import Header from '../../components/header/Header';
 
 const bread = [
-  { name: 'Companies', link: '/companies', current: true },
-  { name: 'New Company', link: '/newCompany', current: true }
+  { name: 'Rights', link: '/rights', current: true },
+  { name: 'New File', link: '#', current: true }
 ];
 
 // TODO Get the passing logic in geez louise
-const CreateCompany = () => {
+const CreateRights = () => {
   return (
     <div className="mb-5 w-full">
       <div className="m-3 mx-1 flex flex-col items-center gap-5 sm:m-5 sm:mx-10">
         {/* Outside Header and H-rule */}
         <Header
-          title="Add New Company"
-          subtitle="Create a new company for The Janitor Cart services"
+          title="Add New File"
+          subtitle="Add a new rights file for The Janitor Cart services"
           breadcrumbs={bread}
         />
       </div>
@@ -26,4 +26,4 @@ const CreateCompany = () => {
   );
 };
 
-export default CreateCompany;
+export default CreateRights;

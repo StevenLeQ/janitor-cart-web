@@ -2,7 +2,7 @@
 import { faker } from '@faker-js/faker';
 
 // Components that make up the dashboard
-import Header from '../header/Header.tsx';
+import Header from '../../components/header/Header.tsx';
 import DashboardBanner from './DashboardBanner.tsx';
 import DashboardItem from './DashboardItem.tsx';
 import RevenueLineChart from './RevenueLineChart.tsx';
