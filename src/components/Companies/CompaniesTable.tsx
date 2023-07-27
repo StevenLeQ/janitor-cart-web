@@ -265,7 +265,7 @@ const CompaniesTable: React.FC<ChildComponentProps> = ({ people }) => {
               {/* Bottom left helper text for table */}
               <div className="flex text-sm">
                 <p className="text-sm text-gray-700">
-                  Showing{' '}
+                  {'Showing '}
                   <span className="font-medium">
                     {Math.min(
                       table.getState().pagination.pageSize *
@@ -273,8 +273,8 @@ const CompaniesTable: React.FC<ChildComponentProps> = ({ people }) => {
                         1,
                       table.getPrePaginationRowModel().rows.length
                     )}
-                  </span>{' '}
-                  to{' '}
+                  </span>
+                  {' to '}
                   <span className="font-medium">
                     {/* Bind showing to min and max of table row lengths */}
                     {Math.min(
@@ -282,12 +282,12 @@ const CompaniesTable: React.FC<ChildComponentProps> = ({ people }) => {
                       table.getState().pagination.pageSize *
                         (table.getState().pagination.pageIndex + 1)
                     )}
-                  </span>{' '}
-                  of{' '}
+                  </span>
+                  {' of '}
                   <span className="font-medium">
                     {table.getPrePaginationRowModel().rows.length}
-                  </span>{' '}
-                  results
+                  </span>
+                  {' results'}
                 </p>
                 <span className="ml-2 flex gap-2">
                   | Go to page:

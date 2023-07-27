@@ -1,5 +1,6 @@
 // import { faker } from "@faker-js/faker";
 
+import CompanyForm from './CompanyForm';
 import Header from '../header/Header';
 
 const bread = [
@@ -9,8 +10,8 @@ const bread = [
 
 const EditCompany = () => {
   return (
-    <div className="">
-      <div className="m-5 mx-10 mb-5 flex w-full flex-col items-center gap-5">
+    <div className="mb-5 w-full px-2 sm:p-0">
+      <div className="mb-5 flex flex-col items-center gap-5 sm:m-5 sm:mx-10 sm:mb-0">
         {/* Outside Header and H-rule */}
         <Header
           title="Edit Company"
@@ -18,6 +19,8 @@ const EditCompany = () => {
           breadcrumbs={bread}
         />
       </div>
+      {/* The form - company info, features, and buttons */}
+      <CompanyForm hasInfo={true} />
     </div>
   );
 };

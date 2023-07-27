@@ -32,7 +32,7 @@ export default function TableEllipsisButton() {
             <Menu.Item>
               {({ active }) => (
                 <a
-                  href="#"
+                  href="editCompany"
                   className={classNames(
                     active ? 'bg-indigo-100 text-blue-700' : 'text-font-gray',
                     'block px-4 py-2 text-sm'

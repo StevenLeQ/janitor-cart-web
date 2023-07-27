@@ -21,7 +21,7 @@ const CreateCompany = () => {
         />
       </div>
       {/* The form - company info, features, and buttons */}
-      <CompanyForm />
+      <CompanyForm hasInfo={false} />
     </div>
   );
 };

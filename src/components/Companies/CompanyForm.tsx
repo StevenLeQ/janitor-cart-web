@@ -10,10 +10,19 @@ import {
   GlobeAltIcon
 } from '@heroicons/react/24/outline';
 
+interface CompanyFormProps {
+  hasInfo: boolean;
+}
+
 interface FormItemProps {
   name: string;
   title: string;
   icon: React.ReactNode;
+}
+
+interface InfoItemProps {
+  title: string;
+  data: string;
 }
 
 interface FormToggleProps {
@@ -41,7 +50,7 @@ const FormItem: React.FC<FormItemProps> = ({ name, title, icon }) => {
   );
 };
 
-const CompanyFormDropdown = ({}) => {
+const CompanyFormDropdown = () => {
   return (
     <>
       <label htmlFor="rights" className="block text-sm font-medium leading-6">
@@ -65,6 +74,17 @@ const CompanyFormDropdown = ({}) => {
   );
 };
 
+const InfoItem: React.FC<InfoItemProps> = ({ title, data }) => {
+  return (
+    <div className="grid-span-1">
+      <span className="text-sm font-bold text-font-gray-200">
+        {title + ' '}
+      </span>
+      <span className="font-base text-sm text-font-gray-200">{data}</span>
+    </div>
+  );
+};
+
 const FormToggle: React.FC<FormToggleProps> = ({ name }) => {
   return (
     <div className="sm:col-span-6">
@@ -76,101 +96,114 @@ const FormToggle: React.FC<FormToggleProps> = ({ name }) => {
   );
 };
 
-// The Company form layout
-export default function CompanyForm() {
+// The Full Create Company Form layout
+const CompanyForm: React.FC<CompanyFormProps> = ({ hasInfo }) => {
   return (
-    <>
-      {/* Company form */}
-      {/* Containter - white box with 3/7 or so width */}
-      <div className="grid grid-cols-1 gap-x-8 gap-y-8 text-font-black sm:m-5 sm:ml-11 md:grid-cols-3 2xl:grid-cols-5">
-        <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-lg md:col-span-2">
-          {/* Header of form */}
-          <div className="h-5 w-full py-5">
-            <span className="m-5 text-base font-medium">
-              Company Information
-            </span>
-            <hr className="border-1 mt-3 h-px border-gray-200" />
-          </div>
+    <div className="grid max-w-[150rem] grid-cols-1 grid-rows-4 gap-x-4 gap-y-8 text-font-black sm:m-5 sm:ml-11 md:grid-cols-3 2xl:grid-cols-4 ">
+      {/* Container - white box with 3/7 or so width */}
+      <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-lg md:col-span-2 md:row-span-4">
+        {/* Header of form */}
+        <div className="h-5 w-full py-5">
+          <span className="m-5 text-base font-medium">Company Information</span>
+          <hr className="border-1 mt-3 h-px border-gray-900/10" />
+        </div>
 
-          <div className="mb-2 mt-3 px-3 py-6 sm:p-5">
-            <div className="grid max-w-2xl grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
-              {/* Company Name */}
-              <div className="sm:col-span-3">
-                <FormItem
-                  name="name"
-                  title="Company Name"
-                  icon={
-                    <UserIcon
-                      className="h-5 w-5 text-gray-400"
-                      aria-hidden="true"
-                    />
-                  }
-                />
-              </div>
-              {/* Phone */}
-              <div className="sm:col-span-3">
-                <FormItem
-                  name="phone"
-                  title="Phone"
-                  icon={
-                    <PhoneIcon
-                      className="h-5 w-5 text-gray-400"
-                      aria-hidden="true"
-                    />
-                  }
-                />
-              </div>
+        <div className="mb-2 mt-3 px-3 py-6 sm:p-5">
+          <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
+            {/* Company Name */}
+            <div className="sm:col-span-3">
+              <FormItem
+                name="name"
+                title="Company Name"
+                icon={
+                  <UserIcon
+                    className="h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
+                }
+              />
+            </div>
+            {/* Phone */}
+            <div className="sm:col-span-3">
+              <FormItem
+                name="phone"
+                title="Phone"
+                icon={
+                  <PhoneIcon
+                    className="h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
+                }
+              />
+            </div>
 
-              {/* Email */}
-              <div className="sm:col-span-6">
-                <FormItem
-                  name="email"
-                  title="Email Address"
-                  icon={
-                    <EnvelopeIcon
-                      className="h-5 w-5 text-gray-400"
-                      aria-hidden="true"
-                    />
-                  }
-                />
-              </div>
+            {/* Email */}
+            <div className="sm:col-span-6">
+              <FormItem
+                name="email"
+                title="Email Address"
+                icon={
+                  <EnvelopeIcon
+                    className="h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
+                }
+              />
+            </div>
 
-              {/* Username */}
-              <div className="sm:col-span-6">
-                <FormItem
-                  name="user"
-                  title="Username"
-                  icon={
-                    <ArrowRightOnRectangleIcon
-                      className="h-5 w-5 text-gray-400"
-                      aria-hidden="true"
-                    />
-                  }
-                />
-              </div>
+            {/* Username */}
+            <div className="sm:col-span-6">
+              <FormItem
+                name="user"
+                title="Username"
+                icon={
+                  <ArrowRightOnRectangleIcon
+                    className="h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
+                }
+              />
+            </div>
 
-              {/* Work Rights */}
+            {/* Work Rights */}
 
-              <div className="sm:col-span-6">
-                <CompanyFormDropdown />
-              </div>
+            <div className="sm:col-span-6">
+              <CompanyFormDropdown />
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
 
-      {/* Features box */}
-      <div className="grid grid-cols-1 gap-x-8 gap-y-8 text-font-black sm:m-5 sm:ml-11 md:grid-cols-3 2xl:grid-cols-5">
-        {/* Set the width depending on screen size */}
-        <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-lg md:col-span-2">
+      {/* Blue info box */}
+      {hasInfo && (
+        <div className="col-span-1 row-span-full row-start-1 bg-indigo-100/90 shadow-sm ring-1 ring-gray-900/10 sm:rounded-lg md:row-span-3 md:row-start-auto ">
+          <div className="h-5 w-full py-5">
+            <span className="m-5 text-base font-bold">Devin Jhon</span>
+            <hr className="border-1 mt-3 h-px border-gray-900/10" />
+          </div>
+          <div className="grid-row-1 mt-5 grid gap-y-2 px-3 py-6 sm:p-5">
+            <InfoItem title="Last Login:" data="May 13th, 2023" />
+            <InfoItem title="Onboarding:" data="May 13th, 2022" />
+            <InfoItem title="Total Users:" data="15" />
+            <InfoItem title="Total Facilities:" data="10" />
+            <InfoItem title="Monthly Billing:" data="$99.00" />
+            <InfoItem title="Payment Status:" data="Late" />
+            <InfoItem title="Status:" data="Active" />
+          </div>
+        </div>
+      )}
+
+      {/* Features form */}
+      <div className="row-span-4 row-start-auto md:col-span-2 md:row-start-5">
+        <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-lg">
           {/* Header of form */}
           <div className="h-5 w-full py-5">
             <span className="m-5 text-base font-medium">Features</span>
-            <hr className="border-1 mt-3 h-px border-gray-200" />
+            <hr className="border-1 mt-3 h-px border-gray-900/10" />
           </div>
 
           <div className="mb-2 mt-3 px-3 py-6 sm:p-5">
-            <div className="grid max-w-2xl grid-cols-1 gap-x-4 gap-y-4 pt-2 sm:grid-cols-6">
+            <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-4 pt-2 sm:grid-cols-6">
               <FormToggle name="Announcements" />
               <FormToggle name="Employee Handbook" />
               <FormToggle name="Payroll" />
@@ -181,11 +214,9 @@ export default function CompanyForm() {
             </div>
           </div>
         </form>
-      </div>
 
-      {/* Buttons */}
-      <div className="m-3 ml-1 grid grid-cols-1 gap-x-8 gap-y-8 sm:m-5 sm:ml-11 md:grid-cols-4 2xl:grid-cols-5">
-        <div className="col-span-2 ml-auto">
+        {/* Buttons */}
+        <div className="float-right mr-2 mt-4">
           <Link to={'/newCompany'}>
             <button
               type="button"
@@ -205,6 +236,8 @@ export default function CompanyForm() {
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
-}
+};
+
+export default CompanyForm;
