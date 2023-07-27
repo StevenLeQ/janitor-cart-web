@@ -23,6 +23,7 @@ interface FormItemProps {
 interface InfoItemProps {
   title: string;
   data: string;
+  dataStyle?: string;
 }
 
 interface FormToggleProps {
@@ -74,13 +75,15 @@ const CompanyFormDropdown = () => {
   );
 };
 
-const InfoItem: React.FC<InfoItemProps> = ({ title, data }) => {
+const InfoItem: React.FC<InfoItemProps> = ({ title, data, dataStyle }) => {
   return (
     <div className="grid-span-1">
       <span className="text-sm font-bold text-font-gray-200">
         {title + ' '}
       </span>
-      <span className="font-base text-sm text-font-gray-200">{data}</span>
+      <span className={dataStyle ?? 'font-base text-sm text-font-gray-200'}>
+        {data}
+      </span>
     </div>
   );
 };
@@ -187,8 +190,16 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ hasInfo }) => {
             <InfoItem title="Total Users:" data="15" />
             <InfoItem title="Total Facilities:" data="10" />
             <InfoItem title="Monthly Billing:" data="$99.00" />
-            <InfoItem title="Payment Status:" data="Late" />
-            <InfoItem title="Status:" data="Active" />
+            <InfoItem
+              title="Payment Status:"
+              data="Late"
+              dataStyle="inline-flex items-center ml-1 rounded-full bg-yellow-50 px-4 py-1.5 text-xs font-semibold text-yellow-600 ring-1 ring-inset ring-yellow-400/80"
+            />
+            <InfoItem
+              title="Status:"
+              data="Active"
+              dataStyle="inline-flex items-center ml-1 rounded-full bg-green-100 px-4 py-1.5 text-xs font-semibold text-green-600 ring-1 ring-inset ring-green-600/80"
+            />
           </div>
         </div>
       )}
@@ -217,7 +228,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ hasInfo }) => {
 
         {/* Buttons */}
         <div className="float-right mr-2 mt-4">
-          <Link to={'/newCompany'}>
+          <Link to={'/companies'}>
             <button
               type="button"
               className="mr-3 rounded-md border-2 px-5 py-2 text-center text-sm font-semibold text-royal-blue ring-1 ring-inset ring-royal-blue hover:bg-indigo-100"
@@ -226,7 +237,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ hasInfo }) => {
             </button>
           </Link>
 
-          <Link to={'/newCompany'}>
+          <Link to={'/companies'}>
             <button
               type="button"
               className="rounded-md bg-royal-blue px-5 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

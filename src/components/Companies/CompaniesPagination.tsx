@@ -13,8 +13,7 @@ const GeneratePaginationButtons = (table: any, totalButtons: number) => {
     start = Math.max(end - totalButtons + 1, 0);
   }
 
-  // For totalButtons 5 - if page index > 3
-  console.log(max);
+  // Simply make all buttons if there are less/equal 7 pages (0-6)
   if (max < 7) {
     for (let i = start; i <= max; i++) {
       buttons.push(
@@ -32,7 +31,10 @@ const GeneratePaginationButtons = (table: any, totalButtons: number) => {
       );
     }
     return buttons;
+
+    // More than 7 buttons, use fancier pagination
   } else {
+    // For totalButtons 5 - if page index > 3
     if (current > halfButtons) {
       buttons.push(
         <button
