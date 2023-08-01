@@ -85,39 +85,52 @@ interface TableProps {
   dataArray: GenericData[];
   button: LinkWrapper;
   ellipsis_data?: LinkWrapper[];
+  name_icon?: React.ReactNode;
 }
 
-const Table: React.FC<TableProps> = ({ dataArray, button, ellipsis_data }) => {
+const Table: React.FC<TableProps> = ({
+  dataArray,
+  button,
+  ellipsis_data,
+  name_icon
+}) => {
   const [data] = React.useState(() => [...dataArray]);
 
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
   const [globalFilter, setGlobalFilter] = React.useState('');
-
   // Generate the columns based on the keys of the first data item
   const columns = React.useMemo<ColumnDef<GenericData, any>[]>(() => {
     if (dataArray.length > 0) {
       const keys = Object.keys(dataArray[0]);
-      return keys.map((key) => ({
+      return keys.map((key, index) => ({
         accessorKey: key,
         cell: (info) => {
           const value = info.getValue();
           // Check if the value is a boolean and handle it accordingly
           if (typeof value === 'boolean') {
             // Render different content for true and false values
-            return value ? (
-              <span className="inline-flex items-center rounded-full bg-green-100 px-4 py-1.5 text-xs font-semibold text-green-600">
-                Active
-              </span>
-            ) : (
-              <span className="inline-flex items-center rounded-full bg-red-100 px-4 py-1.5 text-xs font-semibold text-red-600">
-                Inactive
+            return (
+              <span
+                className={`-my-2 inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold ${
+                  value
+                    ? 'bg-green-100 text-green-600'
+                    : 'bg-red-100 text-red-600'
+                }`}
+              >
+                {value ? 'Active' : 'Inactive'}
               </span>
             );
           }
           // For non-boolean values, render the value as-is
-          return value;
+          return index === 0 ? (
+            <div className="flex gap-2">
+              {name_icon} {value}
+            </div>
+          ) : (
+            value
+          );
         },
         header: () => <span>{key.replace(/_/g, ' ').toUpperCase()}</span>,
         filterFn: 'fuzzy',
@@ -151,25 +164,16 @@ const Table: React.FC<TableProps> = ({ dataArray, button, ellipsis_data }) => {
     debugHeaders: true,
     debugColumns: false
   });
-
-  React.useEffect(() => {
-    if (table.getState().columnFilters[0]?.id === 'name') {
-      if (table.getState().sorting[0]?.id !== 'name') {
-        table.setSorting([{ id: 'name', desc: false }]);
-      }
-    }
-  }, [table.getState().columnFilters[0]?.id]);
-
   return (
     <div className="mt-5 flow-root">
       <div className="justify-end sm:flex sm:items-center">
-        <div className="my-5 mr-4 flex gap-4 sm:ml-16 sm:mt-0 sm:flex-none">
+        <div className="my-5 mr-4 gap-4 sm:ml-16 sm:mt-0 sm:flex sm:flex-none">
           {/* Top side of table, Filter Search and New Company */}
           <DebouncedInput
             value={globalFilter ?? ''}
             onChange={(value) => setGlobalFilter(String(value))}
             className="font-lg border-block w-72 rounded border p-2 shadow focus:outline-royal-blue"
-            placeholder="Search all columns..."
+            placeholder="Search or Filter columns..."
           />
           <Link to={button.link}>
             <button
@@ -185,12 +189,11 @@ const Table: React.FC<TableProps> = ({ dataArray, button, ellipsis_data }) => {
       <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
           <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-            <table className="min-w-full divide-y divide-gray-300">
+            <table className="min-w-full divide-y divide-gray-300 bg-white">
               <thead>
                 {table.getHeaderGroups().map((headerGroup) => (
                   <tr key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
-                      console.log(header);
                       return (
                         <th
                           className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
@@ -227,7 +230,7 @@ const Table: React.FC<TableProps> = ({ dataArray, button, ellipsis_data }) => {
                 ))}
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
-                {table.getRowModel().rows.map((row) => (
+                {table.getRowModel().rows.map((row, index) => (
                   <tr key={row.id}>
                     {row.getVisibleCells().map((cell) => (
                       <td
@@ -242,7 +245,12 @@ const Table: React.FC<TableProps> = ({ dataArray, button, ellipsis_data }) => {
                     ))}
                     <td className="relative whitespace-nowrap text-right text-sm font-medium">
                       <a href="#">
-                        <TableEllipsisButton ellipsis_data={ellipsis_data} />
+                        <TableEllipsisButton
+                          ellipsis_data={ellipsis_data}
+                          isNearEnd={
+                            table.getState().pagination.pageSize - index < 3
+                          }
+                        />
                       </a>
                     </td>
                   </tr>
@@ -299,7 +307,7 @@ const Table: React.FC<TableProps> = ({ dataArray, button, ellipsis_data }) => {
                 </span>
                 <select
                   value={table.getState().pagination.pageSize}
-                  className="ml-3 h-5 rounded border-0 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-royal-blue sm:text-sm sm:leading-6"
+                  className="ml-3 h-5 rounded border-0 text-gray-900 outline-none ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-royal-blue sm:text-sm sm:leading-6"
                   onChange={(e) => {
                     table.setPageSize(Number(e.target.value));
                   }}
@@ -313,7 +321,6 @@ const Table: React.FC<TableProps> = ({ dataArray, button, ellipsis_data }) => {
               </div>
 
               {/* Pagination */}
-              <></>
               <div className="mt-1 bg-white">
                 <nav
                   className="isolate inline-flex -space-x-px rounded-md shadow-sm"

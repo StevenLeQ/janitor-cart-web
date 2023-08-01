@@ -8,7 +8,7 @@ import {
   menuClasses,
   MenuItemStyles
 } from 'react-pro-sidebar';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 // Components for sidebar
 import { SidebarHeader } from './SidebarHeader.tsx';
@@ -36,7 +36,10 @@ const themes = {
       icon: '#4F494F',
       hover: {
         backgroundColor: '#E6EAF9',
-        color: '#44596e'
+        color: '#00376f'
+      },
+      active: {
+        backgroundColor: '#c1ccf0'
       },
       disabled: {
         color: '#9fb6cf'
@@ -54,6 +57,9 @@ const themes = {
       hover: {
         backgroundColor: '#00458b',
         color: '#b6c8d9'
+      },
+      active: {
+        backgroundColor: '#002953'
       },
       disabled: {
         color: '#3e5e7e'
@@ -73,18 +79,16 @@ const hexToRgba = (hex: string, alpha: number) => {
 
 export const SidebarFinal: React.FC = () => {
   const [collapsed, setCollapsed] = React.useState(true);
-  const [toggled, setToggled] = React.useState(false);
-  const [hasImage, setHasImage] = React.useState(false);
   const [theme, setTheme] = React.useState<Theme>('light');
+  const location = useLocation();
 
-  // handle on theme change event
+  // TODO handle on theme change event
   const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTheme(e.target.checked ? 'dark' : 'light');
   };
 
-  // handle on image change event
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHasImage(e.target.checked);
+  const handleLogoClick = () => {
+    setCollapsed((prevCollapsed) => !prevCollapsed);
   };
 
   const menuItemStyles: MenuItemStyles = {
@@ -104,33 +108,36 @@ export const SidebarFinal: React.FC = () => {
     SubMenuExpandIcon: {
       color: '#b6b7b9'
     },
-    subMenuContent: ({ level }) => ({
-      backgroundColor:
-        level === 0
-          ? hexToRgba(
-              themes[theme].menu.menuContent,
-              hasImage && !collapsed ? 0.4 : 1
-            )
-          : 'transparent'
+    subMenuContent: ({}) => ({
+      backgroundColor: 'transparent'
     }),
     button: {
       // Hacky Margin Stuff
-      marginLeft: collapsed ? 0 : 10,
-
-      [`&.${menuClasses.disabled}`]: {
-        color: themes[theme].menu.disabled.color
-      },
       '&:hover': {
+        backgroundColor: hexToRgba(themes[theme].menu.hover.backgroundColor, 1),
+        color: 'themes[theme].menu.hover.color'
+      },
+      '&:active': {
         backgroundColor: hexToRgba(
-          themes[theme].menu.hover.backgroundColor,
-          hasImage ? 0.8 : 1
+          themes[theme].menu.active.backgroundColor,
+          1
         ),
         borderRight: '0.2em solid blue',
         color: themes[theme].menu.hover.color
+      },
+      [`&.${menuClasses.active}`]: {
+        backgroundColor: hexToRgba(themes[theme].menu.hover.backgroundColor, 1),
+        borderRight: '0.2em solid blue',
+        color: themes[theme].menu.hover.color
+      },
+      [`&.${menuClasses.disabled}`]: {
+        color: themes[theme].menu.disabled.color
       }
     },
     label: ({ open }) => ({
-      fontWeight: open ? 600 : undefined
+      fontWeight: collapsed ? 600 : undefined,
+      opacity: collapsed ? 0 : 1,
+      transition: 'opacity 0.2s ease-in-out'
     })
   };
 
@@ -138,23 +145,17 @@ export const SidebarFinal: React.FC = () => {
     <div className="flex h-full">
       <Sidebar
         collapsed={collapsed}
-        toggled={toggled}
-        onBackdropClick={() => setToggled(false)}
         image="https://user-images.githubusercontent.com/25878302/144499035-2911184c-76d3-4611-86e7-bc4e8ff84ff5.jpg"
         breakPoint="md"
-        backgroundColor={hexToRgba(
-          themes[theme].sidebar.backgroundColor,
-          hasImage ? 0.9 : 1
-        )}
+        backgroundColor={hexToRgba(themes[theme].sidebar.backgroundColor, 1)}
         rootStyles={{
           color: themes[theme].sidebar.color
         }}
       >
         <div className="flex h-screen flex-col">
-          <SidebarHeader
-            style={{ marginBottom: '24px', marginTop: '16px' }}
-            collapsed={collapsed}
-          />
+          <a href="#" onClick={handleLogoClick} className="my-10 flex flex-col">
+            <SidebarHeader collapsed={collapsed} />
+          </a>
 
           <div className="mb-8 flex-1">
             <Menu menuItemStyles={menuItemStyles}>
@@ -162,6 +163,7 @@ export const SidebarFinal: React.FC = () => {
                 component={<Link to={'/'} />}
                 aria-label="dashboard-icon"
                 icon={<Squares2X2Icon className="h-6 w-6" />}
+                active={location.pathname === '/'}
               >
                 Dashboard
               </MenuItem>
@@ -170,6 +172,7 @@ export const SidebarFinal: React.FC = () => {
                 component={<Link to={'/companies'} />}
                 aria-label="companies-icon"
                 icon={<BuildingOfficeIcon className="h-6 w-6" />}
+                active={location.pathname.startsWith('/companies')}
               >
                 Companies
               </MenuItem>
@@ -178,14 +181,16 @@ export const SidebarFinal: React.FC = () => {
                 component={<Link to={'/rights'} />}
                 aria-label="work-rights-files-icon"
                 icon={<FolderIcon className="h-6 w-6" />}
+                active={location.pathname.startsWith('/rights')}
               >
                 Work Rights Files
               </MenuItem>
 
               <MenuItem
-                component={<Link to={'/companies'} />}
+                component={<Link to={'/videos'} />}
                 aria-label="videos-icon"
                 icon={<FilmIcon className="h-6 w-6" />}
+                active={location.pathname.startsWith('/videos')}
               >
                 Videos
               </MenuItem>

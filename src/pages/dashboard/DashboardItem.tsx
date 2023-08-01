@@ -29,7 +29,7 @@ const DashboardItem: React.FC<HeaderProps> = ({
         {/* Royal Blue Icons w/ light blue bg */}
         <div className="mx-5 my-1 flex flex-col">
           <div className="flex justify-between">
-            <div className="flex h-[3.25rem] w-[3.25rem] items-center rounded-lg bg-grayish-blue p-3 text-royal-blue">
+            <div className="flex h-[3.25rem] w-[3.25rem] items-center rounded-lg bg-blue-50 p-3 text-royal-blue">
               {/* <DollarIcon size={50} /> */}
               {icon}
             </div>

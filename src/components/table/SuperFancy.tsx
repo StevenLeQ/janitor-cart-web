@@ -1,8 +1,7 @@
 // This component is the ellipsis used in each table row
-import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
+import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
 
@@ -47,30 +46,23 @@ const TableEllipsisButton: React.FC<EllipsisProps> = ({
             isNearEnd && 'bottom-6'
           }`}
         >
-          {ellipsis_data?.map((item, index) => (
-            <Menu.Item key={item.link}>
-              {({ active }) => (
-                <Link
-                  to={item.link}
-                  className={classNames(
-                    active ? 'bg-indigo-100 text-blue-700' : 'text-font-gray',
-                    'block px-4 py-2 text-sm'
-                  )}
-                >
-                  <motion.p
-                    initial={{ x: -15, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{
-                      duration: 0.25,
-                      delay: 0.1 * index
-                    }}
+          <div className="">
+            {ellipsis_data?.map((item) => (
+              <Menu.Item key={item.link}>
+                {({ active }) => (
+                  <Link
+                    to={item.link}
+                    className={classNames(
+                      active ? 'bg-indigo-100 text-blue-700' : 'text-font-gray',
+                      'block px-4 py-2 text-sm'
+                    )}
                   >
                     {item.title}
-                  </motion.p>
-                </Link>
-              )}
-            </Menu.Item>
-          ))}
+                  </Link>
+                )}
+              </Menu.Item>
+            ))}
+          </div>
         </Menu.Items>
       </Transition>
     </Menu>

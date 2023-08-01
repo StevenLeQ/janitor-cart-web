@@ -1,10 +1,10 @@
 // import { faker } from "@faker-js/faker";
-import CompanyForm from './RightsForm';
+import RightsForm from './RightsForm';
 
 import Header from '../../components/header/Header';
 
 const bread = [
-  { name: 'Rights', link: '/rights', current: true },
+  { name: 'Rights', link: '/rights', current: false },
   { name: 'New File', link: '#', current: true }
 ];
 
@@ -20,8 +20,8 @@ const CreateRights = () => {
           breadcrumbs={bread}
         />
       </div>
-      {/* The form - company info, features, and buttons */}
-      <CompanyForm hasInfo={false} />
+      {/* The form - rights info, features, and buttons */}
+      <RightsForm hasInfo={false} />
     </div>
   );
 };

@@ -1,29 +1,28 @@
 // import { faker } from "@faker-js/faker";
-import CompanyForm from './CompanyForm';
+import VideosForm from './VideosForm';
 
 import Header from '../../components/header/Header';
 
 const bread = [
-  { name: 'Companies', link: '/companies', current: false },
-  { name: 'New Company', link: '#', current: true }
+  { name: 'Videos', link: '/videos', current: false },
+  { name: 'New Video', link: '#', current: true }
 ];
 
-// TODO Get the passing logic in geez louise
-const CreateCompany = () => {
+const CreateVideos = () => {
   return (
     <div className="mb-5 w-full">
       <div className="m-3 mx-1 flex flex-col items-center gap-5 sm:m-5 sm:mx-10">
         {/* Outside Header and H-rule */}
         <Header
-          title="Add New Company"
-          subtitle="Create a new company for The Janitor Cart services"
+          title="Add Video"
+          subtitle="Add a new video for The Janitor Cart services"
           breadcrumbs={bread}
         />
       </div>
       {/* The form - company info, features, and buttons */}
-      <CompanyForm hasInfo={false} />
+      <VideosForm hasInfo={false} />
     </div>
   );
 };
 
-export default CreateCompany;
+export default CreateVideos;

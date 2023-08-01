@@ -15,15 +15,11 @@ describe('Main Sidebar', () => {
         <SidebarFinal />
       </BrowserRouter>
     );
-    const dashboardMenuItem = screen.getByText('Dashboard');
-    const companiesMenuItem = screen.getByText('Companies');
-    const workRightsFilesMenuItem = screen.getByText('Work Rights Files');
-    const videosMenuItem = screen.getByText('Videos');
 
-    expect(dashboardMenuItem).toBeInTheDocument();
-    expect(companiesMenuItem).toBeInTheDocument();
-    expect(workRightsFilesMenuItem).toBeInTheDocument();
-    expect(videosMenuItem).toBeInTheDocument();
+    expect(screen.getByText('Dashboard')).toBeInTheDocument();
+    expect(screen.getByText('Companies')).toBeInTheDocument();
+    expect(screen.getByText('Work Rights Files')).toBeInTheDocument();
+    expect(screen.getByText('Videos')).toBeInTheDocument();
 
     // Check icons (e.g., Squares2X2Icon, BuildingOfficeIcon, etc.)
     expect(screen.getByLabelText('dashboard-icon')).toBeInTheDocument();
@@ -32,7 +28,7 @@ describe('Main Sidebar', () => {
     expect(screen.getByLabelText('videos-icon')).toBeInTheDocument();
   });
 
-  test.todo('Menu items have correct styles and hover behavior', () => {
+  test('Menu items have correct active and hover behavior', () => {
     render(
       <BrowserRouter>
         <SidebarFinal />
@@ -42,14 +38,17 @@ describe('Main Sidebar', () => {
     // Get all buttons from sidebar
     const dashboardMenuItem = screen.getAllByTestId('ps-menu-button-test-id');
 
-    // TODO Hover and expect BG to change color (ALWAYS TRUE)
     const user = userEvent.setup();
-    user.hover(dashboardMenuItem[1]);
+
+    // Active
+    user.click(dashboardMenuItem[1]);
+    expect(dashboardMenuItem[1]).toHaveStyle('background-color: #c1ccf0');
+    // Hover
+    user.hover(dashboardMenuItem[0]);
     expect(dashboardMenuItem[0]).toHaveStyle('background-color: #E6EAF9');
-    expect(dashboardMenuItem[0]).toHaveStyle('color: #44596e');
   });
 
-  test('renders "Log out" menu item correctly', () => {
+  test('Renders "Log out" menu item correctly', () => {
     render(
       <BrowserRouter>
         <SidebarFinal />
@@ -66,6 +65,7 @@ describe('Main Sidebar', () => {
         <SidebarFinal />
       </BrowserRouter>
     );
+
     const themeSwitch = screen.getByTestId('theme-switch');
 
     // Initial theme is 'light'
@@ -85,8 +85,7 @@ describe('Main Sidebar', () => {
 describe('Header', () => {
   test('Renders the SidebarHeader component', () => {
     render(<SidebarHeader collapsed={false} />);
-    const logoImage = screen.getByRole('img');
-    expect(logoImage).toBeInTheDocument();
+    expect(screen.getByRole('img')).toBeInTheDocument();
   });
 
   test('Renders the SidebarHeader component with children when collapsed is false', () => {
@@ -97,12 +96,20 @@ describe('Header', () => {
     expect(headerText).toBeInTheDocument();
   });
 
-  test('Does not render the child content when collapsed is true', () => {
+  test('Visible opacity logo text when collapsed is false', () => {
+    render(<SidebarHeader collapsed={false} />);
+    expect(screen.getByRole('img')).toBeInTheDocument();
+    expect(screen.getByTestId('header-collapsed-test')).toHaveStyle(
+      'opacity:1'
+    );
+  });
+
+  test('Invisible opacity logo text when collapsed is true', () => {
     render(<SidebarHeader collapsed={true} />);
-    const logoImage = screen.getByRole('img');
-    const headerText = screen.queryByText(/JanitorCart/i);
-    expect(logoImage).toBeInTheDocument();
-    expect(headerText).toBeNull();
+    expect(screen.getByRole('img')).toBeInTheDocument();
+    expect(screen.getByTestId('header-collapsed-test')).toHaveStyle(
+      'opacity:0'
+    );
   });
 });
 
@@ -116,24 +123,26 @@ describe('Footer', () => {
   test('Renders the SidebarFooter component with user information when collapsed is false', () => {
     render(<SidebarFooter collapsed={false} />);
 
-    const userIcon = screen.getByRole('img', { hidden: true });
-    const adminName = screen.getByText('Admin');
-    const adminEmail = screen.getByText('admin@admin.com');
-
-    expect(userIcon).toBeInTheDocument();
-    expect(adminName).toBeInTheDocument();
-    expect(adminEmail).toBeInTheDocument();
+    expect(screen.getByRole('img', { hidden: true })).toBeInTheDocument();
+    expect(screen.getByText('Admin')).toBeInTheDocument();
+    expect(screen.getByText('admin@admin.com')).toBeInTheDocument();
   });
 
-  test('Does not render the user information when collapsed is true', () => {
+  test('Visbile opacity user information text when collapsed is false', () => {
+    render(<SidebarFooter collapsed={false} />);
+
+    expect(screen.getByRole('img', { hidden: true })).toBeInTheDocument();
+    expect(screen.getByTestId('footer-collapsed-test')).toHaveStyle(
+      'opacity:1'
+    );
+  });
+
+  test('Invisible opacity user information text when collapsed is true', () => {
     render(<SidebarFooter collapsed={true} />);
 
-    const userIcon = screen.getByRole('img', { hidden: true });
-    const adminName = screen.queryByText('Admin');
-    const adminEmail = screen.queryByText('admin@admin.com');
-
-    expect(userIcon).toBeInTheDocument();
-    expect(adminName).toBeNull();
-    expect(adminEmail).toBeNull();
+    expect(screen.getByRole('img', { hidden: true })).toBeInTheDocument();
+    expect(screen.getByTestId('footer-collapsed-test')).toHaveStyle(
+      'opacity:0'
+    );
   });
 });

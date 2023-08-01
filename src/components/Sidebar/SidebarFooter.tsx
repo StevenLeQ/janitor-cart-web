@@ -1,32 +1,34 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+
 import { UserIcon } from '@heroicons/react/24/solid';
 
-interface SidebarHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactNode;
+interface SidebarFooterProps extends React.HTMLAttributes<HTMLDivElement> {
   collapsed: boolean;
 }
 
-export const SidebarFooter: React.FC<SidebarHeaderProps> = ({
-  children,
-  collapsed,
-  ...rest
-}) => {
+const footerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 }
+};
+
+export const SidebarFooter: React.FC<SidebarFooterProps> = ({ collapsed }) => {
   return (
-    <div
-      className={`flex items-center gap-2 ${
-        collapsed ? 'mx-auto' : 'mx-8'
-      } mb-8`}
-    >
+    <div className="mb-8 ml-auto mr-10 flex items-center gap-2">
       <UserIcon
         role="img"
-        className="h-11 w-11 rounded-full bg-gray-300 fill-black p-1.5"
+        className="ml-4 h-11 w-11 rounded-full bg-gray-300 fill-black p-1.5"
       />
-      {!collapsed && (
-        <div className="flex flex-col">
-          <p className="text-base font-semibold ">Admin</p>
-          <p className="-mt-1 text-sm">admin@admin.com</p>
-        </div>
-      )}
+      <motion.div
+        className="flex flex-col"
+        initial={collapsed ? 'hidden' : 'visible'}
+        animate={collapsed ? 'hidden' : 'visible'}
+        variants={footerVariants}
+        data-testid="footer-collapsed-test"
+      >
+        <motion.p className="text-base font-semibold ">Admin</motion.p>
+        <motion.p className="-mt-1 text-sm">admin@admin.com</motion.p>
+      </motion.div>
     </div>
   );
 };

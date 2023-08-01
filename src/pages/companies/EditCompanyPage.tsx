@@ -4,7 +4,7 @@ import CompanyForm from './CompanyForm';
 import Header from '../../components/header/Header';
 
 const bread = [
-  { name: 'Companies', link: '/companies', current: true },
+  { name: 'Companies', link: '/companies', current: false },
   { name: 'Edit Company', link: '#', current: true }
 ];
 

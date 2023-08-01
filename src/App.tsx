@@ -9,6 +9,9 @@ import EditCompany from './pages/companies/EditCompanyPage';
 import Rights from './pages/rights/RightsPage';
 import CreateRights from './pages/rights/CreateRightsPage';
 import EditRights from './pages/rights/EditRightsPage';
+import Videos from './pages/videos/VideosPage';
+import CreateVideos from './pages/videos/CreateVideosPage';
+import EditVideos from './pages/videos/EditVideosPage';
 
 const App = () => {
   return (
@@ -29,6 +32,9 @@ const App = () => {
             <Route path="/rights" element={<Rights />} />
             <Route path="/rights/newRights" element={<CreateRights />} />
             <Route path="/rights/editRights" element={<EditRights />} />
+            <Route path="/videos" element={<Videos />} />
+            <Route path="/videos/newVideos" element={<CreateVideos />} />
+            <Route path="/videos/editVideos" element={<EditVideos />} />
           </Routes>
         </div>
       </div>
