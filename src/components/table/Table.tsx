@@ -25,12 +25,14 @@ import { Link } from 'react-router-dom';
 import DebouncedInput from './DebouncedInput';
 import GeneratePaginationButtons from './Pagination';
 import TableEllipsisButton from './TableEllipsisButton';
+import Filter from './TableFilter';
 
 import {
   ChevronUpIcon,
   ChevronDownIcon,
   ChevronLeftIcon,
-  ChevronRightIcon
+  ChevronRightIcon,
+  ChevronUpDownIcon
 } from '@heroicons/react/24/solid';
 
 declare module '@tanstack/table-core' {
@@ -162,8 +164,9 @@ const Table: React.FC<TableProps> = ({
     getFacetedMinMaxValues: getFacetedMinMaxValues(),
     debugTable: true,
     debugHeaders: true,
-    debugColumns: false
+    debugColumns: true
   });
+
   return (
     <div className="mt-5 flow-root">
       <div className="justify-end sm:flex sm:items-center">
@@ -194,33 +197,52 @@ const Table: React.FC<TableProps> = ({
                 {table.getHeaderGroups().map((headerGroup) => (
                   <tr key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
+                      console.log(header.column.id);
                       return (
                         <th
                           className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
                           key={header.id}
                           colSpan={header.colSpan}
                         >
-                          {header.isPlaceholder ? null : (
-                            <div>
-                              <div
-                                {...{
-                                  className: header.column.getCanSort()
-                                    ? 'flex gap-1 cursor-pointer select-none'
-                                    : '',
-                                  onClick:
-                                    header.column.getToggleSortingHandler()
-                                }}
-                              >
-                                {flexRender(
-                                  header.column.columnDef.header,
-                                  header.getContext()
-                                )}
-                                {{
-                                  asc: <ChevronUpIcon className="h-5 w-5" />,
-                                  desc: <ChevronDownIcon className="h-5 w-5" />
-                                }[header.column.getIsSorted() as string] ??
-                                  null}
-                              </div>
+                          {header.isPlaceholder ? null : header.column.id !== // Column isn't active - the only boolean column
+                            'active' ? (
+                            <div
+                              {...{
+                                className: header.column.getCanSort()
+                                  ? 'flex gap-1 cursor-pointer select-none'
+                                  : '',
+                                onClick: header.column.getToggleSortingHandler()
+                              }}
+                            >
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                              {{
+                                asc: <ChevronUpIcon className="h-5 w-5" />,
+                                desc: <ChevronDownIcon className="h-5 w-5" />
+                              }[header.column.getIsSorted() as string] ?? (
+                                <ChevronUpDownIcon className="h-5 w-5" />
+                              )}
+                            </div>
+                          ) : (
+                            // Is Active
+                            // TODO left off on this probably a better way to do this man
+                            <div className="flex cursor-pointer select-none gap-1">
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                              {header.column.getCanFilter() ? (
+                                <div>
+                                  <Filter
+                                    column={header.column}
+                                    table={table}
+                                  />
+                                </div>
+                              ) : (
+                                <ChevronUpDownIcon className="h-5 w-5" />
+                              )}
                             </div>
                           )}
                         </th>
