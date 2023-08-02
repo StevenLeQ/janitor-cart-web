@@ -6,12 +6,14 @@ type Props = {
   value: string | number;
   onChange: (value: string | number) => void;
   debounce?: number;
+  icon?: boolean;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>;
 
 export const DebouncedInput: React.FC<Props> = ({
   value: initialValue,
   onChange,
   debounce = 500,
+  icon,
   ...props
 }) => {
   const [value, setValue] = React.useState<number | string>(initialValue);
@@ -34,12 +36,14 @@ export const DebouncedInput: React.FC<Props> = ({
   return (
     <div className="relative">
       <input {...props} value={value} onChange={handleInputChange} />
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-        <MagnifyingGlassIcon
-          className="h-6 w-6 text-gray-400"
-          aria-hidden="true"
-        />
-      </div>
+      {icon && (
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+          <MagnifyingGlassIcon
+            className="h-6 w-6 text-gray-400"
+            aria-hidden="true"
+          />
+        </div>
+      )}
     </div>
   );
 };

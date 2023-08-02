@@ -78,21 +78,28 @@ interface GenericData {
   [key: string]: string | boolean | number;
 }
 
-interface LinkWrapper {
+interface LinkData {
   title: string;
   link: string;
 }
 
+interface ColumnData {
+  key: string;
+  type: number;
+}
+
 interface TableProps {
   dataArray: GenericData[];
-  button: LinkWrapper;
-  ellipsis_data?: LinkWrapper[];
+  button: LinkData;
+  custom_column?: ColumnData;
+  ellipsis_data?: LinkData[];
   name_icon?: React.ReactNode;
 }
 
 const Table: React.FC<TableProps> = ({
   dataArray,
   button,
+  custom_column = { key: '', type: 0 },
   ellipsis_data,
   name_icon
 }) => {
@@ -102,6 +109,7 @@ const Table: React.FC<TableProps> = ({
     []
   );
   const [globalFilter, setGlobalFilter] = React.useState('');
+
   // Generate the columns based on the keys of the first data item
   const columns = React.useMemo<ColumnDef<GenericData, any>[]>(() => {
     if (dataArray.length > 0) {
@@ -177,6 +185,7 @@ const Table: React.FC<TableProps> = ({
             onChange={(value) => setGlobalFilter(String(value))}
             className="font-lg border-block w-72 rounded border p-2 shadow focus:outline-royal-blue"
             placeholder="Search or Filter columns..."
+            icon={true}
           />
           <Link to={button.link}>
             <button
@@ -197,15 +206,28 @@ const Table: React.FC<TableProps> = ({
                 {table.getHeaderGroups().map((headerGroup) => (
                   <tr key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
-                      console.log(header.column.id);
+                      // Logic for handling boolean columns, rotate between true, false, and empty
+                      const columnFilterValue = header.column.getFilterValue();
+                      const handleRotateFilter = () => {
+                        const columnFilterValue =
+                          header.column.getFilterValue();
+                        if (columnFilterValue === 'true') {
+                          header.column.setFilterValue('false');
+                        } else if (columnFilterValue === 'false') {
+                          header.column.setFilterValue('');
+                        } else {
+                          header.column.setFilterValue('true');
+                        }
+                      };
                       return (
                         <th
                           className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
                           key={header.id}
                           colSpan={header.colSpan}
                         >
-                          {header.isPlaceholder ? null : header.column.id !== // Column isn't active - the only boolean column
-                            'active' ? (
+                          {/* Column isn't boolean column */}
+                          {header.isPlaceholder ? null : header.column.id !==
+                            custom_column.key ? (
                             <div
                               {...{
                                 className: header.column.getCanSort()
@@ -225,24 +247,51 @@ const Table: React.FC<TableProps> = ({
                                 <ChevronUpDownIcon className="h-5 w-5" />
                               )}
                             </div>
+                          ) : custom_column.type === 0 ? (
+                            // Is boolean column
+                            // probably a better way to do this man
+                            <div
+                              className="flex cursor-pointer select-none gap-1"
+                              onClick={handleRotateFilter}
+                            >
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                              {header.column.getCanFilter() ? (
+                                <div className="px-2">
+                                  {columnFilterValue === 'true' ? (
+                                    <span className="rounded-lg bg-green-100 px-2 pb-1">
+                                      +
+                                    </span>
+                                  ) : columnFilterValue === 'false' ? (
+                                    <span className="rounded-lg bg-red-100 px-2 pb-1">
+                                      -
+                                    </span>
+                                  ) : (
+                                    <span className="rounded-lg bg-gray-100 px-2 pb-1">
+                                      ~
+                                    </span>
+                                  )}
+                                </div>
+                              ) : null}
+                            </div>
                           ) : (
-                            // Is Active
-                            // TODO left off on this probably a better way to do this man
+                            // Is a specific filter column
+                            // probably a better way to do this man
                             <div className="flex cursor-pointer select-none gap-1">
                               {flexRender(
                                 header.column.columnDef.header,
                                 header.getContext()
                               )}
                               {header.column.getCanFilter() ? (
-                                <div>
+                                <div className="px-2">
                                   <Filter
                                     column={header.column}
                                     table={table}
                                   />
                                 </div>
-                              ) : (
-                                <ChevronUpDownIcon className="h-5 w-5" />
-                              )}
+                              ) : null}
                             </div>
                           )}
                         </th>

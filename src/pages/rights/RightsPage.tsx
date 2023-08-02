@@ -54,6 +54,7 @@ const Rights = () => {
           button={button}
           ellipsis_data={ellipsis}
           name_icon={<DocumentIcon className="h-5 w-5" />}
+          custom_column={{ key: 'state_category', type: 1 }}
         />
       </div>
     </div>

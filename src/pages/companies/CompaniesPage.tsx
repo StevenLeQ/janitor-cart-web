@@ -50,7 +50,12 @@ const Companies = () => {
       </div>
 
       <div className="mx-5 px-4 sm:px-6 lg:px-8">
-        <Table dataArray={companies} button={button} ellipsis_data={ellipsis} />
+        <Table
+          dataArray={companies}
+          button={button}
+          ellipsis_data={ellipsis}
+          custom_column={{ key: 'active', type: 0 }}
+        />
       </div>
     </div>
   );
