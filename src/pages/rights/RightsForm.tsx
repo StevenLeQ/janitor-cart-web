@@ -1,6 +1,9 @@
+import React from 'react';
+
 import FormItem from '../../components/form/FormItem';
 import FormDropdown from '../../components/form/FormDropdown';
 import FormButtons from '../../components/form/FormButtons';
+import Alert from '../../components/common/Alert';
 
 import { PhotoIcon, FolderIcon } from '@heroicons/react/24/outline';
 
@@ -10,9 +13,14 @@ interface FormProps {
 
 // The Full Create Rights Form layout
 const RightsForm: React.FC<FormProps> = ({ hasInfo }) => {
+  const [showAlert, setShowAlert] = React.useState(false);
   return (
     // Outer wrapper to set layout grid
     <div className="grid max-w-[150rem] grid-cols-1 gap-x-4 gap-y-8 text-font-black sm:m-5 sm:ml-11  md:grid-cols-3 2xl:grid-cols-4 ">
+      {/* Alert if Cancel button is clicked */}
+      {showAlert && (
+        <Alert open={showAlert} setOpen={setShowAlert} leaveLink="/rights" />
+      )}
       {/* Container - white box with 3/7 or so width */}
       <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-lg md:col-span-2 md:row-span-4">
         {/* Header of form */}
@@ -80,7 +88,7 @@ const RightsForm: React.FC<FormProps> = ({ hasInfo }) => {
         </form>
 
         {/* Buttons */}
-        <FormButtons saveLink="/rights" cancelLink="/rights" />
+        <FormButtons saveLink="/rights" setShowAlert={setShowAlert} />
       </div>
     </div>
   );

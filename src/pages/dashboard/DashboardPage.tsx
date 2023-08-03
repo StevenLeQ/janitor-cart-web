@@ -19,7 +19,7 @@ import {
 const Dashboard = () => {
   return (
     <div className="mb-5 w-full">
-      <div className="m-5 mx-10 flex flex-col items-center gap-5">
+      <div className="m-3 mx-1 flex flex-col items-center gap-5 sm:m-5 sm:mx-10">
         {/* Outside Header and H-rule */}
         <Header
           title="Dashboard"
@@ -32,7 +32,7 @@ const Dashboard = () => {
 
       {/* Grid start */}
       {/* First 4 items are the 4 blocks below banner */}
-      <div className="mx-10 mt-8 grid grid-cols-12 gap-x-4 gap-y-7">
+      <div className="mx-2 mt-8 grid grid-cols-12 gap-x-4 gap-y-7 sm:mx-10">
         <DashboardItem
           title={faker.number.int({ min: 100, max: 10000000 })}
           salesBool={true}
@@ -43,16 +43,6 @@ const Dashboard = () => {
             precision: 0.01
           })}
           icon={<CurrencyDollarIcon className="h-10 w-10" />}
-        />
-        <DashboardItem
-          title={faker.number.int({ min: 1, max: 10000 })}
-          subtitle="New Customers"
-          percent={faker.number.float({
-            min: -100,
-            max: 100,
-            precision: 0.01
-          })}
-          icon={<UserPlusIcon className="h-10 w-10" />}
         />
         <DashboardItem
           title={faker.number.int({ min: 10000, max: 100000 })}
@@ -67,13 +57,23 @@ const Dashboard = () => {
         />
         <DashboardItem
           title={faker.number.int({ min: 100, max: 1000000 })}
-          subtitle="Total users"
+          subtitle="Total Users"
           percent={faker.number.float({
             min: -100,
             max: 100,
             precision: 0.01
           })}
           icon={<UsersIcon className="h-10 w-10" />}
+        />
+        <DashboardItem
+          title={faker.number.int({ min: 1, max: 10000 })}
+          subtitle="New Users"
+          percent={faker.number.float({
+            min: -100,
+            max: 100,
+            precision: 0.01
+          })}
+          icon={<UserPlusIcon className="h-10 w-10" />}
         />
 
         {/* Second two items, revenue graph and leaflet chloropleth map */}

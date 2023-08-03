@@ -24,18 +24,18 @@ export const SidebarHeader: React.FC<SidebarHeaderProps> = ({ collapsed }) => {
         variants={headerVariants}
         data-testid="header-collapsed-test"
       >
-        <motion.p
-          translate="yes"
+        <p
+          translate="no"
           className="font-logo text-lg font-semibold text-royal-blue"
         >
           The
-        </motion.p>
-        <motion.p
-          translate="yes"
+        </p>
+        <p
+          translate="no"
           className="-mt-2 font-logo text-lg font-semibold text-royal-blue"
         >
           JanitorCart
-        </motion.p>
+        </p>
       </motion.div>
     </div>
   );

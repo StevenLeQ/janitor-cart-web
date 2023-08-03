@@ -11,7 +11,7 @@ const generateRights = (count: number) => {
   for (let i = 0; i < count; i++) {
     const data = {
       file_name: faker.music.songName(),
-      state_category: faker.music.genre(),
+      state_category: faker.location.state(),
       file_size: faker.number.float({ min: 10, max: 800, precision: 0.1 })
     };
     rights.push(data);
@@ -39,7 +39,7 @@ const bread = [{ name: 'Rights', link: '/rights', current: true }];
 const Rights = () => {
   return (
     <div className="mb-5 w-full">
-      <div className="m-5 mx-10 flex flex-col items-center gap-5">
+      <div className="m-3 mx-1 flex flex-col items-center gap-5 sm:m-5 sm:mx-10">
         {/* Outside Header and H-rule */}
         <Header
           title="Worker Rights Files"
@@ -48,7 +48,7 @@ const Rights = () => {
         />
       </div>
 
-      <div className="mx-5 px-4 sm:px-6 lg:px-8">
+      <div className="px-4 sm:mx-5 sm:px-6 lg:px-8">
         <Table
           dataArray={rights}
           button={button}

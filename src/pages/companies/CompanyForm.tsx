@@ -1,7 +1,10 @@
+import React from 'react';
+
 import Toggle from '../../components/common/Toggle';
 import FormItem from '../../components/form/FormItem';
 import FormDropdown from '../../components/form/FormDropdown';
 import FormButtons from '../../components/form/FormButtons';
+import Alert from '../../components/common/Alert';
 
 import {
   UserIcon,
@@ -50,9 +53,15 @@ const FormToggle: React.FC<FormToggleProps> = ({ name }) => {
 
 // The Full Create Company Form layout
 const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
+  const [showAlert, setShowAlert] = React.useState(false);
+
   return (
     // Outer wrapper to set layout grid
     <div className="grid max-w-[150rem] grid-cols-1 gap-x-4 gap-y-8 text-font-black sm:m-5 sm:ml-11 sm:grid-rows-4 md:grid-cols-3 2xl:grid-cols-4 ">
+      {/* Alert if Cancel button is clicked */}
+      {showAlert && (
+        <Alert open={showAlert} setOpen={setShowAlert} leaveLink="/companies" />
+      )}
       {/* Container - white box with 3/7 or so width */}
       <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-lg md:col-span-2 md:row-span-4">
         {/* Header of form */}
@@ -101,7 +110,7 @@ const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
 
       {/* Blue info box */}
       {hasInfo && (
-        <div className="col-span-1 row-span-full row-start-1 bg-indigo-100/90 shadow-sm ring-1 ring-gray-900/10 sm:rounded-lg md:row-span-3 md:row-start-auto ">
+        <div className="col-span-1 row-span-full row-start-1 bg-indigo-100/90 shadow-sm ring-1 ring-gray-900/10 sm:h-[21rem] sm:rounded-lg md:row-span-3 md:row-start-auto lg:h-80">
           <div className="h-5 w-full py-4">
             <span className="m-5 text-base font-bold">Devin Jhon</span>
             <hr className="border-1 mt-3 h-px border-gray-900/10" />
@@ -149,7 +158,7 @@ const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
         </form>
 
         {/* Buttons */}
-        <FormButtons saveLink="/companies" cancelLink="/companies" />
+        <FormButtons saveLink="/companies" setShowAlert={setShowAlert} />
       </div>
     </div>
   );

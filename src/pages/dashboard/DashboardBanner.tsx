@@ -24,7 +24,7 @@ const DashboardBanner = () => {
 
       {/* Bottom left Banner text */}
       <div className="flex h-full w-full items-end">
-        <div className="z-0 mb-7 ml-7 flex flex-col gap-1">
+        <div className="z-0 mb-7 ml-3 flex flex-col gap-1 sm:ml-7">
           <p className="text-4xl font-extrabold text-white">
             Welcome back, Admin
           </p>

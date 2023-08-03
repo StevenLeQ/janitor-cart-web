@@ -37,7 +37,7 @@ const bread = [{ name: 'Videos', link: '/videos', current: true }];
 const Videos = () => {
   return (
     <div className="mb-5 w-full">
-      <div className="m-5 mx-10 flex flex-col items-center gap-5">
+      <div className="m-3 mx-1 flex flex-col items-center gap-5 sm:m-5 sm:mx-10">
         {/* Outside Header and H-rule */}
         <Header
           title="Videos"
@@ -46,7 +46,7 @@ const Videos = () => {
         />
       </div>
 
-      <div className="mx-5 px-4 sm:px-6 lg:px-8">
+      <div className="px-4 sm:mx-5 sm:px-6 lg:px-8">
         <Table
           dataArray={videos}
           button={button}
