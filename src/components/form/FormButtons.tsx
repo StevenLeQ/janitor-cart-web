@@ -21,7 +21,7 @@ const FormButtons: React.FC<FormButtonProps> = ({ saveLink }) => {
           <Alert
             open={showAlert}
             closeAlert={closeAlert}
-            leaveLink="/companies"
+            leaveLink={saveLink}
           />
         )}
       </AnimatePresence>

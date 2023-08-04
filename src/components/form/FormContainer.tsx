@@ -4,25 +4,25 @@ interface FormContainerProps {
   children: React.ReactNode;
   header: string;
   pageLink?: string;
-  type?: number;
+  isSecond?: boolean;
 }
 
 // There are three types of forms to handle  here ---
-// 0 - Form with no button (Empty pageLink)
-// 1 - Form with buttons that is second+ form
-// 2 - Form with button that is first form
+// 0 - Form with no button, first row (Pagelink empty, isSecond false)
+// 1 - Form with button, second+ row (Pagelink provided, isSecond true)
+// 2 - Form with button, first row (Pagelink provided, isSecond false)
 const FormContainer: React.FC<FormContainerProps> = ({
   children,
   header,
   pageLink = '',
-  type = 1
+  isSecond = false
 }) => {
   return (
     // Container template
     <div
       className={`row-start-auto md:col-span-2 md:row-span-4 ${
         // move form to bottom end if second form
-        type === 1 && 'md:row-start-5'
+        isSecond && 'md:row-start-5'
       }`}
     >
       <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-lg">

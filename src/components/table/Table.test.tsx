@@ -3,7 +3,7 @@ import { render, screen, fireEvent, act } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
 import Table from '../../components/table/Table';
-import TableEllipsisButton from './EllipsisButton';
+import TableEllipsisButton from './TableEllipsisButton';
 import DebouncedInput from './TableDebouncedInput';
 import GeneratePaginationButtons from './TablePagination';
 
@@ -110,7 +110,7 @@ describe('Table', () => {
   });
 });
 
-describe('Eliipsis Menu', async () => {
+describe('Ellipsis Menu', async () => {
   test('Displays menu items when button is clicked', async () => {
     render(
       <BrowserRouter>

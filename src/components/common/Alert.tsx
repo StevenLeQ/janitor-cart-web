@@ -10,6 +10,7 @@ interface AlertProps {
   leaveLink: string;
 }
 
+// Alert modal for form cancels and table item deletions
 const Alert: React.FC<AlertProps> = ({ closeAlert, leaveLink }) => {
   const cancelButtonRef = useRef(null);
 

@@ -16,7 +16,7 @@ const VideosForm: React.FC<FormProps> = ({ hasInfo }) => {
   return (
     // Outer wrapper to set layout grid
     <FormAlertWrapper>
-      <FormContainer pageLink="/videos" header="Video Information" type={2}>
+      <FormContainer pageLink="/videos" header="Video Information">
         <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
           {/* Video Name */}
           <div className="sm:col-span-6">

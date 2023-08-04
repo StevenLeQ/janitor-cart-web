@@ -59,7 +59,7 @@ const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
     // Outer wrapper to set layout grid
     <FormAlertWrapper>
       {/* Features */}
-      <FormContainer header="Company Information" type={0}>
+      <FormContainer header="Company Information">
         <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
           {/* Company Name */}
           <div className="sm:col-span-3">
@@ -124,7 +124,7 @@ const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
       )}
 
       {/* Features form */}
-      <FormContainer pageLink="/companies" header="Features">
+      <FormContainer pageLink="/companies" header="Features" isSecond={true}>
         <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-4 pt-2 sm:grid-cols-6">
           <FormToggle name="Announcements" />
           <FormToggle name="Employee Handbook" />

@@ -29,7 +29,7 @@ const ellipsis = [
   { title: 'Edit File...', link: './editRights' },
   { title: 'Delete File...', link: './editRights' },
   { title: 'View File...', link: './editRights' },
-  { title: 'Dowload File...', link: './editRights' }
+  { title: 'Download File...', link: './editRights' }
 ];
 
 const rights = generateRights(1000);

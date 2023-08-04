@@ -197,8 +197,9 @@ const Table: React.FC<TableProps> = ({
         </div>
       </div>
 
-      <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-        <div className="overflow-x-scroll shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg lg:overflow-auto">
+      {/* Container for table, results, pagination */}
+      <div className="-mx-4 -my-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+        <div className="overflow-x-auto bg-white shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg lg:p-5">
           <table className="min-w-full divide-y divide-gray-300 bg-white">
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
@@ -308,7 +309,7 @@ const Table: React.FC<TableProps> = ({
                       )}
                     </td>
                   ))}
-                  <td className="relative whitespace-nowrap text-right text-sm font-medium">
+                  <td className="relative text-right text-sm font-medium">
                     <a href="#">
                       <TableEllipsisButton
                         ellipsis_data={ellipsis_data}
