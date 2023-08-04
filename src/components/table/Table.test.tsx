@@ -3,9 +3,9 @@ import { render, screen, fireEvent, act } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
 import Table from '../../components/table/Table';
-import TableEllipsisButton from '../../components/table/TableEllipsisButton';
-import DebouncedInput from '../../components/table/DebouncedInput';
-import GeneratePaginationButtons from '../../components/table/Pagination';
+import TableEllipsisButton from './EllipsisButton';
+import DebouncedInput from './TableDebouncedInput';
+import GeneratePaginationButtons from './TablePagination';
 
 // Mock the tableProps data for testing
 const testData = [

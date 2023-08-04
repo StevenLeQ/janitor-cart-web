@@ -1,6 +1,6 @@
 import { Column, RowData, Table } from '@tanstack/react-table';
 import React from 'react';
-import DebouncedInput from './DebouncedInput';
+import DebouncedInput from './TableDebouncedInput';
 
 type Props<T extends RowData> = {
   column: Column<T, unknown>;

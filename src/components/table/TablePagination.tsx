@@ -1,4 +1,4 @@
-// Component to generate the paginated buttons at the bottom right of companies
+// Component to generate the paginated buttons at the bottom right of tables
 const GeneratePaginationButtons = (table: any, totalButtons: number) => {
   const buttons = [];
   const halfButtons = Math.floor(totalButtons / 2);

@@ -1,10 +1,10 @@
 import React from 'react';
 
+import FormAlertWrapper from '../../components/form/FormWrapper';
+import FormContainer from '../../components/form/FormContainer';
 import Toggle from '../../components/common/Toggle';
 import FormItem from '../../components/form/FormItem';
 import FormDropdown from '../../components/form/FormDropdown';
-import FormButtons from '../../components/form/FormButtons';
-import Alert from '../../components/common/Alert';
 
 import {
   UserIcon,
@@ -12,7 +12,6 @@ import {
   EnvelopeIcon,
   ArrowRightOnRectangleIcon
 } from '@heroicons/react/24/outline';
-import { AnimatePresence } from 'framer-motion';
 
 interface FormProps {
   hasInfo: boolean;
@@ -28,6 +27,7 @@ interface FormToggleProps {
   name: string;
 }
 
+// For the special blue box from editing company
 const InfoItem: React.FC<InfoItemProps> = ({ title, data, dataStyle }) => {
   return (
     <div className="grid-span-1">
@@ -41,6 +41,7 @@ const InfoItem: React.FC<InfoItemProps> = ({ title, data, dataStyle }) => {
   );
 };
 
+// Currently only form needing toggles, extract once duplicated
 const FormToggle: React.FC<FormToggleProps> = ({ name }) => {
   return (
     <div className="sm:col-span-6">
@@ -54,67 +55,46 @@ const FormToggle: React.FC<FormToggleProps> = ({ name }) => {
 
 // The Full Create Company Form layout
 const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
-  const [showAlert, setShowAlert] = React.useState(false);
-
   return (
     // Outer wrapper to set layout grid
-    <div className="grid max-w-[150rem] grid-cols-1 gap-x-4 gap-y-8 text-font-black sm:m-5 sm:ml-11 sm:grid-rows-4 md:grid-cols-3 2xl:grid-cols-4 ">
-      {/* Alert if Cancel button is clicked */}
-      <AnimatePresence initial={false}>
-        {showAlert && (
-          <Alert
-            open={showAlert}
-            setOpen={setShowAlert}
-            leaveLink="/companies"
-          />
-        )}
-      </AnimatePresence>
+    <FormAlertWrapper>
+      {/* Features */}
+      <FormContainer header="Company Information" type={0}>
+        <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
+          {/* Company Name */}
+          <div className="sm:col-span-3">
+            <FormItem name="name" title="Company Name" icon={<UserIcon />} />
+          </div>
+          {/* Phone */}
+          <div className="sm:col-span-3">
+            <FormItem name="phone" title="Phone" icon={<PhoneIcon />} />
+          </div>
 
-      {/* Container - white box with 3/7 or so width */}
-      <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-lg md:col-span-2 md:row-span-4">
-        {/* Header of form */}
-        <div className="h-auto w-full pt-4">
-          <span className="m-5 text-base font-medium">Features</span>
-          <hr className="border-1 mt-3 h-px border-gray-900/10" />
-        </div>
+          {/* Email */}
+          <div className="sm:col-span-6">
+            <FormItem
+              name="email"
+              title="Email Address"
+              icon={<EnvelopeIcon />}
+            />
+          </div>
 
-        <div className="mb-2 px-3 py-6 sm:p-5">
-          <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
-            {/* Company Name */}
-            <div className="sm:col-span-3">
-              <FormItem name="name" title="Company Name" icon={<UserIcon />} />
-            </div>
-            {/* Phone */}
-            <div className="sm:col-span-3">
-              <FormItem name="phone" title="Phone" icon={<PhoneIcon />} />
-            </div>
+          {/* Username */}
+          <div className="sm:col-span-6">
+            <FormItem
+              name="user"
+              title="Username"
+              icon={<ArrowRightOnRectangleIcon />}
+            />
+          </div>
 
-            {/* Email */}
-            <div className="sm:col-span-6">
-              <FormItem
-                name="email"
-                title="Email Address"
-                icon={<EnvelopeIcon />}
-              />
-            </div>
+          {/* Work Rights */}
 
-            {/* Username */}
-            <div className="sm:col-span-6">
-              <FormItem
-                name="user"
-                title="Username"
-                icon={<ArrowRightOnRectangleIcon />}
-              />
-            </div>
-
-            {/* Work Rights */}
-
-            <div className="sm:col-span-6">
-              <FormDropdown />
-            </div>
+          <div className="sm:col-span-6">
+            <FormDropdown />
           </div>
         </div>
-      </form>
+      </FormContainer>
 
       {/* Blue info box */}
       {hasInfo && (
@@ -144,31 +124,18 @@ const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
       )}
 
       {/* Features form */}
-      <div className="row-span-4 row-start-auto md:col-span-2 md:row-start-5">
-        <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-lg">
-          {/* Header of form */}
-          <div className="h-auto w-full pt-4">
-            <span className="m-5 text-base font-medium">Features</span>
-            <hr className="border-1 mt-3 h-px border-gray-900/10" />
-          </div>
-
-          <div className="mb-2 px-3 py-6 sm:p-5">
-            <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-4 pt-2 sm:grid-cols-6">
-              <FormToggle name="Announcements" />
-              <FormToggle name="Employee Handbook" />
-              <FormToggle name="Payroll" />
-              <FormToggle name="Procedures" />
-              <FormToggle name="SDS" />
-              <FormToggle name="Time Clock" />
-              <FormToggle name="Work Orders" />
-            </div>
-          </div>
-        </form>
-
-        {/* Buttons */}
-        <FormButtons saveLink="/companies" setShowAlert={setShowAlert} />
-      </div>
-    </div>
+      <FormContainer pageLink="/companies" header="Features">
+        <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-4 pt-2 sm:grid-cols-6">
+          <FormToggle name="Announcements" />
+          <FormToggle name="Employee Handbook" />
+          <FormToggle name="Payroll" />
+          <FormToggle name="Procedures" />
+          <FormToggle name="SDS" />
+          <FormToggle name="Time Clock" />
+          <FormToggle name="Work Orders" />
+        </div>
+      </FormContainer>
+    </FormAlertWrapper>
   );
 };
 

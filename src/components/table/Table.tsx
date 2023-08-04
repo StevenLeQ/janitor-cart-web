@@ -22,8 +22,8 @@ import {
 } from '@tanstack/match-sorter-utils';
 import { Link } from 'react-router-dom';
 
-import DebouncedInput from './DebouncedInput';
-import GeneratePaginationButtons from './Pagination';
+import DebouncedInput from './TableDebouncedInput';
+import GeneratePaginationButtons from './TablePagination';
 import TableEllipsisButton from './TableEllipsisButton';
 import Filter from './TableFilter';
 
