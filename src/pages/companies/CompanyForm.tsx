@@ -12,6 +12,7 @@ import {
   EnvelopeIcon,
   ArrowRightOnRectangleIcon
 } from '@heroicons/react/24/outline';
+import { AnimatePresence } from 'framer-motion';
 
 interface FormProps {
   hasInfo: boolean;
@@ -59,9 +60,16 @@ const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
     // Outer wrapper to set layout grid
     <div className="grid max-w-[150rem] grid-cols-1 gap-x-4 gap-y-8 text-font-black sm:m-5 sm:ml-11 sm:grid-rows-4 md:grid-cols-3 2xl:grid-cols-4 ">
       {/* Alert if Cancel button is clicked */}
-      {showAlert && (
-        <Alert open={showAlert} setOpen={setShowAlert} leaveLink="/companies" />
-      )}
+      <AnimatePresence initial={false}>
+        {showAlert && (
+          <Alert
+            open={showAlert}
+            setOpen={setShowAlert}
+            leaveLink="/companies"
+          />
+        )}
+      </AnimatePresence>
+
       {/* Container - white box with 3/7 or so width */}
       <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-lg md:col-span-2 md:row-span-4">
         {/* Header of form */}
