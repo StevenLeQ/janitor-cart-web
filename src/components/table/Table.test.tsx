@@ -21,7 +21,7 @@ const button = {
 
 const ellipsis = [
   { title: 'Edit Company...', link: './editCompany' },
-  { title: 'Deactivate Company...', link: '#' },
+  { title: 'Deactivate Company...', link: '/createCompany' },
   { title: 'Login As This Company...', link: '#' }
 ];
 
@@ -260,7 +260,6 @@ describe('Table Pagination', () => {
   test('Generates correct number of buttons', () => {
     const totalButtons = 5;
     const buttons = GeneratePaginationButtons(mockTable, totalButtons);
-    console.log(buttons);
     // Generates the buttons - [1, 2, 3, 4, 5, ..., 25] for 7 final
     expect(buttons.length).toBe(totalButtons + 2);
   });
