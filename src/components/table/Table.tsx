@@ -198,7 +198,7 @@ const Table: React.FC<TableProps> = ({
       </div>
 
       {/* Container for table, results, pagination */}
-      <div className="-mx-4 -my-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div className="-my-2  sm:px-6 lg:-mx-8 lg:px-8">
         <div className="overflow-x-auto bg-white shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg lg:p-5">
           <table className="min-w-full divide-y divide-gray-300 bg-white">
             <thead>

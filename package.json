@@ -14,7 +14,6 @@
     "test:run": "vitest run"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "@tanstack/match-sorter-utils": "^8.8.4",
     "@tanstack/react-table": "^8.9.3",
