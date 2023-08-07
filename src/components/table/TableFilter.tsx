@@ -14,6 +14,7 @@ export function Filter<T extends RowData>({ column, table }: Props<T>) {
 
   const columnFilterValue = column.getFilterValue();
   const uniqueValues = column.getFacetedUniqueValues();
+  const dataListId = column.id + 'list';
 
   const sortedUniqueValues = React.useMemo(
     () =>
@@ -23,21 +24,25 @@ export function Filter<T extends RowData>({ column, table }: Props<T>) {
     [uniqueValues]
   );
 
-  const dataListId = column.id + 'list';
+  const handleInputChange = (value: string | number) => {
+    if (sortedUniqueValues.includes(value)) {
+      column.setFilterValue(value);
+    }
+  };
 
   return (
     <>
       <datalist id={dataListId}>
-        {sortedUniqueValues.slice(0, 5000).map((value: any) => (
+        {sortedUniqueValues.map((value: any) => (
           <option value={value} key={value} />
         ))}
       </datalist>
       <DebouncedInput
         type="text"
         value={(columnFilterValue as string) ?? ''}
-        onChange={(value) => column.setFilterValue(value)}
+        onChange={(value) => handleInputChange(value)}
         placeholder={`Search... (${uniqueValues.size})`}
-        className="w-36 rounded font-normal shadow outline-none focus:outline-royal-blue"
+        className="w-36 rounded pl-1 font-normal shadow  focus:outline-royal-blue"
         list={dataListId}
       />
     </>

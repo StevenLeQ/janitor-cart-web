@@ -38,11 +38,20 @@ import {
 declare module '@tanstack/table-core' {
   interface FilterFns {
     fuzzy: FilterFn<unknown>;
+    exact: FilterFn<unknown>;
   }
   interface FilterMeta {
     itemRank: RankingInfo;
   }
 }
+
+const exactFilter: FilterFn<any> = (row, columnId, value) => {
+  const cellValue = row.getValue(columnId);
+  if (typeof cellValue === 'string') {
+    return cellValue.toLowerCase() === value.toLowerCase();
+  }
+  return false;
+};
 
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   // Rank the item
@@ -143,7 +152,7 @@ const Table: React.FC<TableProps> = ({
           );
         },
         header: () => <span>{key.replace(/_/g, ' ').toUpperCase()}</span>,
-        filterFn: 'fuzzy',
+        filterFn: 'exact',
         sortingFn: fuzzySort
       }));
     }
@@ -154,7 +163,8 @@ const Table: React.FC<TableProps> = ({
     data,
     columns,
     filterFns: {
-      fuzzy: fuzzyFilter
+      fuzzy: fuzzyFilter,
+      exact: exactFilter
     },
     state: {
       columnFilters,
