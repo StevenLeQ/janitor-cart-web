@@ -5,7 +5,7 @@ import { stateOptions } from './us-states-hash';
 
 import { GlobeAltIcon, PhotoIcon } from '@heroicons/react/24/outline';
 
-const FormDropdown: React.FC = () => {
+const Dropdown: React.FC = () => {
   const [selectedValue, setSelectedValue] = useState('Federal'); // Default value
 
   const handleSelectionChange = (
@@ -81,4 +81,4 @@ const FormDropdown: React.FC = () => {
   );
 };
 
-export default FormDropdown;
+export default Dropdown;

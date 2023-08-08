@@ -3,15 +3,15 @@ import { Routes, Route } from 'react-router-dom';
 
 import SidebarFinal from './components/sidebar/Sidebar';
 import Dashboard from './pages/dashboard/DashboardPage';
-import Companies from './pages/companies/CompaniesPage';
-import CreateCompany from './pages/companies/CreateCompanyPage';
-import EditCompany from './pages/companies/EditCompanyPage';
-import Rights from './pages/rights/RightsPage';
-import CreateRights from './pages/rights/CreateRightsPage';
-import EditRights from './pages/rights/EditRightsPage';
-import Videos from './pages/videos/VideosPage';
-import CreateVideos from './pages/videos/CreateVideosPage';
-import EditVideos from './pages/videos/EditVideosPage';
+import Companies from './pages/companies';
+import CreateCompany from './pages/companies/create/NewCompany.tsx';
+import EditCompany from './pages/companies/edit/EditCompany.tsx';
+import Rights from './pages/rights/index.tsx';
+import CreateRights from './pages/rights/create/NewRights.tsx';
+import EditRights from './pages/rights/edit/EditRights.tsx';
+import Videos from './pages/videos/index.tsx';
+import CreateVideos from './pages/videos/create/NewVideos.tsx';
+import EditVideos from './pages/videos/edit/EditVideos.tsx';
 
 const App = () => {
   return (

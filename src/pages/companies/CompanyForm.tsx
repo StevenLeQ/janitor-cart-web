@@ -1,10 +1,10 @@
 import React from 'react';
 
-import FormAlertWrapper from '../../components/form/FormWrapper';
-import FormContainer from '../../components/form/FormContainer';
+import FormWrapper from '../../components/form/Container';
+import FormContainer from '../../components/form/Header';
 import Toggle from '../../components/common/Toggle';
-import FormItem from '../../components/form/FormItem';
-import FormDropdown from '../../components/form/FormDropdown';
+import FormItem from '../../components/form/Item';
+import FormDropdown from '../../components/form/Dropdown';
 
 import {
   UserIcon,
@@ -57,7 +57,7 @@ const FormToggle: React.FC<FormToggleProps> = ({ name }) => {
 const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
   return (
     // Outer wrapper to set layout grid
-    <FormAlertWrapper>
+    <FormWrapper>
       {/* Features */}
       <FormContainer header="Company Information">
         <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
@@ -135,7 +135,7 @@ const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
           <FormToggle name="Work Orders" />
         </div>
       </FormContainer>
-    </FormAlertWrapper>
+    </FormWrapper>
   );
 };
 

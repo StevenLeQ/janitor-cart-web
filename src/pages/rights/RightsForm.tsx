@@ -1,9 +1,9 @@
 import React from 'react';
 
-import FormAlertWrapper from '../../components/form/FormWrapper';
-import FormContainer from '../../components/form/FormContainer';
-import FormItem from '../../components/form/FormItem';
-import FormDropdown from '../../components/form/FormDropdown';
+import FormAlertWrapper from '../../components/form/Container';
+import FormContainer from '../../components/form/Header';
+import FormItem from '../../components/form/Item';
+import FormDropdown from '../../components/form/Dropdown';
 
 import { PhotoIcon, FolderIcon } from '@heroicons/react/24/outline';
 

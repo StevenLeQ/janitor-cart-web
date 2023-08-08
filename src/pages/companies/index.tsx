@@ -27,9 +27,16 @@ const button = {
   link: './newCompany'
 };
 
-const ellipsis = [
+const alertData = {
+  title: 'Deactivating Company?',
+  subtitle:
+    'Are you sure you want to switch the status of the selected company to "Inactive?"?',
+  button_text: 'Deactivate'
+};
+
+const ellipsis_data = [
   { title: 'Edit Company...', link: './editCompany' },
-  { title: 'Deactivate Company...', link: '#' },
+  { title: 'Deactivate Company...', alert_data: alertData },
   { title: 'Login As This Company...', link: '#' }
 ];
 
@@ -51,9 +58,9 @@ const Companies = () => {
 
       <div className="px-4 sm:mx-5 sm:px-6 lg:px-8">
         <Table
-          dataArray={companies}
+          data_array={companies}
           button={button}
-          ellipsis_data={ellipsis}
+          ellipsis_data={ellipsis_data}
           custom_column={{ key: 'active', type: 0 }}
         />
       </div>

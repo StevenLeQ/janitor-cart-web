@@ -1,12 +1,12 @@
 import React from 'react';
 
-interface FormItemProps {
+interface ItemProps {
   name: string;
   title: string;
   icon?: React.ReactNode;
 }
 
-const FormItem: React.FC<FormItemProps> = ({ name, title, icon }) => {
+const Item: React.FC<ItemProps> = ({ name, title, icon }) => {
   return (
     <>
       {/* Top label */}
@@ -33,4 +33,4 @@ const FormItem: React.FC<FormItemProps> = ({ name, title, icon }) => {
   );
 };
 
-export default FormItem;
+export default Item;

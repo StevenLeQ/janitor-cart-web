@@ -22,10 +22,10 @@ import {
 } from '@tanstack/match-sorter-utils';
 import { Link } from 'react-router-dom';
 
-import DebouncedInput from './TableDebouncedInput';
-import GeneratePaginationButtons from './TablePagination';
-import TableEllipsisButton from './TableEllipsisButton';
-import Filter from './TableFilter';
+import DebouncedInput from './DebouncedInput';
+import GeneratePaginationButtons from './Pagination';
+import EllipsisButton from './EllipsisButton';
+import Filter from './Filter';
 
 import {
   ChevronUpIcon,
@@ -45,24 +45,27 @@ declare module '@tanstack/table-core' {
   }
 }
 
-const exactFilter: FilterFn<any> = (row, columnId, value) => {
+// Used for column filters - an exact filter for strings and a fuzzy for booleans
+const exactFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   const cellValue = row.getValue(columnId);
   if (typeof cellValue === 'string') {
     return cellValue.toLowerCase() === value.toLowerCase();
+  } else if (typeof cellValue === 'boolean') {
+    const itemRank = rankItem(row.getValue(columnId), value);
+    addMeta({
+      itemRank
+    });
+    return itemRank.passed;
   }
   return false;
 };
 
+// Used for global filters - fuzzy filter
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
-  // Rank the item
   const itemRank = rankItem(row.getValue(columnId), value);
-
-  // Store the itemRank info
   addMeta({
     itemRank
   });
-
-  // Return if the item should be filtered in/out
   return itemRank.passed;
 };
 
@@ -92,27 +95,39 @@ interface LinkData {
   link: string;
 }
 
+interface AlertData {
+  title: string;
+  subtitle: string;
+  button_text: string;
+}
+
+interface EllipsisData {
+  title: string;
+  link?: string;
+  alert_data?: AlertData;
+}
+
 interface ColumnData {
   key: string;
   type: number;
 }
 
 interface TableProps {
-  dataArray: GenericData[];
+  data_array: GenericData[];
   button: LinkData;
   custom_column?: ColumnData;
-  ellipsis_data?: LinkData[];
+  ellipsis_data?: EllipsisData[];
   name_icon?: React.ReactNode;
 }
 
 const Table: React.FC<TableProps> = ({
-  dataArray,
+  data_array,
   button,
   custom_column = { key: '', type: 0 },
   ellipsis_data,
   name_icon
 }) => {
-  const [data] = React.useState(() => [...dataArray]);
+  const [data] = React.useState(() => [...data_array]);
 
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -121,8 +136,8 @@ const Table: React.FC<TableProps> = ({
 
   // Generate the columns based on the keys of the first data item
   const columns = React.useMemo<ColumnDef<GenericData, any>[]>(() => {
-    if (dataArray.length > 0) {
-      const keys = Object.keys(dataArray[0]);
+    if (data_array.length > 0) {
+      const keys = Object.keys(data_array[0]);
       return keys.map((key, index) => ({
         accessorKey: key,
         cell: (info) => {
@@ -157,7 +172,7 @@ const Table: React.FC<TableProps> = ({
       }));
     }
     return [];
-  }, [dataArray]);
+  }, [data_array]);
 
   const table = useReactTable({
     data,
@@ -321,7 +336,7 @@ const Table: React.FC<TableProps> = ({
                   ))}
                   <td className="relative text-right text-sm font-medium">
                     <a href="#">
-                      <TableEllipsisButton
+                      <EllipsisButton
                         ellipsis_data={ellipsis_data}
                         isNearEnd={
                           table.getState().pagination.pageSize - index < 3

@@ -1,6 +1,6 @@
-import FormButtons from './FormButtons';
+import FormButtons from './Buttons';
 
-interface FormContainerProps {
+interface HeaderProps {
   children: React.ReactNode;
   header: string;
   pageLink?: string;
@@ -11,7 +11,7 @@ interface FormContainerProps {
 // 0 - Form with no button, first row (Pagelink empty, isSecond false)
 // 1 - Form with button, second+ row (Pagelink provided, isSecond true)
 // 2 - Form with button, first row (Pagelink provided, isSecond false)
-const FormContainer: React.FC<FormContainerProps> = ({
+const Header: React.FC<HeaderProps> = ({
   children,
   header,
   pageLink = '',
@@ -39,4 +39,4 @@ const FormContainer: React.FC<FormContainerProps> = ({
   );
 };
 
-export default FormContainer;
+export default Header;

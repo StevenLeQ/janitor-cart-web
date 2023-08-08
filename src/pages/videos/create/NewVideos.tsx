@@ -1,7 +1,7 @@
 // import { faker } from "@faker-js/faker";
-import VideosForm from './VideosForm';
+import VideosForm from '../VideosForm';
 
-import Header from '../../components/header/Header';
+import Header from '../../../components/header/Header';
 
 const bread = [
   { name: 'Videos', link: '/videos', current: false },

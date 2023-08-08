@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './Header';
-import HeaderBreadcrumbs from './HeaderBreadcrumbs';
+import Breadcrumbs from './Breadcrumbs';
 
 const breadcrumbs = [
   { name: 'Home', link: '/', current: false },
@@ -61,7 +61,7 @@ describe('Breadcrumbs', () => {
   test('Renders home link and breadcrumbs', () => {
     render(
       <BrowserRouter>
-        <HeaderBreadcrumbs breadcrumbs={breadcrumbs} />
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
       </BrowserRouter>
     );
 

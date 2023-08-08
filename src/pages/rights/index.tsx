@@ -25,9 +25,16 @@ const button = {
   link: './newRights'
 };
 
-const ellipsis = [
+const alertData = {
+  title: 'Delete Work File?',
+  subtitle:
+    'Are you sure you want to permanently remove the selected work file?',
+  button_text: 'Delete'
+};
+
+const ellipsis_data = [
   { title: 'Edit File...', link: './editRights' },
-  { title: 'Delete File...', link: './editRights' },
+  { title: 'Delete File...', alert_data: alertData },
   { title: 'View File...', link: './editRights' },
   { title: 'Download File...', link: './editRights' }
 ];
@@ -50,9 +57,9 @@ const Rights = () => {
 
       <div className="px-4 sm:mx-5 sm:px-6 lg:px-8">
         <Table
-          dataArray={rights}
+          data_array={rights}
           button={button}
-          ellipsis_data={ellipsis}
+          ellipsis_data={ellipsis_data}
           name_icon={<DocumentIcon className="h-5 w-5" />}
           custom_column={{ key: 'state_category', type: 1 }}
         />

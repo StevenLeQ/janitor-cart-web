@@ -3,11 +3,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Alert from '../common/Alert';
 
-interface FormButtonProps {
+interface ButtonProps {
   saveLink: string;
 }
 
-const FormButtons: React.FC<FormButtonProps> = ({ saveLink }) => {
+const Buttons: React.FC<ButtonProps> = ({ saveLink }) => {
   const [showAlert, setShowAlert] = React.useState(false);
 
   const closeAlert = () => setShowAlert(false);
@@ -20,8 +20,8 @@ const FormButtons: React.FC<FormButtonProps> = ({ saveLink }) => {
         {showAlert && (
           <Alert
             open={showAlert}
-            closeAlert={closeAlert}
-            leaveLink={saveLink}
+            close_alert={closeAlert}
+            leave_link={saveLink}
           />
         )}
       </AnimatePresence>
@@ -47,4 +47,4 @@ const FormButtons: React.FC<FormButtonProps> = ({ saveLink }) => {
   );
 };
 
-export default FormButtons;
+export default Buttons;

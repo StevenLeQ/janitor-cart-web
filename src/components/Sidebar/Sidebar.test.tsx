@@ -5,8 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 // Components and pages to test
 import SidebarFinal from './Sidebar';
-import { SidebarHeader } from './SidebarHeader';
-import { SidebarFooter } from './SidebarFooter';
+import { SidebarHeader } from './Header';
+import { SidebarFooter } from './Footer';
 
 describe('Main Sidebar', () => {
   test('Renders menu items correctly', () => {

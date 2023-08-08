@@ -1,14 +1,13 @@
 // import { faker } from "@faker-js/faker";
-import CompanyForm from './CompanyForm';
+import CompanyForm from '../CompanyForm';
 
-import Header from '../../components/header/Header';
+import Header from '../../../components/header/Header';
 
 const bread = [
   { name: 'Companies', link: '/companies', current: false },
   { name: 'New Company', link: '#', current: true }
 ];
 
-// TODO Get the passing logic in geez louise
 const CreateCompany = () => {
   return (
     <div className="mb-5 w-full">

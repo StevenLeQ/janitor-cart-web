@@ -1,7 +1,7 @@
 // import { faker } from "@faker-js/faker";
-import RightsForm from './RightsForm';
+import RightsForm from '../RightsForm';
 
-import Header from '../../components/header/Header';
+import Header from '../../../components/header/Header';
 
 const bread = [
   { name: 'Rights', link: '/rights', current: false },

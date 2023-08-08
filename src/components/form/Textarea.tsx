@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface FormTextareaProps {
+interface TextareaProps {
   name: string;
   title: string;
 }
 
-const FormTextarea: React.FC<FormTextareaProps> = ({ name, title }) => {
+const Textarea: React.FC<TextareaProps> = ({ name, title }) => {
   return (
     <>
       {/* Top label */}
@@ -25,4 +25,4 @@ const FormTextarea: React.FC<FormTextareaProps> = ({ name, title }) => {
   );
 };
 
-export default FormTextarea;
+export default Textarea;

@@ -30,9 +30,15 @@ const button = {
   link: './newVideos'
 };
 
-const ellipsis = [
+const alertData = {
+  title: 'Delete Video?',
+  subtitle: 'Are you sure you want to permanently remove the selected video?',
+  button_text: 'Delete'
+};
+
+const ellipsis_data = [
   { title: 'Edit Video...', link: './editVideos' },
-  { title: 'Delete Video...', link: './editVideos' },
+  { title: 'Delete Video...', alert_data: alertData },
   { title: 'View File...', link: './editVideos' }
 ];
 
@@ -54,9 +60,9 @@ const Videos = () => {
 
       <div className="px-4 sm:mx-5 sm:px-6 lg:px-8">
         <Table
-          dataArray={videos}
+          data_array={videos}
           button={button}
-          ellipsis_data={ellipsis}
+          ellipsis_data={ellipsis_data}
           name_icon={<VideoCameraIcon className="h-5 w-5" />}
         />
       </div>

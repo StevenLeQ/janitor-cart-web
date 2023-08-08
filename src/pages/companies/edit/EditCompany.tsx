@@ -1,7 +1,7 @@
 // import { faker } from "@faker-js/faker";
 
-import CompanyForm from './CompanyForm';
-import Header from '../../components/header/Header';
+import CompanyForm from '../CompanyForm';
+import Header from '../../../components/header/Header';
 
 const bread = [
   { name: 'Companies', link: '/companies', current: false },

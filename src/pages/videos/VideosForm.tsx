@@ -1,9 +1,9 @@
 import React from 'react';
 
-import FormAlertWrapper from '../../components/form/FormWrapper';
-import FormContainer from '../../components/form/FormContainer';
-import FormItem from '../../components/form/FormItem';
-import FormTextarea from '../../components/form/FormTextarea';
+import FormAlertWrapper from '../../components/form/Container';
+import FormContainer from '../../components/form/Header';
+import FormItem from '../../components/form/Item';
+import FormTextarea from '../../components/form/Textarea';
 
 interface FormProps {
   hasInfo: boolean;

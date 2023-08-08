@@ -8,13 +8,11 @@ interface Bread {
   current: boolean;
 }
 
-interface HeaderBreadcrumbsProps {
+interface BreadcrumbsProps {
   breadcrumbs?: Bread[];
 }
 
-const HeaderBreadcrumbs: React.FC<HeaderBreadcrumbsProps> = ({
-  breadcrumbs
-}) => {
+const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
   return (
     <nav className="flex" aria-label="Breadcrumb">
       <ol role="list" className="flex items-center space-x-2">
@@ -59,4 +57,4 @@ const HeaderBreadcrumbs: React.FC<HeaderBreadcrumbsProps> = ({
   );
 };
 
-export default HeaderBreadcrumbs;
+export default Breadcrumbs;
