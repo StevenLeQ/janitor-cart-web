@@ -79,13 +79,13 @@ const hexToRgba = (hex: string, alpha: number) => {
 
 export const SidebarFinal: React.FC = () => {
   const [collapsed, setCollapsed] = React.useState(true);
-  const [theme, setTheme] = React.useState<Theme>('light');
+  const [theme] = React.useState<Theme>('light');
   const location = useLocation();
 
-  // TODO handle on theme change event
-  const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTheme(e.target.checked ? 'dark' : 'light');
-  };
+  // // TODO handle on theme change event
+  // const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setTheme(e.target.checked ? 'dark' : 'light');
+  // };
 
   const handleLogoClick = () => {
     setCollapsed((prevCollapsed) => !prevCollapsed);
@@ -108,7 +108,7 @@ export const SidebarFinal: React.FC = () => {
     SubMenuExpandIcon: {
       color: '#b6b7b9'
     },
-    subMenuContent: ({}) => ({
+    subMenuContent: () => ({
       backgroundColor: 'transparent'
     }),
     button: {
@@ -134,7 +134,7 @@ export const SidebarFinal: React.FC = () => {
         color: themes[theme].menu.disabled.color
       }
     },
-    label: ({ open }) => ({
+    label: () => ({
       fontWeight: collapsed ? 600 : undefined,
       opacity: collapsed ? 0 : 1,
       transition: 'opacity 0.2s ease-in-out'

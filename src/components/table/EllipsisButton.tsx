@@ -20,7 +20,7 @@ interface EllipsisData {
 
 interface EllipsisProps {
   ellipsis_data?: EllipsisData[];
-  isNearEnd?: Boolean;
+  isNearEnd?: boolean;
 }
 
 const EllipsisButton: React.FC<EllipsisProps> = ({

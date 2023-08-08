@@ -31,7 +31,7 @@ export const DebouncedInput: React.FC<Props> = ({
     }, debounce);
 
     return () => clearTimeout(timeout);
-  }, [value]);
+  }, [value, debounce, onChange]);
 
   return (
     <div className="relative">

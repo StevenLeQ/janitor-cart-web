@@ -39,7 +39,7 @@ const alertData = {
 const ellipsis_data = [
   { title: 'Edit Video...', link: './editVideos' },
   { title: 'Delete Video...', alert_data: alertData },
-  { title: 'View File...', link: './editVideos' }
+  { title: 'View Video...', link: './editVideos' }
 ];
 
 const videos = generateVideos(1000);

@@ -1,5 +1,14 @@
+import { Table } from '@tanstack/react-table';
+
+interface GenericData {
+  [key: string]: string | boolean | number;
+}
+
 // Component to generate the paginated buttons at the bottom right of tables
-const GeneratePaginationButtons = (table: any, totalButtons: number) => {
+const GeneratePaginationButtons = (
+  table: Table<GenericData>,
+  totalButtons: number
+) => {
   const buttons = [];
   const halfButtons = Math.floor(totalButtons / 2);
 

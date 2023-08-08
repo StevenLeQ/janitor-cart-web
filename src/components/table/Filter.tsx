@@ -21,7 +21,7 @@ export function Filter<T extends RowData>({ column, table }: Props<T>) {
       typeof firstValue === 'number'
         ? []
         : Array.from(uniqueValues.keys()).sort(),
-    [uniqueValues]
+    [uniqueValues, firstValue]
   );
 
   const handleInputChange = (value: string | number) => {
@@ -33,7 +33,7 @@ export function Filter<T extends RowData>({ column, table }: Props<T>) {
   return (
     <>
       <datalist id={dataListId}>
-        {sortedUniqueValues.map((value: any) => (
+        {sortedUniqueValues.map((value) => (
           <option value={value} key={value} />
         ))}
       </datalist>

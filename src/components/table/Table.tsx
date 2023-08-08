@@ -45,8 +45,12 @@ declare module '@tanstack/table-core' {
   }
 }
 
+interface TableRowData {
+  [key: string]: string | boolean | number;
+}
+
 // Used for column filters - an exact filter for strings and a fuzzy for booleans
-const exactFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
+const exactFilter: FilterFn<TableRowData> = (row, columnId, value, addMeta) => {
   const cellValue = row.getValue(columnId);
   if (typeof cellValue === 'string') {
     return cellValue.toLowerCase() === value.toLowerCase();
@@ -61,7 +65,7 @@ const exactFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
 };
 
 // Used for global filters - fuzzy filter
-const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
+const fuzzyFilter: FilterFn<TableRowData> = (row, columnId, value, addMeta) => {
   const itemRank = rankItem(row.getValue(columnId), value);
   addMeta({
     itemRank
@@ -69,7 +73,7 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   return itemRank.passed;
 };
 
-const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
+const fuzzySort: SortingFn<TableRowData> = (rowA, rowB, columnId) => {
   let dir = 0;
 
   // Only sort by rank if the column has ranking information
@@ -135,7 +139,7 @@ const Table: React.FC<TableProps> = ({
   const [globalFilter, setGlobalFilter] = React.useState('');
 
   // Generate the columns based on the keys of the first data item
-  const columns = React.useMemo<ColumnDef<GenericData, any>[]>(() => {
+  const columns = React.useMemo<ColumnDef<GenericData, string>[]>(() => {
     if (data_array.length > 0) {
       const keys = Object.keys(data_array[0]);
       return keys.map((key, index) => ({
@@ -172,7 +176,7 @@ const Table: React.FC<TableProps> = ({
       }));
     }
     return [];
-  }, [data_array]);
+  }, [data_array, name_icon]);
 
   const table = useReactTable({
     data,
