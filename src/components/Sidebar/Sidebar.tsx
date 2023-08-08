@@ -11,8 +11,8 @@ import {
 import { Link, useLocation } from 'react-router-dom';
 
 // Components for sidebar
-import { SidebarHeader } from './Header.tsx';
-import { SidebarFooter } from './Footer.tsx';
+import { Header } from './Header.tsx';
+import { Footer } from './Footer.tsx';
 
 // Icons used in Sidebar
 import {
@@ -145,7 +145,6 @@ export const SidebarFinal: React.FC = () => {
     <div className="flex h-full">
       <Sidebar
         collapsed={collapsed}
-        image="https://user-images.githubusercontent.com/25878302/144499035-2911184c-76d3-4611-86e7-bc4e8ff84ff5.jpg"
         breakPoint="md"
         backgroundColor={hexToRgba(themes[theme].sidebar.backgroundColor, 1)}
         rootStyles={{
@@ -154,7 +153,7 @@ export const SidebarFinal: React.FC = () => {
       >
         <div className="flex h-screen flex-col">
           <a href="#" onClick={handleLogoClick} className="my-10 flex flex-col">
-            <SidebarHeader collapsed={collapsed} />
+            <Header collapsed={collapsed} />
           </a>
 
           <div className="mb-8 flex-1">
@@ -208,7 +207,7 @@ export const SidebarFinal: React.FC = () => {
             </MenuItem>
           </Menu>
 
-          <SidebarFooter collapsed={collapsed} />
+          <Footer collapsed={collapsed} />
         </div>
       </Sidebar>
     </div>

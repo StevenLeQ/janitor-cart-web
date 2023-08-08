@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 import logo from '../../shared/assets/logo.svg';
 
-interface SidebarHeaderProps {
+interface HeaderProps {
   collapsed: boolean;
 }
 
@@ -12,7 +12,7 @@ const headerVariants = {
   visible: { opacity: 1 }
 };
 
-export const SidebarHeader: React.FC<SidebarHeaderProps> = ({ collapsed }) => {
+export const Header: React.FC<HeaderProps> = ({ collapsed }) => {
   return (
     <div className="ml-auto mr-12 flex items-center gap-2">
       <img className="ml-4 w-12" src={logo} />

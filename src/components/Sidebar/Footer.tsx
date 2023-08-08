@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 import { UserIcon } from '@heroicons/react/24/solid';
 
-interface SidebarFooterProps extends React.HTMLAttributes<HTMLDivElement> {
+interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
   collapsed: boolean;
 }
 
@@ -12,7 +12,7 @@ const footerVariants = {
   visible: { opacity: 1 }
 };
 
-export const SidebarFooter: React.FC<SidebarFooterProps> = ({ collapsed }) => {
+export const Footer: React.FC<FooterProps> = ({ collapsed }) => {
   return (
     <div className="mb-8 ml-auto mr-10 flex items-center gap-2">
       <UserIcon
