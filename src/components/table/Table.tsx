@@ -339,7 +339,7 @@ const Table: React.FC<TableProps> = ({
                     </td>
                   ))}
                   <td className="relative text-right text-sm font-medium">
-                    <a href="#">
+                    <a href=".">
                       <EllipsisButton
                         ellipsis_data={ellipsis_data}
                         isNearEnd={

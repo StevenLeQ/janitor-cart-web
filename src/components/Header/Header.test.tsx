@@ -67,7 +67,7 @@ describe('Breadcrumbs', () => {
 
     // Check if the home link is rendered
     const homeLink = screen.getByRole('link', { name: 'Dashboard' });
-    expect(homeLink).toHaveAttribute('href', '/');
+    expect(homeLink).toHaveAttribute('href', '/superadmin');
     expect(homeLink).toHaveClass('text-font-gray-200 hover:text-royal-blue');
 
     // Check if each breadcrumb link is rendered

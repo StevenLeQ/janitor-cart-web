@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 
-import Header from '../../components/header/Header';
-import Table from '../../components/table/Table';
+import Header from '../../../components/Header/Header';
+import Table from '../../../components/Table/Table';
 
 import { VideoCameraIcon } from '@heroicons/react/24/outline';
 
@@ -27,7 +27,7 @@ const generateVideos = (count: number) => {
 
 const button = {
   title: 'New Video',
-  link: './newVideos'
+  link: './create'
 };
 
 const alertData = {
@@ -37,14 +37,14 @@ const alertData = {
 };
 
 const ellipsis_data = [
-  { title: 'Edit Video...', link: './editVideos' },
+  { title: 'Edit Video...', link: './edit' },
   { title: 'Delete Video...', alert_data: alertData },
-  { title: 'View Video...', link: './editVideos' }
+  { title: 'View Video...', link: './edit' }
 ];
 
 const videos = generateVideos(1000);
 
-const bread = [{ name: 'Videos', link: '/videos', current: true }];
+const bread = [{ name: 'Videos', link: '.', current: true }];
 
 const Videos = () => {
   return (

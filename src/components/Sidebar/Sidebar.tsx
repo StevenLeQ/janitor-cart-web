@@ -152,14 +152,17 @@ export const SidebarFinal: React.FC = () => {
         }}
       >
         <div className="flex h-screen flex-col">
-          <a href="#" onClick={handleLogoClick} className="my-10 flex flex-col">
+          <button
+            onClick={handleLogoClick}
+            className="my-10 flex flex-col text-left"
+          >
             <Header collapsed={collapsed} />
-          </a>
+          </button>
 
           <div className="mb-8 flex-1">
             <Menu menuItemStyles={menuItemStyles}>
               <MenuItem
-                component={<Link to={'/'} />}
+                component={<Link to={'/superadmin'} />}
                 aria-label="dashboard-icon"
                 icon={<Squares2X2Icon className="h-6 w-6" />}
                 active={location.pathname === '/'}
@@ -168,7 +171,7 @@ export const SidebarFinal: React.FC = () => {
               </MenuItem>
 
               <MenuItem
-                component={<Link to={'/companies'} />}
+                component={<Link to={'/superadmin/companies'} />}
                 aria-label="companies-icon"
                 icon={<BuildingOfficeIcon className="h-6 w-6" />}
                 active={location.pathname.startsWith('/companies')}
@@ -177,7 +180,7 @@ export const SidebarFinal: React.FC = () => {
               </MenuItem>
 
               <MenuItem
-                component={<Link to={'/rights'} />}
+                component={<Link to={'/superadmin/rights'} />}
                 aria-label="work-rights-files-icon"
                 icon={<FolderIcon className="h-6 w-6" />}
                 active={location.pathname.startsWith('/rights')}
@@ -186,7 +189,7 @@ export const SidebarFinal: React.FC = () => {
               </MenuItem>
 
               <MenuItem
-                component={<Link to={'/videos'} />}
+                component={<Link to={'/superadmin/videos'} />}
                 aria-label="videos-icon"
                 icon={<FilmIcon className="h-6 w-6" />}
                 active={location.pathname.startsWith('/videos')}

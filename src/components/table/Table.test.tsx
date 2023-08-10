@@ -2,7 +2,7 @@ import { vi, expect, test } from 'vitest';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
-import Table from '../../components/table/Table';
+import Table from './Table';
 import TableEllipsisButton from './EllipsisButton';
 import DebouncedInput from './DebouncedInput';
 import GeneratePaginationButtons from './Pagination';
@@ -22,7 +22,7 @@ const button = {
 const ellipsis = [
   { title: 'Edit Company...', link: './editCompany' },
   { title: 'Deactivate Company...', link: '/createCompany' },
-  { title: 'Login As This Company...', link: '#' }
+  { title: 'Login As This Company...', link: '.' }
 ];
 
 describe('Table', () => {

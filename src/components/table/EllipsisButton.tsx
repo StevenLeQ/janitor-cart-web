@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, RefObject } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import Alert from '../common/Alert';
+import Alert from '../Common/Alert';
 
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
 
@@ -74,7 +74,6 @@ const EllipsisButton: React.FC<EllipsisProps> = ({
           }`}
         >
           {ellipsis_data?.map((item, index) => {
-            console.log(item);
             if (item.link) {
               return (
                 <Link
@@ -102,7 +101,7 @@ const EllipsisButton: React.FC<EllipsisProps> = ({
                       <Alert
                         open={showAlert}
                         close_alert={closeAlert}
-                        leave_link={'#'}
+                        leave_link={'.'}
                         alert_data={item.alert_data}
                       />
                     )}

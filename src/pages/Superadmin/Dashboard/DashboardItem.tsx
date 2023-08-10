@@ -3,8 +3,8 @@ import React from 'react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 
 // Custom Icons
-import { ArrowUpIcon } from '../../shared/assets/ArrowUpIcon.tsx';
-import { ArrowDownIcon } from '../../shared/assets/ArrowDownIcon.tsx';
+import { ArrowUpIcon } from '../../../shared/assets/ArrowUpIcon.tsx';
+import { ArrowDownIcon } from '../../../shared/assets/ArrowDownIcon.tsx';
 
 interface HeaderProps {
   title?: number;

@@ -1,11 +1,11 @@
 // import { faker } from "@faker-js/faker";
 import CompanyForm from '../CompanyForm';
 
-import Header from '../../../components/header/Header';
+import Header from '../../../../components/Header/Header';
 
 const bread = [
-  { name: 'Companies', link: '/companies', current: false },
-  { name: 'New Company', link: '#', current: true }
+  { name: 'Companies', link: '/superadmin/companies', current: false },
+  { name: 'New Company', link: '.', current: true }
 ];
 
 const CreateCompany = () => {

@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 
-import Header from '../../components/header/Header';
-import Table from '../../components/table/Table';
+import Header from '../../../components/Header/Header';
+import Table from '../../../components/Table/Table';
 
 const generateCompanies = (count: number) => {
   const companies = [];
@@ -24,7 +24,7 @@ const generateCompanies = (count: number) => {
 
 const button = {
   title: 'New Company',
-  link: './newCompany'
+  link: './create'
 };
 
 const alertData = {
@@ -35,14 +35,14 @@ const alertData = {
 };
 
 const ellipsis_data = [
-  { title: 'Edit Company...', link: './editCompany' },
+  { title: 'Edit Company...', link: './edit' },
   { title: 'Deactivate Company...', alert_data: alertData },
-  { title: 'Login As This Company...', link: '#' }
+  { title: 'Login As This Company...', link: '.' }
 ];
 
 const companies = generateCompanies(1000);
 
-const bread = [{ name: 'Companies', link: '/companies', current: true }];
+const bread = [{ name: 'Companies', link: '.', current: true }];
 
 const Companies = () => {
   return (

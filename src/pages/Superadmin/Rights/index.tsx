@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 
-import Header from '../../components/header/Header';
-import Table from '../../components/table/Table';
+import Header from '../../../components/Header/Header';
+import Table from '../../../components/Table/Table';
 
 import { DocumentIcon } from '@heroicons/react/24/outline';
 
@@ -22,7 +22,7 @@ const generateRights = (count: number) => {
 
 const button = {
   title: 'New File',
-  link: './newRights'
+  link: './create'
 };
 
 const alertData = {
@@ -33,15 +33,15 @@ const alertData = {
 };
 
 const ellipsis_data = [
-  { title: 'Edit File...', link: './editRights' },
+  { title: 'Edit File...', link: './edit' },
   { title: 'Delete File...', alert_data: alertData },
-  { title: 'View File...', link: './editRights' },
-  { title: 'Download File...', link: './editRights' }
+  { title: 'View File...', link: './edit' },
+  { title: 'Download File...', link: './edit' }
 ];
 
 const rights = generateRights(1000);
 
-const bread = [{ name: 'Rights', link: '/rights', current: true }];
+const bread = [{ name: 'Rights', link: '.', current: true }];
 
 const Rights = () => {
   return (

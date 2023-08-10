@@ -1,11 +1,11 @@
 // import { faker } from "@faker-js/faker";
 import RightsForm from '../RightsForm';
 
-import Header from '../../../components/header/Header';
+import Header from '../../../../components/Header/Header';
 
 const bread = [
-  { name: 'Rights', link: '/rights', current: false },
-  { name: 'New File', link: '#', current: true }
+  { name: 'Rights', link: '/superadmin/rights', current: false },
+  { name: 'New File', link: '.', current: true }
 ];
 
 // TODO Get the passing logic in geez louise

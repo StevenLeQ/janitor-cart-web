@@ -1,10 +1,10 @@
 import React from 'react';
 
-import FormWrapper from '../../components/form/Container';
-import FormContainer from '../../components/form/Header';
-import Toggle from '../../components/common/Toggle';
-import FormItem from '../../components/form/Item';
-import FormDropdown from '../../components/form/Dropdown';
+import FormWrapper from '../../../components/Form/Container';
+import FormContainer from '../../../components/Form/Header';
+import Toggle from '../../../components/Common/Toggle';
+import FormItem from '../../../components/Form/Item';
+import FormDropdown from '../../../components/Form/Dropdown';
 
 import {
   UserIcon,
@@ -124,7 +124,11 @@ const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
       )}
 
       {/* Features form */}
-      <FormContainer pageLink="/companies" header="Features" isSecond={true}>
+      <FormContainer
+        pageLink="/superadmin/companies"
+        header="Features"
+        isSecond={true}
+      >
         <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-4 pt-2 sm:grid-cols-6">
           <FormToggle name="Announcements" />
           <FormToggle name="Employee Handbook" />

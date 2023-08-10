@@ -1,9 +1,9 @@
 import React from 'react';
 
-import FormAlertWrapper from '../../components/form/Container';
-import FormContainer from '../../components/form/Header';
-import FormItem from '../../components/form/Item';
-import FormDropdown from '../../components/form/Dropdown';
+import FormAlertWrapper from '../../../components/Form/Container';
+import FormContainer from '../../../components/Form/Header';
+import FormItem from '../../../components/Form/Item';
+import FormDropdown from '../../../components/Form/Dropdown';
 
 import { PhotoIcon, FolderIcon } from '@heroicons/react/24/outline';
 
@@ -32,7 +32,11 @@ const RightsForm: React.FC<FormProps> = ({ hasInfo }) => {
       </FormContainer>
 
       {/* File Upload form */}
-      <FormContainer pageLink="/rights" header="File Upload" isSecond={true}>
+      <FormContainer
+        pageLink="/superadmin/rights"
+        header="File Upload"
+        isSecond={true}
+      >
         <div className="mt-2 flex justify-center rounded-lg border-2 border-dashed border-blue-500 bg-blue-50 px-6 py-10">
           <div className="text-center">
             <PhotoIcon

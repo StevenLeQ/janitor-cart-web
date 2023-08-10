@@ -5,8 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 // Components and pages to test
 import SidebarFinal from './Sidebar';
-import { SidebarHeader } from './Header';
-import { SidebarFooter } from './Footer';
+import { Header } from './Header';
+import { Footer } from './Footer';
 
 describe('Main Sidebar', () => {
   test('Renders menu items correctly', () => {
@@ -83,13 +83,13 @@ describe('Main Sidebar', () => {
 });
 
 describe('Header', () => {
-  test('Renders the SidebarHeader component', () => {
-    render(<SidebarHeader collapsed={false} />);
+  test('Renders the Header component', () => {
+    render(<Header collapsed={false} />);
     expect(screen.getByRole('img')).toBeInTheDocument();
   });
 
-  test('Renders the SidebarHeader component with children when collapsed is false', () => {
-    render(<SidebarHeader collapsed={false} />);
+  test('Renders the Header component with children when collapsed is false', () => {
+    render(<Header collapsed={false} />);
     const logoImage = screen.getByRole('img');
     const headerText = screen.getByText(/JanitorCart/i);
     expect(logoImage).toBeInTheDocument();
@@ -97,7 +97,7 @@ describe('Header', () => {
   });
 
   test('Visible opacity logo text when collapsed is false', () => {
-    render(<SidebarHeader collapsed={false} />);
+    render(<Header collapsed={false} />);
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByTestId('header-collapsed-test')).toHaveStyle(
       'opacity:1'
@@ -105,7 +105,7 @@ describe('Header', () => {
   });
 
   test('Invisible opacity logo text when collapsed is true', () => {
-    render(<SidebarHeader collapsed={true} />);
+    render(<Header collapsed={true} />);
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByTestId('header-collapsed-test')).toHaveStyle(
       'opacity:0'
@@ -114,14 +114,14 @@ describe('Header', () => {
 });
 
 describe('Footer', () => {
-  test('Renders the SidebarFooter component', () => {
-    render(<SidebarFooter collapsed={false} />);
+  test('Renders the Footer component', () => {
+    render(<Footer collapsed={false} />);
     const userIcon = screen.getByRole('img', { hidden: true });
     expect(userIcon).toBeInTheDocument();
   });
 
-  test('Renders the SidebarFooter component with user information when collapsed is false', () => {
-    render(<SidebarFooter collapsed={false} />);
+  test('Renders the Footer component with user information when collapsed is false', () => {
+    render(<Footer collapsed={false} />);
 
     expect(screen.getByRole('img', { hidden: true })).toBeInTheDocument();
     expect(screen.getByText('Admin')).toBeInTheDocument();
@@ -129,7 +129,7 @@ describe('Footer', () => {
   });
 
   test('Visbile opacity user information text when collapsed is false', () => {
-    render(<SidebarFooter collapsed={false} />);
+    render(<Footer collapsed={false} />);
 
     expect(screen.getByRole('img', { hidden: true })).toBeInTheDocument();
     expect(screen.getByTestId('footer-collapsed-test')).toHaveStyle(
@@ -138,7 +138,7 @@ describe('Footer', () => {
   });
 
   test('Invisible opacity user information text when collapsed is true', () => {
-    render(<SidebarFooter collapsed={true} />);
+    render(<Footer collapsed={true} />);
 
     expect(screen.getByRole('img', { hidden: true })).toBeInTheDocument();
     expect(screen.getByTestId('footer-collapsed-test')).toHaveStyle(

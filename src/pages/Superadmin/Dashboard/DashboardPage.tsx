@@ -2,7 +2,7 @@
 import { faker } from '@faker-js/faker';
 
 // Components that make up the dashboard
-import Header from '../../components/header/Header.tsx';
+import Header from '../../../components/Header/Header.tsx';
 import DashboardBanner from './DashboardBanner.tsx';
 import DashboardItem from './DashboardItem.tsx';
 import RevenueLineChart from './RevenueLineChart.tsx';
@@ -53,7 +53,7 @@ const Dashboard = () => {
             precision: 0.01
           })}
           icon={<BuildingOfficeIcon className="h-10 w-10" />}
-          link="/companies"
+          link="/superadmin/companies"
         />
         <DashboardItem
           title={faker.number.int({ min: 100, max: 1000000 })}

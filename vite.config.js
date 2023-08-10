@@ -7,6 +7,6 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: './src/vite-setup.ts'
+    setupFiles: './src/config/vite-setup.ts'
   }
 });

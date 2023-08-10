@@ -19,7 +19,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
         <li>
           <div>
             <Link
-              to="/"
+              to="/superadmin"
               aria-label="Dashboard"
               className="flex text-sm font-medium text-font-gray-200 hover:text-royal-blue"
             >

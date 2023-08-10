@@ -1,11 +1,11 @@
 // import { faker } from "@faker-js/faker";
 
 import VideosForm from '../VideosForm';
-import Header from '../../../components/header/Header';
+import Header from '../../../../components/Header/Header';
 
 const bread = [
-  { name: 'Videos', link: '/videos', current: true },
-  { name: 'Edit Video', link: '#', current: true }
+  { name: 'Videos', link: '/superadmin/videos', current: true },
+  { name: 'Edit Video', link: '.', current: true }
 ];
 
 const EditVideos = () => {
