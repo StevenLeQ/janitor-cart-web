@@ -85,12 +85,12 @@ describe('Main Sidebar', () => {
 describe('Header', () => {
   test('Renders the Header component', () => {
     render(<Header collapsed={false} />);
-    expect(screen.getByRole('img')).toBeInTheDocument();
+    expect(screen.getByTestId('sidebar-logo')).toBeInTheDocument();
   });
 
   test('Renders the Header component with children when collapsed is false', () => {
     render(<Header collapsed={false} />);
-    const logoImage = screen.getByRole('img');
+    const logoImage = screen.getByTestId('sidebar-logo');
     const headerText = screen.getByText(/JanitorCart/i);
     expect(logoImage).toBeInTheDocument();
     expect(headerText).toBeInTheDocument();
@@ -98,7 +98,7 @@ describe('Header', () => {
 
   test('Visible opacity logo text when collapsed is false', () => {
     render(<Header collapsed={false} />);
-    expect(screen.getByRole('img')).toBeInTheDocument();
+    expect(screen.getByTestId('sidebar-logo')).toBeInTheDocument();
     expect(screen.getByTestId('header-collapsed-test')).toHaveStyle(
       'opacity:1'
     );
@@ -106,7 +106,7 @@ describe('Header', () => {
 
   test('Invisible opacity logo text when collapsed is true', () => {
     render(<Header collapsed={true} />);
-    expect(screen.getByRole('img')).toBeInTheDocument();
+    expect(screen.getByTestId('sidebar-logo')).toBeInTheDocument();
     expect(screen.getByTestId('header-collapsed-test')).toHaveStyle(
       'opacity:0'
     );

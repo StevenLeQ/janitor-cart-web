@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 import SidebarFinal from '../components/Sidebar/Sidebar.tsx';
 import Dashboard from '../pages/Superadmin/Dashboard/DashboardPage.tsx';
@@ -12,19 +12,26 @@ import EditRights from '../pages/Superadmin/Rights/Edit/EditRights.tsx';
 import Videos from '../pages/Superadmin/Videos';
 import CreateVideos from '../pages/Superadmin/Videos/Create/NewVideos.tsx';
 import EditVideos from '../pages/Superadmin/Videos/Edit/EditVideos.tsx';
+import Login from '../pages/Login/index.tsx';
 
 const App = () => {
+  const location = useLocation();
+
+  // Check if the current route's pathname includes "/superadmin"
+  const isSuperadmin = location.pathname.includes('/superadmin');
   return (
     // Span entire screen
     <>
       <div className="flex bg-stone-100">
-        <div className="sticky top-0 h-screen">
-          <SidebarFinal />
-        </div>
-
+        {isSuperadmin && (
+          <div className="sticky top-0 h-screen">
+            <SidebarFinal />
+          </div>
+        )}
         {/* Routes for Superadmin */}
         <div className="h-full w-full">
           <Routes>
+            <Route path="/login" element={<Login />} />
             <Route path="/superadmin" element={<Dashboard />} />
             <Route path="/superadmin/companies" element={<Companies />} />
             <Route

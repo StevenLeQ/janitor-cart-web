@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-import logo from '../../shared/assets/logo.svg';
+import LogoSVG from '../../shared/assets/logo';
 
 interface HeaderProps {
   collapsed: boolean;
@@ -15,7 +15,9 @@ const headerVariants = {
 export const Header: React.FC<HeaderProps> = ({ collapsed }) => {
   return (
     <div className="ml-auto mr-12 flex items-center gap-2">
-      <img className="ml-4 w-12" src={logo} />
+      <div className="ml-4 w-12" data-testid="sidebar-logo">
+        <LogoSVG color="#0028BE" />
+      </div>
 
       <motion.div
         className="mt-4 flex flex-col"

@@ -6,7 +6,9 @@ interface GenericData {
 
 // Component to generate the paginated buttons at the bottom right of tables
 const GeneratePaginationButtons = (
-  table: Table<GenericData>,
+  // using any to for test type objects
+  // eslint-disable-next-line
+  table: Table<GenericData> | any,
   totalButtons: number
 ) => {
   const buttons = [];
