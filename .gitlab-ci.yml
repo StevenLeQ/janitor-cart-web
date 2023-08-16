@@ -8,8 +8,8 @@ unit_tests:
   stage: test
   script:
     - echo "Running unit tests..."
-    - npm run test
     - npm run test:rep
+    - npm run test
   artifacts:
     when: always
     paths:

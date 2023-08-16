@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, RefObject } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import Alert from '../ommon/Alert';
+import Alert from '../Common/Alert';
 
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
 
