@@ -13,7 +13,6 @@ interface FormProps {
 
 // The Full Create Rights Form layout
 const RightsForm: React.FC<FormProps> = ({ hasInfo }) => {
-  if (hasInfo) console.log(hasInfo);
   return (
     // Outer wrapper to set layout grid
     <FormAlertWrapper>

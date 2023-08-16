@@ -3,7 +3,7 @@ import { render, screen, fireEvent, act } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
 import Table from './Table';
-import EllipsisButton from './EllipsisButton';
+import TableEllipsisButton from './EllipsisButton';
 import DebouncedInput from './DebouncedInput';
 import GeneratePaginationButtons from './Pagination';
 
@@ -114,7 +114,7 @@ describe('Ellipsis Menu', async () => {
   test('Displays menu items when button is clicked', async () => {
     render(
       <BrowserRouter>
-        <EllipsisButton ellipsis_data={ellipsis} />
+        <TableEllipsisButton ellipsis_data={ellipsis} />
       </BrowserRouter>
     );
 
@@ -145,7 +145,7 @@ describe('Ellipsis Menu', async () => {
   test('Hides menu items when button is clicked again', () => {
     render(
       <BrowserRouter>
-        <EllipsisButton ellipsis_data={ellipsis} />
+        <TableEllipsisButton ellipsis_data={ellipsis} />
       </BrowserRouter>
     );
 

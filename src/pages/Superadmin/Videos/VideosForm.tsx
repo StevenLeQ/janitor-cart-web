@@ -13,7 +13,6 @@ import { LinkIcon, FolderIcon } from '@heroicons/react/24/outline';
 
 // The Full Create Video Form layout
 const VideosForm: React.FC<FormProps> = ({ hasInfo }) => {
-  if (hasInfo) console.log(hasInfo);
   return (
     // Outer wrapper to set layout grid
     <FormAlertWrapper>
