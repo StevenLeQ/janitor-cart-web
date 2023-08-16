@@ -12,6 +12,7 @@
 /coverage
 
 # production
+/dist
 /build
 
 # misc
