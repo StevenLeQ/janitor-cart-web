@@ -11,8 +11,8 @@ import {
 import { Link, useLocation } from 'react-router-dom';
 
 // Components for sidebar
-import { SidebarHeader } from './SidebarHeader.tsx';
-import { SidebarFooter } from './SidebarFooter.tsx';
+import { Header } from './Header.tsx';
+import { Footer } from './Footer.tsx';
 
 // Icons used in Sidebar
 import {
@@ -79,13 +79,13 @@ const hexToRgba = (hex: string, alpha: number) => {
 
 export const SidebarFinal: React.FC = () => {
   const [collapsed, setCollapsed] = React.useState(true);
-  const [theme, setTheme] = React.useState<Theme>('light');
+  const [theme] = React.useState<Theme>('light');
   const location = useLocation();
 
-  // TODO handle on theme change event
-  const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTheme(e.target.checked ? 'dark' : 'light');
-  };
+  // // TODO handle on theme change event
+  // const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setTheme(e.target.checked ? 'dark' : 'light');
+  // };
 
   const handleLogoClick = () => {
     setCollapsed((prevCollapsed) => !prevCollapsed);
@@ -108,7 +108,7 @@ export const SidebarFinal: React.FC = () => {
     SubMenuExpandIcon: {
       color: '#b6b7b9'
     },
-    subMenuContent: ({}) => ({
+    subMenuContent: () => ({
       backgroundColor: 'transparent'
     }),
     button: {
@@ -134,7 +134,7 @@ export const SidebarFinal: React.FC = () => {
         color: themes[theme].menu.disabled.color
       }
     },
-    label: ({ open }) => ({
+    label: () => ({
       fontWeight: collapsed ? 600 : undefined,
       opacity: collapsed ? 0 : 1,
       transition: 'opacity 0.2s ease-in-out'
@@ -145,7 +145,6 @@ export const SidebarFinal: React.FC = () => {
     <div className="flex h-full">
       <Sidebar
         collapsed={collapsed}
-        image="https://user-images.githubusercontent.com/25878302/144499035-2911184c-76d3-4611-86e7-bc4e8ff84ff5.jpg"
         breakPoint="md"
         backgroundColor={hexToRgba(themes[theme].sidebar.backgroundColor, 1)}
         rootStyles={{
@@ -153,44 +152,47 @@ export const SidebarFinal: React.FC = () => {
         }}
       >
         <div className="flex h-screen flex-col">
-          <a href="#" onClick={handleLogoClick} className="my-10 flex flex-col">
-            <SidebarHeader collapsed={collapsed} />
-          </a>
+          <button
+            onClick={handleLogoClick}
+            className="my-10 flex flex-col text-left"
+          >
+            <Header collapsed={collapsed} />
+          </button>
 
           <div className="mb-8 flex-1">
             <Menu menuItemStyles={menuItemStyles}>
               <MenuItem
-                component={<Link to={'/'} />}
+                component={<Link to={'/superadmin'} />}
                 aria-label="dashboard-icon"
                 icon={<Squares2X2Icon className="h-6 w-6" />}
-                active={location.pathname === '/'}
+                active={location.pathname === '/superadmin'}
               >
                 Dashboard
               </MenuItem>
 
               <MenuItem
-                component={<Link to={'/companies'} />}
+                component={<Link to={'/superadmin/companies'} />}
                 aria-label="companies-icon"
                 icon={<BuildingOfficeIcon className="h-6 w-6" />}
-                active={location.pathname.startsWith('/companies')}
+                active={location.pathname.includes('/companies')}
               >
                 Companies
               </MenuItem>
 
               <MenuItem
-                component={<Link to={'/rights'} />}
+                component={<Link to={'/superadmin/rights'} />}
                 aria-label="work-rights-files-icon"
                 icon={<FolderIcon className="h-6 w-6" />}
-                active={location.pathname.startsWith('/rights')}
+                active={location.pathname.includes('/rights')}
               >
                 Work Rights Files
               </MenuItem>
 
               <MenuItem
-                component={<Link to={'/videos'} />}
+                component={<Link to={'/superadmin/videos'} />}
                 aria-label="videos-icon"
                 icon={<FilmIcon className="h-6 w-6" />}
-                active={location.pathname.startsWith('/videos')}
+                active={location.pathname.includes('/videos')}
               >
                 Videos
               </MenuItem>
@@ -201,6 +203,7 @@ export const SidebarFinal: React.FC = () => {
           <hr className="border-1 mx-6 h-px border-gray-200" />
           <Menu menuItemStyles={menuItemStyles}>
             <MenuItem
+              component={<Link to={'/login'} />}
               className="my-2"
               icon={<ArrowLeftOnRectangleIcon className="h-6 w-6" />}
             >
@@ -208,7 +211,7 @@ export const SidebarFinal: React.FC = () => {
             </MenuItem>
           </Menu>
 
-          <SidebarFooter collapsed={collapsed} />
+          <Footer collapsed={collapsed} />
         </div>
       </Sidebar>
     </div>
