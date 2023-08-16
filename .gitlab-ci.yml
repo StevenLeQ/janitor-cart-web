@@ -8,10 +8,10 @@ unit_tests:
   stage: test
   script:
     - echo "Running unit tests..."
-    - npm run test:rep
-  artifacts:
-    when: always
-    paths:
-      - rspec.xml
-    reports:
-      junit: rspec.xml
+    - npm test
+  # artifacts:
+  #   when: always
+  #   paths:
+  #     - rspec.xml
+  #   reports:
+  #     junit: rspec.xml
