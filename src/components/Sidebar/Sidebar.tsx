@@ -165,7 +165,7 @@ export const SidebarFinal: React.FC = () => {
                 component={<Link to={'/superadmin'} />}
                 aria-label="dashboard-icon"
                 icon={<Squares2X2Icon className="h-6 w-6" />}
-                active={location.pathname === '/'}
+                active={location.pathname === '/superadmin'}
               >
                 Dashboard
               </MenuItem>
@@ -174,7 +174,7 @@ export const SidebarFinal: React.FC = () => {
                 component={<Link to={'/superadmin/companies'} />}
                 aria-label="companies-icon"
                 icon={<BuildingOfficeIcon className="h-6 w-6" />}
-                active={location.pathname.startsWith('/companies')}
+                active={location.pathname.includes('/companies')}
               >
                 Companies
               </MenuItem>
@@ -183,7 +183,7 @@ export const SidebarFinal: React.FC = () => {
                 component={<Link to={'/superadmin/rights'} />}
                 aria-label="work-rights-files-icon"
                 icon={<FolderIcon className="h-6 w-6" />}
-                active={location.pathname.startsWith('/rights')}
+                active={location.pathname.includes('/rights')}
               >
                 Work Rights Files
               </MenuItem>
@@ -192,7 +192,7 @@ export const SidebarFinal: React.FC = () => {
                 component={<Link to={'/superadmin/videos'} />}
                 aria-label="videos-icon"
                 icon={<FilmIcon className="h-6 w-6" />}
-                active={location.pathname.startsWith('/videos')}
+                active={location.pathname.includes('/videos')}
               >
                 Videos
               </MenuItem>
@@ -203,6 +203,7 @@ export const SidebarFinal: React.FC = () => {
           <hr className="border-1 mx-6 h-px border-gray-200" />
           <Menu menuItemStyles={menuItemStyles}>
             <MenuItem
+              component={<Link to={'/login'} />}
               className="my-2"
               icon={<ArrowLeftOnRectangleIcon className="h-6 w-6" />}
             >

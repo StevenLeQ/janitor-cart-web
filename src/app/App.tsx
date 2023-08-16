@@ -13,6 +13,9 @@ import Videos from '../pages/Superadmin/Videos';
 import CreateVideos from '../pages/Superadmin/Videos/Create/NewVideos.tsx';
 import EditVideos from '../pages/Superadmin/Videos/Edit/EditVideos.tsx';
 import Login from '../pages/Login/index.tsx';
+import SignUp from '../pages/Login/SignUp/index.tsx';
+import ForgotPassword from '../pages/Login/ForgotPassword/index.tsx';
+import NewPassword from '../pages/Login/NewPassword/index.tsx';
 
 const App = () => {
   const location = useLocation();
@@ -32,6 +35,9 @@ const App = () => {
         <div className="h-full w-full">
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/login/signup" element={<SignUp />} />
+            <Route path="/login/forgot" element={<ForgotPassword />} />
+            <Route path="/login/reset" element={<NewPassword />} />
             <Route path="/superadmin" element={<Dashboard />} />
             <Route path="/superadmin/companies" element={<Companies />} />
             <Route
