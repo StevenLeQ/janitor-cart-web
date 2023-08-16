@@ -1,10 +1,22 @@
 # .gitlab-ci.yml
-image: node:18
+image: node:20
 
 before_script:
   - npm install
 
-unit_tests:
+unit_tests_console:
+  stage: test
+  script:
+    - echo "Running unit tests..."
+    - npm test
+  artifacts:
+    when: always
+    paths:
+      - rspec.xml
+    reports:
+      junit: rspec.xml
+
+unit_tests_artifacts:
   stage: test
   script:
     - echo "Running unit tests..."
