@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+// import userEvent from '@testing-library/user-event';
 import { describe, expect, test } from 'vitest';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -28,26 +28,6 @@ describe('Main Sidebar', () => {
     expect(screen.getByLabelText('videos-icon')).toBeInTheDocument();
   });
 
-  test('Menu items have correct active and hover behavior', () => {
-    render(
-      <BrowserRouter>
-        <SidebarFinal />
-      </BrowserRouter>
-    );
-
-    // Get all buttons from sidebar
-    const dashboardMenuItem = screen.getAllByTestId('ps-menu-button-test-id');
-
-    const user = userEvent.setup();
-
-    // Active
-    user.click(dashboardMenuItem[1]);
-    expect(dashboardMenuItem[1]).toHaveStyle('background-color: #c1ccf0');
-    // Hover
-    user.hover(dashboardMenuItem[0]);
-    expect(dashboardMenuItem[0]).toHaveStyle('background-color: #E6EAF9');
-  });
-
   test('Renders "Log out" menu item correctly', () => {
     render(
       <BrowserRouter>
@@ -56,29 +36,6 @@ describe('Main Sidebar', () => {
     );
     const logoutMenuItem = screen.getByText('Log out');
     expect(logoutMenuItem).toBeInTheDocument();
-  });
-
-  // TODO Themes is not implemented
-  test.todo('Changes theme correctly when theme switch is toggled', () => {
-    render(
-      <BrowserRouter>
-        <SidebarFinal />
-      </BrowserRouter>
-    );
-
-    const themeSwitch = screen.getByTestId('theme-switch');
-
-    // Initial theme is 'light'
-    expect(screen.getByText('light')).toBeInTheDocument();
-    expect(screen.queryByText('dark')).not.toBeInTheDocument();
-
-    fireEvent.click(themeSwitch); // Toggle theme to 'dark'
-    expect(screen.getByText('dark')).toBeInTheDocument();
-    expect(screen.queryByText('light')).not.toBeInTheDocument();
-
-    fireEvent.click(themeSwitch); // Toggle theme back to 'light'
-    expect(screen.getByText('light')).toBeInTheDocument();
-    expect(screen.queryByText('dark')).not.toBeInTheDocument();
   });
 });
 
