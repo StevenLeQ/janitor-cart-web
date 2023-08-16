@@ -1,6 +1,6 @@
 import React from 'react';
 
-import HeaderBreadcrumbs from './HeaderBreadcrumbs';
+import HeaderBreadcrumbs from './Breadcrumbs';
 
 interface HeaderProps {
   title?: string;

@@ -2,10 +2,10 @@ import { vi, expect, test } from 'vitest';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
-import Table from '../../components/table/Table';
-import TableEllipsisButton from './TableEllipsisButton';
-import DebouncedInput from './TableDebouncedInput';
-import GeneratePaginationButtons from './TablePagination';
+import Table from './Table';
+import TableEllipsisButton from './EllipsisButton';
+import DebouncedInput from './DebouncedInput';
+import GeneratePaginationButtons from './Pagination';
 
 // Mock the tableProps data for testing
 const testData = [
@@ -21,15 +21,15 @@ const button = {
 
 const ellipsis = [
   { title: 'Edit Company...', link: './editCompany' },
-  { title: 'Deactivate Company...', link: '#' },
-  { title: 'Login As This Company...', link: '#' }
+  { title: 'Deactivate Company...', link: '/createCompany' },
+  { title: 'Login As This Company...', link: '.' }
 ];
 
 describe('Table', () => {
   test('Renders the table header correctly', () => {
     render(
       <BrowserRouter>
-        <Table dataArray={testData} button={button} />
+        <Table data_array={testData} button={button} />
       </BrowserRouter>
     );
     expect(screen.getByText('COMPANY')).toBeInTheDocument();
@@ -40,7 +40,7 @@ describe('Table', () => {
   test('Renders the data rows correctly', () => {
     render(
       <BrowserRouter>
-        <Table dataArray={testData} button={button} />
+        <Table data_array={testData} button={button} />
       </BrowserRouter>
     );
     // Assuming there are two data rows based on the provided testData
@@ -54,7 +54,7 @@ describe('Table', () => {
   test('Renders "Active" status correctly', () => {
     render(
       <BrowserRouter>
-        <Table dataArray={testData} button={button} />
+        <Table data_array={testData} button={button} />
       </BrowserRouter>
     );
     // Assuming there are two test data rows
@@ -65,7 +65,7 @@ describe('Table', () => {
   test.todo('Allows filtering using search bar', async () => {
     render(
       <BrowserRouter>
-        <Table dataArray={testData} button={button} />
+        <Table data_array={testData} button={button} />
       </BrowserRouter>
     );
     const searchInput = screen.getByPlaceholderText('Search all columns...');
@@ -85,7 +85,7 @@ describe('Table', () => {
   test.todo('Displays correct "Active" status after filtering', async () => {
     render(
       <BrowserRouter>
-        <Table dataArray={testData} button={button} />
+        <Table data_array={testData} button={button} />
       </BrowserRouter>
     );
 
@@ -260,7 +260,6 @@ describe('Table Pagination', () => {
   test('Generates correct number of buttons', () => {
     const totalButtons = 5;
     const buttons = GeneratePaginationButtons(mockTable, totalButtons);
-    console.log(buttons);
     // Generates the buttons - [1, 2, 3, 4, 5, ..., 25] for 7 final
     expect(buttons.length).toBe(totalButtons + 2);
   });
