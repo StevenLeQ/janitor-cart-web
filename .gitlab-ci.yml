@@ -4,22 +4,11 @@ image: node:20
 before_script:
   - npm install
 
-unit_tests_console:
+unit_tests:
   stage: test
   script:
     - echo "Running unit tests..."
-    - npm test
-  artifacts:
-    when: always
-    paths:
-      - rspec.xml
-    reports:
-      junit: rspec.xml
-
-unit_tests_artifacts:
-  stage: test
-  script:
-    - echo "Running unit tests..."
+    - npm run test
     - npm run test:rep
   artifacts:
     when: always
