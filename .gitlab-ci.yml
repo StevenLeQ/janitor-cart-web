@@ -8,7 +8,6 @@ unit_tests:
   stage: test
   script:
     - echo "Running unit tests..."
-    - npm run build
     - npm test
   # artifacts:
   #   when: always
