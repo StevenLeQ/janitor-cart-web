@@ -11,8 +11,7 @@ interface StateProperties {
   density: number;
 }
 
-interface StateFeature
-  extends GeoJSON.Feature<GeoJSON.Polygon, StateProperties> {
+interface StateFeature extends GeoJSON.Feature<GeoJSON.Polygon, StateProperties> {
   id: string;
 }
 
@@ -30,19 +29,12 @@ function zoomToFeature(e: L.LeafletMouseEvent) {
   map.fitBounds(bounds);
 }
 
-function MinimapController(props: {
-  stateName: string | undefined;
-  density: number | null;
-}) {
+function MinimapController(props: { stateName: string | undefined; density: number | null }) {
   return (
     <div className="absolute right-2 top-2 z-[400] rounded-md bg-white/80 p-0.5 shadow-lg">
       <p className="text-base font-semibold text-font-black">Sells by State</p>
       <div className="font-regular flex flex-col text-sm text-font-gray">
-        {props.stateName ? (
-          <span>State: {props.stateName}</span>
-        ) : (
-          'Hover over a state'
-        )}
+        {props.stateName ? <span>State: {props.stateName}</span> : 'Hover over a state'}
         {props.density !== null && <span>Customers: {props.density}</span>}
       </div>
     </div>
@@ -50,13 +42,9 @@ function MinimapController(props: {
 }
 
 function SellsChloropleth() {
-  const [selectedState, setSelectedState] = useState<string | undefined>(
-    undefined
-  );
+  const [selectedState, setSelectedState] = useState<string | undefined>(undefined);
   const [selectedDensity, setSelectedDensity] = useState<number | null>(null);
-  const [highlightedState, setHighlightedState] = useState<string | undefined>(
-    undefined
-  );
+  const [highlightedState, setHighlightedState] = useState<string | undefined>(undefined);
 
   // Function to assign colors based on values
   const getColor = (color: number | null) => {
@@ -82,9 +70,7 @@ function SellsChloropleth() {
   };
 
   // Binds color and sets style for the GeoJSON
-  const style = (
-    feature: GeoJSON.Feature<GeoJSON.Polygon, StateProperties>
-  ) => {
+  const style = (feature: GeoJSON.Feature<GeoJSON.Polygon, StateProperties>) => {
     const stateFeature = feature as StateFeature;
     const isHighlighted = highlightedState === stateFeature.properties.name;
     return {

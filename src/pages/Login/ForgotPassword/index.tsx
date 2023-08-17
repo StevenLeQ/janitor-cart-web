@@ -12,8 +12,7 @@ export default function ForgotPassword() {
                 Forgot Password?
               </h2>
               <p className="mt-2 text-sm leading-6 text-gray-500">
-                No worries, enter your email to begin the password reset
-                process.
+                No worries, enter your email to begin the password reset process.
               </p>
             </div>
 
@@ -90,16 +89,10 @@ export default function ForgotPassword() {
                 <LogoSVG color="#FFFFFF" />
               </div>
               <div className="mt-10 flex flex-col">
-                <p
-                  translate="no"
-                  className="font-logo text-4xl font-semibold text-white"
-                >
+                <p translate="no" className="font-logo text-4xl font-semibold text-white">
                   The
                 </p>
-                <p
-                  translate="no"
-                  className="-mt-2 font-logo text-4xl font-semibold text-white"
-                >
+                <p translate="no" className="-mt-2 font-logo text-4xl font-semibold text-white">
                   JanitorCart
                 </p>
               </div>

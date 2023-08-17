@@ -8,9 +8,7 @@ import { GlobeAltIcon, PhotoIcon } from '@heroicons/react/24/outline';
 const Dropdown: React.FC = () => {
   const [selectedValue, setSelectedValue] = useState('Federal'); // Default value
 
-  const handleSelectionChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const handleSelectionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
   };
 
@@ -29,10 +27,7 @@ const Dropdown: React.FC = () => {
           {selectedValue === 'State' ? (
             <PhotoIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
           ) : (
-            <GlobeAltIcon
-              className="h-5 w-5 text-gray-400"
-              aria-hidden="true"
-            />
+            <GlobeAltIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
           )}
         </div>
         <select
@@ -51,16 +46,8 @@ const Dropdown: React.FC = () => {
       {/* Conditional rendering of the second dropdown if value is State */}
       <AnimatePresence initial={false}>
         {selectedValue === 'State' && (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            variants={dropdownVariants}
-          >
-            <label
-              htmlFor="rights"
-              className="block text-sm font-medium leading-6"
-            >
+          <motion.div initial="hidden" animate="visible" exit="hidden" variants={dropdownVariants}>
+            <label htmlFor="rights" className="block text-sm font-medium leading-6">
               State Selection
             </label>
             <select

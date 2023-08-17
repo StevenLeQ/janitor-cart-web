@@ -83,9 +83,7 @@ describe('DashboardBanner', () => {
 
     // Ensure that the welcome text is rendered correctly
     expect(screen.getByText('Welcome back, Admin')).toBeInTheDocument();
-    expect(
-      screen.getByText("Let's see how everything is going")
-    ).toBeInTheDocument();
+    expect(screen.getByText("Let's see how everything is going")).toBeInTheDocument();
   });
 
   test('Renders all the circles correctly', () => {

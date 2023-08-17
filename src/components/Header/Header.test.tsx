@@ -76,9 +76,7 @@ describe('Breadcrumbs', () => {
         name: breadcrumb.name
       });
       expect(breadcrumbLink).toHaveAttribute('href', breadcrumb.link);
-      expect(breadcrumbLink).toHaveClass(
-        'text-font-gray-200 hover:text-royal-blue'
-      );
+      expect(breadcrumbLink).toHaveClass('text-font-gray-200 hover:text-royal-blue');
 
       if (breadcrumb.current) {
         expect(breadcrumbLink).toHaveAttribute('aria-current', 'page');

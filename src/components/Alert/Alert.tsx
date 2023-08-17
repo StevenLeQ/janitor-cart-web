@@ -18,11 +18,7 @@ interface AlertProps {
 }
 
 // Alert modal for form cancels and table item deletions
-const Alert: React.FC<AlertProps> = ({
-  close_alert,
-  leave_link,
-  alert_data
-}) => {
+const Alert: React.FC<AlertProps> = ({ close_alert, leave_link, alert_data }) => {
   const cancelButtonRef = useRef(null);
 
   const backdropVariants = {
@@ -69,12 +65,7 @@ const Alert: React.FC<AlertProps> = ({
         className="fixed inset-0 z-10 bg-gray-500"
       />
       <div className="fixed inset-0 z-10 flex min-h-full items-end justify-center overflow-y-auto p-4 text-center sm:items-center sm:p-0">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-          variants={panelVariants}
-        >
+        <motion.div initial="hidden" animate="visible" exit="exit" variants={panelVariants}>
           <div className="relative overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl  sm:w-full sm:max-w-lg sm:p-8">
             <div>
               <div
@@ -83,9 +74,7 @@ const Alert: React.FC<AlertProps> = ({
                 }`}
               >
                 <ExclamationTriangleIcon
-                  className={`+ h-6 w-6 ${
-                    alert_data ? 'text-red-500' : 'text-yellow-500'
-                  }`}
+                  className={`+ h-6 w-6 ${alert_data ? 'text-red-500' : 'text-yellow-500'}`}
                   aria-hidden="true"
                 />
               </div>

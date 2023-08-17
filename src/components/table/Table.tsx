@@ -15,11 +15,7 @@ import {
   ColumnDef,
   flexRender
 } from '@tanstack/react-table';
-import {
-  RankingInfo,
-  rankItem,
-  compareItems
-} from '@tanstack/match-sorter-utils';
+import { RankingInfo, rankItem, compareItems } from '@tanstack/match-sorter-utils';
 import { Link } from 'react-router-dom';
 
 import DebouncedInput from './DebouncedInput';
@@ -133,9 +129,7 @@ const Table: React.FC<TableProps> = ({
 }) => {
   const [data] = React.useState(() => [...data_array]);
 
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  );
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = React.useState('');
 
   // Generate the columns based on the keys of the first data item
@@ -152,9 +146,7 @@ const Table: React.FC<TableProps> = ({
             return (
               <span
                 className={`-my-2 inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold ${
-                  value
-                    ? 'bg-green-100 text-green-600'
-                    : 'bg-red-100 text-red-600'
+                  value ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'
                 }`}
               >
                 {value ? 'Active' : 'Inactive'}
@@ -253,8 +245,7 @@ const Table: React.FC<TableProps> = ({
                         colSpan={header.colSpan}
                       >
                         {/* Column isn't boolean column */}
-                        {header.isPlaceholder ? null : header.column.id !==
-                          custom_column.key ? (
+                        {header.isPlaceholder ? null : header.column.id !== custom_column.key ? (
                           <div
                             {...{
                               className: header.column.getCanSort()
@@ -263,10 +254,7 @@ const Table: React.FC<TableProps> = ({
                               onClick: header.column.getToggleSortingHandler()
                             }}
                           >
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
+                            {flexRender(header.column.columnDef.header, header.getContext())}
                             {{
                               asc: <ChevronUpIcon className="h-5 w-5" />,
                               desc: <ChevronDownIcon className="h-5 w-5" />
@@ -281,24 +269,15 @@ const Table: React.FC<TableProps> = ({
                             className="flex cursor-pointer select-none gap-1"
                             onClick={handleRotateFilter}
                           >
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
+                            {flexRender(header.column.columnDef.header, header.getContext())}
                             {header.column.getCanFilter() ? (
                               <div className="px-2">
                                 {columnFilterValue === 'true' ? (
-                                  <span className="rounded-lg bg-green-100 px-2 pb-1">
-                                    +
-                                  </span>
+                                  <span className="rounded-lg bg-green-100 px-2 pb-1">+</span>
                                 ) : columnFilterValue === 'false' ? (
-                                  <span className="rounded-lg bg-red-100 px-2 pb-1">
-                                    -
-                                  </span>
+                                  <span className="rounded-lg bg-red-100 px-2 pb-1">-</span>
                                 ) : (
-                                  <span className="rounded-lg bg-gray-100 px-2 pb-1">
-                                    ~
-                                  </span>
+                                  <span className="rounded-lg bg-gray-100 px-2 pb-1">~</span>
                                 )}
                               </div>
                             ) : null}
@@ -307,10 +286,7 @@ const Table: React.FC<TableProps> = ({
                           // Is a specific filter column
                           // probably a better way to do this man
                           <div className="flex cursor-pointer select-none gap-1">
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
+                            {flexRender(header.column.columnDef.header, header.getContext())}
                             {header.column.getCanFilter() ? (
                               <div className="px-2">
                                 <Filter column={header.column} table={table} />
@@ -332,19 +308,14 @@ const Table: React.FC<TableProps> = ({
                       className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"
                       key={cell.id}
                     >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                   ))}
                   <td className="relative text-right text-sm font-medium">
                     <a href=".">
                       <EllipsisButton
                         ellipsis_data={ellipsis_data}
-                        isNearEnd={
-                          table.getState().pagination.pageSize - index < 3
-                        }
+                        isNearEnd={table.getState().pagination.pageSize - index < 3}
                       />
                     </a>
                   </td>
@@ -361,9 +332,7 @@ const Table: React.FC<TableProps> = ({
               {'Showing '}
               <span className="font-medium">
                 {Math.min(
-                  table.getState().pagination.pageSize *
-                    table.getState().pagination.pageIndex +
-                    1,
+                  table.getState().pagination.pageSize * table.getState().pagination.pageIndex + 1,
                   table.getPrePaginationRowModel().rows.length
                 )}
               </span>
@@ -372,14 +341,11 @@ const Table: React.FC<TableProps> = ({
                 {/* Bind showing to min and max of table row lengths */}
                 {Math.min(
                   table.getPrePaginationRowModel().rows.length,
-                  table.getState().pagination.pageSize *
-                    (table.getState().pagination.pageIndex + 1)
+                  table.getState().pagination.pageSize * (table.getState().pagination.pageIndex + 1)
                 )}
               </span>
               {' of '}
-              <span className="font-medium">
-                {table.getPrePaginationRowModel().rows.length}
-              </span>
+              <span className="font-medium">{table.getPrePaginationRowModel().rows.length}</span>
               {' results'}
             </p>
             <select

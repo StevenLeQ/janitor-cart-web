@@ -125,9 +125,7 @@ describe('Ellipsis Menu', async () => {
     // Ensure the menu items are initially not displayed
     expect(screen.queryByText('Edit Company...')).not.toBeInTheDocument();
     expect(screen.queryByText('Deactivate Company...')).not.toBeInTheDocument();
-    expect(
-      screen.queryByText('Login As This Company...')
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText('Login As This Company...')).not.toBeInTheDocument();
     expect(screen.queryByText('THIS TEXT IS UNSET')).not.toBeInTheDocument();
 
     // Click the ellipsis button to open the menu
@@ -182,13 +180,7 @@ describe('Debounced Input', () => {
     const onChangeMock = vi.fn();
     const debounceDelay = 500;
 
-    render(
-      <DebouncedInput
-        value=""
-        onChange={onChangeMock}
-        debounce={debounceDelay}
-      />
-    );
+    render(<DebouncedInput value="" onChange={onChangeMock} debounce={debounceDelay} />);
 
     const inputElement = screen.getByRole('textbox');
 

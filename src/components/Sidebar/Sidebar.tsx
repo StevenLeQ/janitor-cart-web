@@ -118,10 +118,7 @@ export const SidebarFinal: React.FC = () => {
         color: 'themes[theme].menu.hover.color'
       },
       '&:active': {
-        backgroundColor: hexToRgba(
-          themes[theme].menu.active.backgroundColor,
-          1
-        ),
+        backgroundColor: hexToRgba(themes[theme].menu.active.backgroundColor, 1),
         borderRight: '0.2em solid blue',
         color: themes[theme].menu.hover.color
       },
@@ -152,10 +149,7 @@ export const SidebarFinal: React.FC = () => {
         }}
       >
         <div className="flex h-screen flex-col">
-          <button
-            onClick={handleLogoClick}
-            className="my-10 flex flex-col text-left"
-          >
+          <button onClick={handleLogoClick} className="my-10 flex flex-col text-left">
             <Header collapsed={collapsed} />
           </button>
 

@@ -17,13 +17,7 @@ const Buttons: React.FC<ButtonProps> = ({ saveLink }) => {
     <div className="float-right mr-2 mt-3">
       {/* Display Alert if showAlert is on*/}
       <AnimatePresence initial={false}>
-        {showAlert && (
-          <Alert
-            open={showAlert}
-            close_alert={closeAlert}
-            leave_link={saveLink}
-          />
-        )}
+        {showAlert && <Alert open={showAlert} close_alert={closeAlert} leave_link={saveLink} />}
       </AnimatePresence>
 
       <button

@@ -31,12 +31,8 @@ interface FormToggleProps {
 const InfoItem: React.FC<InfoItemProps> = ({ title, data, dataStyle }) => {
   return (
     <div className="grid-span-1">
-      <span className="text-sm font-bold text-font-gray-200">
-        {title + ' '}
-      </span>
-      <span className={dataStyle ?? 'font-base text-sm text-font-gray-200'}>
-        {data}
-      </span>
+      <span className="text-sm font-bold text-font-gray-200">{title + ' '}</span>
+      <span className={dataStyle ?? 'font-base text-sm text-font-gray-200'}>{data}</span>
     </div>
   );
 };
@@ -72,20 +68,12 @@ const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
 
           {/* Email */}
           <div className="sm:col-span-6">
-            <FormItem
-              name="email"
-              title="Email Address"
-              icon={<EnvelopeIcon />}
-            />
+            <FormItem name="email" title="Email Address" icon={<EnvelopeIcon />} />
           </div>
 
           {/* Username */}
           <div className="sm:col-span-6">
-            <FormItem
-              name="user"
-              title="Username"
-              icon={<ArrowRightOnRectangleIcon />}
-            />
+            <FormItem name="user" title="Username" icon={<ArrowRightOnRectangleIcon />} />
           </div>
 
           {/* Work Rights */}
@@ -124,11 +112,7 @@ const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
       )}
 
       {/* Features form */}
-      <FormContainer
-        pageLink="/superadmin/companies"
-        header="Features"
-        isSecond={true}
-      >
+      <FormContainer pageLink="/superadmin/companies" header="Features" isSecond={true}>
         <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-4 pt-2 sm:grid-cols-6">
           <FormToggle name="Announcements" />
           <FormToggle name="Employee Handbook" />

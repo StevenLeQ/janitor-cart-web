@@ -23,10 +23,7 @@ interface EllipsisProps {
   isNearEnd?: boolean;
 }
 
-const EllipsisButton: React.FC<EllipsisProps> = ({
-  ellipsis_data,
-  isNearEnd
-}) => {
+const EllipsisButton: React.FC<EllipsisProps> = ({ ellipsis_data, isNearEnd }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef: RefObject<HTMLDivElement> = useRef(null);
   const [showAlert, setShowAlert] = React.useState(false);

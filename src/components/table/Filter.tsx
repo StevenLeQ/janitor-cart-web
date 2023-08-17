@@ -8,19 +8,14 @@ type Props<T extends RowData> = {
 };
 
 export function Filter<T extends RowData>({ column, table }: Props<T>) {
-  const firstValue = table
-    .getPreFilteredRowModel()
-    .flatRows[0]?.getValue(column.id);
+  const firstValue = table.getPreFilteredRowModel().flatRows[0]?.getValue(column.id);
 
   const columnFilterValue = column.getFilterValue();
   const uniqueValues = column.getFacetedUniqueValues();
   const dataListId = column.id + 'list';
 
   const sortedUniqueValues = React.useMemo(
-    () =>
-      typeof firstValue === 'number'
-        ? []
-        : Array.from(uniqueValues.keys()).sort(),
+    () => (typeof firstValue === 'number' ? [] : Array.from(uniqueValues.keys()).sort()),
     [uniqueValues, firstValue]
   );
 
