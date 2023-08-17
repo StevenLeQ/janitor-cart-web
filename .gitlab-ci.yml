@@ -21,6 +21,5 @@ e2e_tests:
   script:
     - npm ci
     - npm run dev &
-    - npx run cy:run
-  after_script:
-    - npm stop
+    - npx cypress run --browser firefox
+    # - npx run cy:run
