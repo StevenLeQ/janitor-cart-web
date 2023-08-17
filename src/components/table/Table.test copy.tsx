@@ -28,7 +28,7 @@ describe('Table', () => {
   test('Renders the table header correctly', () => {
     render(
       <BrowserRouter>
-        <Table data_array={testData} button={button} />
+        <Table data_array={testData} button={button} ellipsis_data={ellipsis} />
       </BrowserRouter>
     );
     expect(screen.getByText('COMPANY')).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe('Table', () => {
   test('Renders the data rows correctly', () => {
     render(
       <BrowserRouter>
-        <Table data_array={testData} button={button} />
+        <Table data_array={testData} button={button} ellipsis_data={ellipsis} />
       </BrowserRouter>
     );
     // Assuming there are two data rows based on the provided testData
@@ -53,7 +53,7 @@ describe('Table', () => {
   test('Renders "Active" status correctly', () => {
     render(
       <BrowserRouter>
-        <Table data_array={testData} button={button} />
+        <Table data_array={testData} button={button} ellipsis_data={ellipsis} />
       </BrowserRouter>
     );
     // Assuming there are two test data rows
@@ -64,7 +64,7 @@ describe('Table', () => {
   test.todo('Allows filtering using search bar', async () => {
     render(
       <BrowserRouter>
-        <Table data_array={testData} button={button} />
+        <Table data_array={testData} button={button} ellipsis_data={ellipsis} />
       </BrowserRouter>
     );
     const searchInput = screen.getByPlaceholderText('Search all columns...');
@@ -84,7 +84,7 @@ describe('Table', () => {
   test.todo('Displays correct "Active" status after filtering', async () => {
     render(
       <BrowserRouter>
-        <Table data_array={testData} button={button} />
+        <Table data_array={testData} button={button} ellipsis_data={ellipsis} />
       </BrowserRouter>
     );
 
