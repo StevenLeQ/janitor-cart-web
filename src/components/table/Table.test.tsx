@@ -3,7 +3,7 @@ import { render, screen, fireEvent, act } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
 import Table from './Table';
-// import EllipsisButton from './EllipsisButton';
+import EllipsisButton from './EllipsisButton';
 import DebouncedInput from './DebouncedInput';
 import GeneratePaginationButtons from './Pagination';
 
@@ -11,7 +11,6 @@ import GeneratePaginationButtons from './Pagination';
 const testData = [
   { company: 'Company A', active: true, email: 'companya@example.com' },
   { company: 'Company B', active: false, email: 'companyb@example.com' }
-  // Add more test data as needed
 ];
 
 const button = {
@@ -29,7 +28,7 @@ describe('Table', () => {
   test('Renders the table header correctly', () => {
     render(
       <BrowserRouter>
-        <Table data_array={testData} button={button} />
+        <Table data_array={testData} button={button} ellipsis_data={ellipsis} />
       </BrowserRouter>
     );
     expect(screen.getByText('COMPANY')).toBeInTheDocument();
@@ -40,7 +39,7 @@ describe('Table', () => {
   test('Renders the data rows correctly', () => {
     render(
       <BrowserRouter>
-        <Table data_array={testData} button={button} />
+        <Table data_array={testData} button={button} ellipsis_data={ellipsis} />
       </BrowserRouter>
     );
     // Assuming there are two data rows based on the provided testData
@@ -54,7 +53,7 @@ describe('Table', () => {
   test('Renders "Active" status correctly', () => {
     render(
       <BrowserRouter>
-        <Table data_array={testData} button={button} />
+        <Table data_array={testData} button={button} ellipsis_data={ellipsis} />
       </BrowserRouter>
     );
     // Assuming there are two test data rows
@@ -65,7 +64,7 @@ describe('Table', () => {
   test.todo('Allows filtering using search bar', async () => {
     render(
       <BrowserRouter>
-        <Table data_array={testData} button={button} />
+        <Table data_array={testData} button={button} ellipsis_data={ellipsis} />
       </BrowserRouter>
     );
     const searchInput = screen.getByPlaceholderText('Search all columns...');
@@ -85,7 +84,7 @@ describe('Table', () => {
   test.todo('Displays correct "Active" status after filtering', async () => {
     render(
       <BrowserRouter>
-        <Table data_array={testData} button={button} />
+        <Table data_array={testData} button={button} ellipsis_data={ellipsis} />
       </BrowserRouter>
     );
 
@@ -111,10 +110,10 @@ describe('Table', () => {
 });
 
 describe('Ellipsis Menu', async () => {
-  test.todo('Displays menu items when button is clicked', async () => {
+  test('Displays menu items when button is clicked', async () => {
     render(
       <BrowserRouter>
-        {/* <EllipsisButton ellipsis_data={ellipsis} /> */}
+        <EllipsisButton ellipsis_data={ellipsis} />
       </BrowserRouter>
     );
 
@@ -142,10 +141,10 @@ describe('Ellipsis Menu', async () => {
     expect(screen.getByText('Login As This Company...')).toBeInTheDocument();
   });
 
-  test.todo('Hides menu items when button is clicked again', () => {
+  test('Hides menu items when button is clicked again', () => {
     render(
       <BrowserRouter>
-        {/* <EllipsisButton ellipsis_data={ellipsis} /> */}
+        <EllipsisButton ellipsis_data={ellipsis} />
       </BrowserRouter>
     );
 
