@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FormAlertWrapper from '../../../components/Form/Container';
+import Container from '../../../components/Form/Container';
 import Form from '../../../components/Form/Form';
 import FormItem from '../../../components/Form/Item';
 import FormDropdown from '../../../components/Form/Dropdown';
@@ -15,7 +15,7 @@ interface FormProps {
 const RightsForm: React.FC<FormProps> = ({ hasInfo }) => {
   return (
     // Outer wrapper to set layout grid
-    <FormAlertWrapper>
+    <Container>
       <Form header="File Information">
         <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
           {/* File Name */}
@@ -51,7 +51,7 @@ const RightsForm: React.FC<FormProps> = ({ hasInfo }) => {
           </div>
         </div>
       </Form>
-    </FormAlertWrapper>
+    </Container>
   );
 };
 

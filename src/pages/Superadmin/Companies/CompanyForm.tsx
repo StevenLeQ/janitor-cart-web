@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FormWrapper from '../../../components/Form/Container';
+import Container from '../../../components/Form/Container';
 import Form from '../../../components/Form/Form';
 import Toggle from '../../../components/Common/Toggle';
 import FormItem from '../../../components/Form/Item';
@@ -53,7 +53,7 @@ const FormToggle: React.FC<FormToggleProps> = ({ name }) => {
 const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
   return (
     // Outer wrapper to set layout grid
-    <FormWrapper>
+    <Container>
       {/* Features */}
       <Form header="Company Information">
         <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
@@ -123,7 +123,7 @@ const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
           <FormToggle name="Work Orders" />
         </div>
       </Form>
-    </FormWrapper>
+    </Container>
   );
 };
 
