@@ -149,7 +149,7 @@ export const SidebarFinal: React.FC = () => {
         }}
       >
         <div className="flex h-screen flex-col">
-          <button onClick={handleLogoClick} className="my-10 flex flex-col text-left">
+          <button id="logo" onClick={handleLogoClick} className="my-10 flex flex-col text-left">
             <Header collapsed={collapsed} />
           </button>
 

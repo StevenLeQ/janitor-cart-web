@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 
 import SidebarFinal from '../components/Sidebar/Sidebar.tsx';
 import Dashboard from '../pages/Superadmin';
@@ -48,7 +48,7 @@ const App = () => {
             <Route path="/superadmin/videos" element={<Videos />} />
             <Route path="/superadmin/videos/create" element={<CreateVideos />} />
             <Route path="/superadmin/videos/edit" element={<EditVideos />} />
-            {/* <Route path="*" element={<Navigate to="/superadmin" />} /> */}
+            <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
         </div>
       </div>
