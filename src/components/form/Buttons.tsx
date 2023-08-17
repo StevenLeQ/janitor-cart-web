@@ -1,7 +1,7 @@
 import { AnimatePresence } from 'framer-motion';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Alert from '../Common/Alert';
+import Alert from '../Alert/Alert';
 
 interface ButtonProps {
   saveLink: string;
