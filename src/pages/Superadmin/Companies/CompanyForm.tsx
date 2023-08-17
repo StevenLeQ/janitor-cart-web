@@ -1,7 +1,7 @@
 import React from 'react';
 
 import FormWrapper from '../../../components/Form/Container';
-import FormContainer from '../../../components/Form/Header';
+import FormContainer from '../../../components/Form';
 import Toggle from '../../../components/Common/Toggle';
 import FormItem from '../../../components/Form/Item';
 import FormDropdown from '../../../components/Form/Dropdown';

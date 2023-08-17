@@ -2,7 +2,7 @@ import { vi, expect, test } from 'vitest';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
-import Table from './Table';
+import Table from '.';
 import EllipsisButton from './EllipsisButton';
 import DebouncedInput from './DebouncedInput';
 import GeneratePaginationButtons from './Pagination';

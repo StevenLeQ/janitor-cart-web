@@ -1,7 +1,7 @@
 import React from 'react';
 
 import FormAlertWrapper from '../../../components/Form/Container';
-import FormContainer from '../../../components/Form/Header';
+import FormContainer from '../../../components/Form';
 import FormItem from '../../../components/Form/Item';
 import FormDropdown from '../../../components/Form/Dropdown';
 
