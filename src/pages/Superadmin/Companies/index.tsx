@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 
 import Header from '../../../components/Header/Header';
-import Table from '../../../components/Table';
+import Table from '../../../components/Table/Table';
 
 const generateCompanies = (count: number) => {
   const companies = [];

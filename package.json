@@ -8,10 +8,10 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "coverage": "vitest run --coverage",
     "cy:open": "cypress open",
-    "cy:run": "cypress run --browser firefox",
+    "cy:run": "cypress run --browser chrome",
     "test": "vitest",
+    "test:cov": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:rep": "vitest run --reporter=junit --outputFile=rspec.xml"
