@@ -27,8 +27,7 @@ const button = {
 
 const alertData = {
   title: 'Delete Work File?',
-  subtitle:
-    'Are you sure you want to permanently remove the selected work file?',
+  subtitle: 'Are you sure you want to permanently remove the selected work file?',
   button_text: 'Delete'
 };
 

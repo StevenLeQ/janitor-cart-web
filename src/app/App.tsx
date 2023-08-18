@@ -1,21 +1,21 @@
 // import { useState } from "react";
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 
 import SidebarFinal from '../components/Sidebar/Sidebar.tsx';
-import Dashboard from '../pages/Superadmin/Dashboard/DashboardPage.tsx';
+import Dashboard from '../pages/Superadmin';
 import Companies from '../pages/Superadmin/Companies';
-import CreateCompany from '../pages/Superadmin/Companies/Create/NewCompany.tsx';
-import EditCompany from '../pages/Superadmin/Companies/Edit/EditCompany.tsx';
+import CreateCompany from '../pages/Superadmin/Companies/Create';
+import EditCompany from '../pages/Superadmin/Companies/Edit';
 import Rights from '../pages/Superadmin/Rights';
-import CreateRights from '../pages/Superadmin/Rights/Create/NewRights.tsx';
-import EditRights from '../pages/Superadmin/Rights/Edit/EditRights.tsx';
+import CreateRights from '../pages/Superadmin/Rights/Create';
+import EditRights from '../pages/Superadmin/Rights/Edit';
 import Videos from '../pages/Superadmin/Videos';
-import CreateVideos from '../pages/Superadmin/Videos/Create/NewVideos.tsx';
-import EditVideos from '../pages/Superadmin/Videos/Edit/EditVideos.tsx';
-import Login from '../pages/Login/index.tsx';
-import SignUp from '../pages/Login/SignUp/index.tsx';
-import ForgotPassword from '../pages/Login/ForgotPassword/index.tsx';
-import NewPassword from '../pages/Login/NewPassword/index.tsx';
+import CreateVideos from '../pages/Superadmin/Videos/Create';
+import EditVideos from '../pages/Superadmin/Videos/Edit';
+import Login from '../pages/Login';
+import SignUp from '../pages/Login/SignUp';
+import ForgotPassword from '../pages/Login/ForgotPassword';
+import ResetPassword from '../pages/Login/ResetPassword';
 
 const App = () => {
   const location = useLocation();
@@ -36,31 +36,19 @@ const App = () => {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/login/signup" element={<SignUp />} />
-            <Route path="/login/forgot" element={<ForgotPassword />} />
-            <Route path="/login/reset" element={<NewPassword />} />
+            <Route path="/login/forgot-password" element={<ForgotPassword />} />
+            <Route path="/login/reset-password" element={<ResetPassword />} />
             <Route path="/superadmin" element={<Dashboard />} />
             <Route path="/superadmin/companies" element={<Companies />} />
-            <Route
-              path="/superadmin/companies/create"
-              element={<CreateCompany />}
-            />
-            <Route
-              path="/superadmin/companies/edit"
-              element={<EditCompany />}
-            />
+            <Route path="/superadmin/companies/create" element={<CreateCompany />} />
+            <Route path="/superadmin/companies/edit" element={<EditCompany />} />
             <Route path="/superadmin/rights" element={<Rights />} />
-            <Route
-              path="/superadmin/rights/create"
-              element={<CreateRights />}
-            />
+            <Route path="/superadmin/rights/create" element={<CreateRights />} />
             <Route path="/superadmin/rights/edit" element={<EditRights />} />
             <Route path="/superadmin/videos" element={<Videos />} />
-            <Route
-              path="/superadmin/videos/create"
-              element={<CreateVideos />}
-            />
+            <Route path="/superadmin/videos/create" element={<CreateVideos />} />
             <Route path="/superadmin/videos/edit" element={<EditVideos />} />
-            {/* <Route path="*" element={<Navigate to="/superadmin" />} /> */}
+            <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
         </div>
       </div>

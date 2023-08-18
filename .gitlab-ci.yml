@@ -1,17 +1,31 @@
 # .gitlab-ci.yml
-image: node:20
-
-before_script:
-  - npm install
+stages:
+  - test
 
 unit_tests:
+  image: node:20
   stage: test
   script:
-    - echo "Running unit tests..."
+    - npm ci
     - npm run test:rep
   artifacts:
     when: always
     paths:
-      - rspec.xml
+      - test/vitest-test.xml
     reports:
-      junit: rspec.xml
+      junit: test/vitest-test.xml
+
+e2e_tests:
+  image: cypress/browsers:node16.16.0-chrome107-ff107-edge
+  stage: test
+  script:
+    - npm ci
+    - npm run dev &
+    - npx cypress run --browser firefox
+    # - npx run cy:run
+  artifacts:
+    when: always
+    paths:
+      - test/cypress-test.xml
+    reports:
+      junit: test/cypress-test.xml

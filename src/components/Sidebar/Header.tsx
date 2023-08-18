@@ -26,16 +26,10 @@ export const Header: React.FC<HeaderProps> = ({ collapsed }) => {
         variants={headerVariants}
         data-testid="header-collapsed-test"
       >
-        <p
-          translate="no"
-          className="font-logo text-lg font-semibold text-royal-blue"
-        >
+        <p translate="no" className="font-logo text-lg font-semibold text-royal-blue">
           The
         </p>
-        <p
-          translate="no"
-          className="-mt-2 font-logo text-lg font-semibold text-royal-blue"
-        >
+        <p translate="no" className="-mt-2 font-logo text-lg font-semibold text-royal-blue">
           JanitorCart
         </p>
       </motion.div>

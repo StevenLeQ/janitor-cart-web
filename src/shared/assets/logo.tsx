@@ -21,15 +21,7 @@ const LogoSVG: React.FC<LogoSVGProps> = ({ color }) => (
       d="M757.574 470L885.156 762.376L814.582 793.172L687.001 500.796L757.574 470Z"
       fill={color}
     />
-    <rect
-      x="20"
-      y="20"
-      width="1052"
-      height="1220"
-      rx="60"
-      stroke={color}
-      strokeWidth="40"
-    />
+    <rect x="20" y="20" width="1052" height="1220" rx="60" stroke={color} strokeWidth="40" />
   </svg>
 );
 

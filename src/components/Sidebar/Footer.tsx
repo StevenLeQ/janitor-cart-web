@@ -15,10 +15,7 @@ const footerVariants = {
 export const Footer: React.FC<FooterProps> = ({ collapsed }) => {
   return (
     <div className="mb-8 ml-auto mr-10 flex items-center gap-2">
-      <UserIcon
-        role="img"
-        className="ml-4 h-11 w-11 rounded-full bg-gray-300 fill-black p-1.5"
-      />
+      <UserIcon role="img" className="ml-4 h-11 w-11 rounded-full bg-gray-300 fill-black p-1.5" />
       <motion.div
         className="flex flex-col"
         initial={collapsed ? 'hidden' : 'visible'}

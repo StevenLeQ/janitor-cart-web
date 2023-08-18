@@ -50,19 +50,14 @@ const DashboardItem: React.FC<HeaderProps> = ({
               {title?.toLocaleString()}
             </p>
           ) : (
-            <p className="mt-4 text-2xl font-bold text-font-black">
-              {title?.toLocaleString()}
-            </p>
+            <p className="mt-4 text-2xl font-bold text-font-black">{title?.toLocaleString()}</p>
           )}
           <div className="mb-7 flex justify-between">
             {/* Subtitle */}
             <p className="text-sm font-medium text-font-gray">{subtitle}</p>
             {/* Percent */}
             {percent && percent > 0 ? (
-              <div
-                className="flex text-emerald-400"
-                data-testid="arrow-up-icon"
-              >
+              <div className="flex text-emerald-400" data-testid="arrow-up-icon">
                 <span className="text-sm font-medium">{percent}%</span>
                 <ArrowUpIcon size={18} data-testid="arrow-up-icon" />
               </div>

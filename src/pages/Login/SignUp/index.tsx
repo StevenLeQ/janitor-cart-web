@@ -7,9 +7,7 @@ export default function SignUp() {
       <div className="flex min-h-screen flex-1 2xl:p-5">
         <div className="flex flex-1 flex-col justify-center bg-white px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
-            <h2 className="text-4xl font-bold leading-9 tracking-tight text-gray-900">
-              Sign Up
-            </h2>
+            <h2 className="text-4xl font-bold leading-9 tracking-tight text-gray-900">Sign Up</h2>
 
             <div className="mt-5">
               <div>
@@ -141,16 +139,10 @@ export default function SignUp() {
                 <LogoSVG color="#FFFFFF" />
               </div>
               <div className="mt-10 flex flex-col">
-                <p
-                  translate="no"
-                  className="font-logo text-4xl font-semibold text-white"
-                >
+                <p translate="no" className="font-logo text-4xl font-semibold text-white">
                   The
                 </p>
-                <p
-                  translate="no"
-                  className="-mt-2 font-logo text-4xl font-semibold text-white"
-                >
+                <p translate="no" className="-mt-2 font-logo text-4xl font-semibold text-white">
                   JanitorCart
                 </p>
               </div>

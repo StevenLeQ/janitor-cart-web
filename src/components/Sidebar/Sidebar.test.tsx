@@ -56,17 +56,13 @@ describe('Header', () => {
   test('Visible opacity logo text when collapsed is false', () => {
     render(<Header collapsed={false} />);
     expect(screen.getByTestId('sidebar-logo')).toBeInTheDocument();
-    expect(screen.getByTestId('header-collapsed-test')).toHaveStyle(
-      'opacity:1'
-    );
+    expect(screen.getByTestId('header-collapsed-test')).toHaveStyle('opacity:1');
   });
 
   test('Invisible opacity logo text when collapsed is true', () => {
     render(<Header collapsed={true} />);
     expect(screen.getByTestId('sidebar-logo')).toBeInTheDocument();
-    expect(screen.getByTestId('header-collapsed-test')).toHaveStyle(
-      'opacity:0'
-    );
+    expect(screen.getByTestId('header-collapsed-test')).toHaveStyle('opacity:0');
   });
 });
 
@@ -89,17 +85,13 @@ describe('Footer', () => {
     render(<Footer collapsed={false} />);
 
     expect(screen.getByRole('img', { hidden: true })).toBeInTheDocument();
-    expect(screen.getByTestId('footer-collapsed-test')).toHaveStyle(
-      'opacity:1'
-    );
+    expect(screen.getByTestId('footer-collapsed-test')).toHaveStyle('opacity:1');
   });
 
   test('Invisible opacity user information text when collapsed is true', () => {
     render(<Footer collapsed={true} />);
 
     expect(screen.getByRole('img', { hidden: true })).toBeInTheDocument();
-    expect(screen.getByTestId('footer-collapsed-test')).toHaveStyle(
-      'opacity:0'
-    );
+    expect(screen.getByTestId('footer-collapsed-test')).toHaveStyle('opacity:0');
   });
 });

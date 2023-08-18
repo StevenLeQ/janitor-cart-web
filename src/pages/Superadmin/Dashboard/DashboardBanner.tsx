@@ -25,12 +25,8 @@ const DashboardBanner = () => {
       {/* Bottom left Banner text */}
       <div className="flex h-full w-full items-end">
         <div className="z-0 mb-7 ml-3 flex flex-col gap-1 sm:ml-7">
-          <p className="text-4xl font-extrabold text-white">
-            Welcome back, Admin
-          </p>
-          <p className="text-xl font-medium text-white">
-            Let's see how everything is going
-          </p>
+          <p className="text-4xl font-extrabold text-white">Welcome back, Admin</p>
+          <p className="text-xl font-medium text-white">Let's see how everything is going</p>
         </div>
       </div>
     </div>

@@ -141,16 +141,10 @@ export default function Checkout() {
                 <LogoSVG color="#FFFFFF" />
               </div>
               <div className="mt-10 flex flex-col">
-                <p
-                  translate="no"
-                  className="font-logo text-4xl font-semibold text-white"
-                >
+                <p translate="no" className="font-logo text-4xl font-semibold text-white">
                   The
                 </p>
-                <p
-                  translate="no"
-                  className="-mt-2 font-logo text-4xl font-semibold text-white"
-                >
+                <p translate="no" className="-mt-2 font-logo text-4xl font-semibold text-white">
                   JanitorCart
                 </p>
               </div>

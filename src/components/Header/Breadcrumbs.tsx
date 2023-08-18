@@ -23,10 +23,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
               aria-label="Dashboard"
               className="flex text-sm font-medium text-font-gray-200 hover:text-royal-blue"
             >
-              <Squares2X2Icon
-                className="mr-1 h-5 w-5 flex-shrink-0"
-                aria-hidden="true"
-              />
+              <Squares2X2Icon className="mr-1 h-5 w-5 flex-shrink-0" aria-hidden="true" />
               <span className="sr-only">Dashboard</span>
               Dashboard
             </Link>
