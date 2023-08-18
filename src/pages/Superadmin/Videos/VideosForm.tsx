@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Container from '../../../components/Form/Container';
-import Form from '../../../components/Form/Form';
+import Header from '../../../components/Form/Header';
 import FormItem from '../../../components/Form/Item';
 import FormTextarea from '../../../components/Form/Textarea';
 
@@ -16,7 +16,7 @@ const VideosForm: React.FC<FormProps> = ({ hasInfo }) => {
   return (
     // Outer wrapper to set layout grid
     <Container>
-      <Form pageLink="/superadmin/videos" header="Video Information">
+      <Header pageLink="/superadmin/videos" header="Video Information">
         <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
           {/* Video Name */}
           <div className="sm:col-span-6">
@@ -33,7 +33,7 @@ const VideosForm: React.FC<FormProps> = ({ hasInfo }) => {
             <FormItem name="link" title="Video Link" icon={<LinkIcon />} />
           </div>
         </div>
-      </Form>
+      </Header>
     </Container>
   );
 };

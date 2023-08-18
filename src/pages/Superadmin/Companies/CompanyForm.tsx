@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Container from '../../../components/Form/Container';
-import Form from '../../../components/Form/Form';
+import Header from '../../../components/Form/Header';
 import Toggle from '../../../components/Common/Toggle';
 import FormItem from '../../../components/Form/Item';
 import FormDropdown from '../../../components/Form/Dropdown';
@@ -37,7 +37,7 @@ const InfoItem: React.FC<InfoItemProps> = ({ title, data, dataStyle }) => {
   );
 };
 
-// Currently only form needing toggles, extract once duplicated
+// Currently only Header needing toggles, extract once duplicated
 const FormToggle: React.FC<FormToggleProps> = ({ name }) => {
   return (
     <div className="sm:col-span-6">
@@ -49,13 +49,13 @@ const FormToggle: React.FC<FormToggleProps> = ({ name }) => {
   );
 };
 
-// The Full Create Company Form layout
+// The Full Create Company Header layout
 const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
   return (
     // Outer wrapper to set layout grid
     <Container>
       {/* Features */}
-      <Form header="Company Information">
+      <Header header="Company Information">
         <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
           {/* Company Name */}
           <div className="sm:col-span-3">
@@ -82,7 +82,7 @@ const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
             <FormDropdown />
           </div>
         </div>
-      </Form>
+      </Header>
 
       {/* Blue info box */}
       {hasInfo && (
@@ -111,8 +111,8 @@ const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
         </div>
       )}
 
-      {/* Features form */}
-      <Form pageLink="/superadmin/companies" header="Features" isSecond={true}>
+      {/* Features Header */}
+      <Header pageLink="/superadmin/companies" header="Features" isSecond={true}>
         <div className="grid max-w-6xl grid-cols-1 gap-x-4 gap-y-4 pt-2 sm:grid-cols-6">
           <FormToggle name="Announcements" />
           <FormToggle name="Employee Handbook" />
@@ -122,7 +122,7 @@ const CompanyForm: React.FC<FormProps> = ({ hasInfo }) => {
           <FormToggle name="Time Clock" />
           <FormToggle name="Work Orders" />
         </div>
-      </Form>
+      </Header>
     </Container>
   );
 };

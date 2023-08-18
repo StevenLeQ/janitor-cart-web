@@ -11,7 +11,7 @@ interface HeaderProps {
 // 0 - Form with no button, first row (Pagelink empty, isSecond false)
 // 1 - Form with button, second+ row (Pagelink provided, isSecond true)
 // 2 - Form with button, first row (Pagelink provided, isSecond false)
-const Form: React.FC<HeaderProps> = ({ children, header, pageLink = '', isSecond = false }) => {
+const Header: React.FC<HeaderProps> = ({ children, header, pageLink = '', isSecond = false }) => {
   return (
     // Container template
     <div
@@ -34,4 +34,4 @@ const Form: React.FC<HeaderProps> = ({ children, header, pageLink = '', isSecond
   );
 };
 
-export default Form;
+export default Header;
