@@ -14,7 +14,7 @@
     "test:cov": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
-    "test:rep": "vitest run --reporter=junit --outputFile=rspec.xml"
+    "test:rep": "vitest run --reporter=junit --outputFile=test/vitest-test.xml"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
