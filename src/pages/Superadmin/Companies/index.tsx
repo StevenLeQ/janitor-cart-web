@@ -29,7 +29,7 @@ const button = {
 
 const alertData = {
   title: 'Deactivating Company?',
-  subtitle: 'Are you sure you want to switch the status of the selected company to "Inactive?"?',
+  subtitle: 'Are you sure you want to switch the status of the selected company to "Inactive"?',
   button_text: 'Deactivate'
 };
 

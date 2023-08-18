@@ -209,6 +209,7 @@ const Table: React.FC<TableProps> = ({
             icon={true}
           />
           <Link
+            id="new-variable"
             to={button.link}
             type="button"
             className="mt-1 rounded-md bg-royal-blue px-5 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -312,12 +313,10 @@ const Table: React.FC<TableProps> = ({
                     </td>
                   ))}
                   <td className="relative text-right text-sm font-medium">
-                    <a href=".">
-                      <EllipsisButton
-                        ellipsis_data={ellipsis_data}
-                        isNearEnd={table.getState().pagination.pageSize - index < 3}
-                      />
-                    </a>
+                    <EllipsisButton
+                      ellipsis_data={ellipsis_data}
+                      isNearEnd={table.getState().pagination.pageSize - index < 3}
+                    />
                   </td>
                 </tr>
               ))}

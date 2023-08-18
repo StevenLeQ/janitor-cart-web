@@ -11,7 +11,11 @@ export default function Login() {
               <h2 className="text-4xl font-bold leading-9 tracking-tight text-gray-900">Sign in</h2>
               <p className="mt-2 text-sm leading-6 text-gray-500">
                 No account?{' '}
-                <Link to="./signup" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                <Link
+                  id="signup"
+                  to="./signup"
+                  className="font-semibold text-indigo-600 hover:text-indigo-500"
+                >
                   Create one!
                 </Link>
               </p>
@@ -87,6 +91,7 @@ export default function Login() {
 
                     <div className="text-sm leading-6">
                       <Link
+                        id="forgot-password"
                         to="./forgot-password"
                         className="font-semibold text-indigo-600 hover:text-indigo-500"
                       >

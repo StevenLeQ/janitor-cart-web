@@ -53,6 +53,7 @@ const EllipsisButton: React.FC<EllipsisProps> = ({ ellipsis_data, isNearEnd }) =
   return (
     <div className="relative" ref={menuRef}>
       <button
+        id="ellipsis"
         onClick={handleMenuToggle}
         className="flex items-center text-gray-400 hover:text-indigo-500 focus:outline-none"
       >
@@ -71,9 +72,11 @@ const EllipsisButton: React.FC<EllipsisProps> = ({ ellipsis_data, isNearEnd }) =
           }`}
         >
           {ellipsis_data?.map((item, index) => {
+            console.log(`ellipsis-menu-${index}`);
             if (item.link) {
               return (
                 <Link
+                  id={`ellipsis-menu-${index}`}
                   key={item.link}
                   to={item.link ?? ''}
                   className="text-s block px-4 py-2 text-font-gray hover:bg-indigo-100 hover:text-blue-700"
@@ -104,6 +107,7 @@ const EllipsisButton: React.FC<EllipsisProps> = ({ ellipsis_data, isNearEnd }) =
                     )}
                   </AnimatePresence>
                   <button
+                    id={`ellipsis-menu-${index}`}
                     onClick={() => {
                       openAlert();
                     }}

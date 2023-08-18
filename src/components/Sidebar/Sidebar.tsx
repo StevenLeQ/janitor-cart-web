@@ -156,6 +156,7 @@ export const SidebarFinal: React.FC = () => {
           <div className="mb-8 flex-1">
             <Menu menuItemStyles={menuItemStyles}>
               <MenuItem
+                id="superadmin"
                 component={<Link to={'/superadmin'} />}
                 aria-label="dashboard-icon"
                 icon={<Squares2X2Icon className="h-6 w-6" />}
@@ -165,6 +166,7 @@ export const SidebarFinal: React.FC = () => {
               </MenuItem>
 
               <MenuItem
+                id="companies"
                 component={<Link to={'/superadmin/companies'} />}
                 aria-label="companies-icon"
                 icon={<BuildingOfficeIcon className="h-6 w-6" />}
@@ -174,6 +176,7 @@ export const SidebarFinal: React.FC = () => {
               </MenuItem>
 
               <MenuItem
+                id="rights"
                 component={<Link to={'/superadmin/rights'} />}
                 aria-label="work-rights-files-icon"
                 icon={<FolderIcon className="h-6 w-6" />}
@@ -183,6 +186,7 @@ export const SidebarFinal: React.FC = () => {
               </MenuItem>
 
               <MenuItem
+                id="videos"
                 component={<Link to={'/superadmin/videos'} />}
                 aria-label="videos-icon"
                 icon={<FilmIcon className="h-6 w-6" />}
@@ -197,6 +201,7 @@ export const SidebarFinal: React.FC = () => {
           <hr className="border-1 mx-6 h-px border-gray-200" />
           <Menu menuItemStyles={menuItemStyles}>
             <MenuItem
+              id="logout"
               component={<Link to={'/login'} />}
               className="my-2"
               icon={<ArrowLeftOnRectangleIcon className="h-6 w-6" />}
