@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import LogoSVG from '../../../shared/assets/logo';
 
-export default function NewPassword() {
+export default function ResetPassword() {
   return (
     <>
       <div className="flex min-h-screen flex-1 2xl:p-5">
@@ -58,7 +58,7 @@ export default function NewPassword() {
                         type="submit"
                         className="flex w-full justify-center rounded-md bg-royal-blue px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                       >
-                        Proceed to Checkout
+                        Confirm
                       </button>
                     </Link>
                   </div>
@@ -103,16 +103,10 @@ export default function NewPassword() {
                 <LogoSVG color="#FFFFFF" />
               </div>
               <div className="mt-10 flex flex-col">
-                <p
-                  translate="no"
-                  className="font-logo text-4xl font-semibold text-white"
-                >
+                <p translate="no" className="font-logo text-4xl font-semibold text-white">
                   The
                 </p>
-                <p
-                  translate="no"
-                  className="-mt-2 font-logo text-4xl font-semibold text-white"
-                >
+                <p translate="no" className="-mt-2 font-logo text-4xl font-semibold text-white">
                   JanitorCart
                 </p>
               </div>

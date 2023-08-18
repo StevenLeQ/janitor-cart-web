@@ -2,11 +2,11 @@
 import { faker } from '@faker-js/faker';
 
 // Components that make up the dashboard
-import Header from '../../../components/Header/Header.tsx';
-import DashboardBanner from './DashboardBanner.tsx';
-import DashboardItem from './DashboardItem.tsx';
-import RevenueLineChart from './RevenueLineChart.tsx';
-import SellsChloropleth from './SellsChloropleth.tsx';
+import Header from '../../components/Header/Header.tsx';
+import DashboardBanner from './Dashboard/DashboardBanner.tsx';
+import DashboardItem from './Dashboard/DashboardItem.tsx';
+import RevenueLineChart from './Dashboard/RevenueLineChart.tsx';
+import SellsChloropleth from './Dashboard/SellsChloropleth.tsx';
 
 // Icons to send to DashboardItems
 import {
