@@ -13,7 +13,8 @@ import Videos from '../pages/Superadmin/Videos';
 import CreateVideos from '../pages/Superadmin/Videos/Create';
 import EditVideos from '../pages/Superadmin/Videos/Edit';
 import Login from '../pages/Login';
-import SignUp from '../pages/Login/SignUp';
+import Register from '../pages/Login/Register';
+import ConfirmEmail from '../pages/Login/Register/Confirm/index.tsx';
 import ForgotPassword from '../pages/Login/ForgotPassword';
 import ResetPassword from '../pages/Login/ResetPassword';
 
@@ -35,7 +36,8 @@ const App = () => {
         <div className="h-full w-full">
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path="/login/signup" element={<SignUp />} />
+            <Route path="/login/signup" element={<Register />} />
+            <Route path="/login/signup/confirm-email" element={<ConfirmEmail />} />
             <Route path="/login/forgot-password" element={<ForgotPassword />} />
             <Route path="/login/reset-password" element={<ResetPassword />} />
             <Route path="/superadmin" element={<Dashboard />} />

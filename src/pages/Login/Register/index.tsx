@@ -1,36 +1,55 @@
-import { Link } from 'react-router-dom';
-import { useForm, SubmitHandler } from "react-hook-form"
+import { Link, useNavigate } from 'react-router-dom';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
-import { RegisterCognito } from '../../../hooks/cognito';
+import { registerCognito } from '../../../auth/Register';
 import LogoSVG from '../../../shared/assets/logo';
+import { useState } from 'react';
 
 type Inputs = {
-  name: string
-  email: string
-  password: string
-  confirm_password: string
-}
+  name: string;
+  email: string;
+  password: string;
+  confirm_password: string;
+};
 
-export default function SignUp() {
+export default function Register() {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Inputs>()
+    watch
+    // formState: { errors },
+  } = useForm<Inputs>();
+  const navigate = useNavigate();
+  const [error, setError] = useState<null | string>(null);
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => RegisterCognito(data);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      await registerCognito(data);
+      navigate(`./confirm-email?email=${data.email}`);
+    } catch (error) {
+      console.error('Registration error:', error);
+      setError(error as string);
+    }
+  };
 
   return (
     <>
       <div className="flex min-h-screen flex-1 2xl:p-5">
         <div className="flex flex-1 flex-col justify-center bg-white px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
-            <h2 className="text-4xl font-bold leading-9 tracking-tight text-gray-900">Sign Up</h2>
+            <div>
+              <h2 className="text-4xl font-bold leading-9 tracking-tight text-gray-900">Sign Up</h2>
+              <p className="mt-4 text-sm leading-6 text-red-500">{error?.toString()}</p>
+            </div>
 
             <div className="mt-5">
               <div>
-                <form action="#" method="POST" className="space-y-6" onSubmit={handleSubmit(onSubmit)} >
+                <form
+                  action="#"
+                  method="POST"
+                  className="space-y-6"
+                  onSubmit={handleSubmit(onSubmit)}
+                >
                   <div>
                     <label
                       htmlFor="name"
@@ -44,9 +63,9 @@ export default function SignUp() {
                         type="name"
                         autoComplete="name"
                         className="block w-full rounded-md border-0 py-1.5 pl-1.5 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        {...register("name", {
+                        {...register('name', {
                           required: true
-                         })}
+                        })}
                       />
                     </div>
                   </div>
@@ -64,9 +83,9 @@ export default function SignUp() {
                         type="email"
                         autoComplete="email"
                         className="block w-full rounded-md border-0 py-1.5 pl-1.5 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        {...register("email", {
+                        {...register('email', {
                           required: true
-                         })}
+                        })}
                       />
                     </div>
                   </div>
@@ -84,9 +103,9 @@ export default function SignUp() {
                         type="password"
                         autoComplete="password"
                         className="block w-full rounded-md border-0 py-1.5 pl-1.5 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        {...register("password", {
+                        {...register('password', {
                           required: true
-                         })}
+                        })}
                       />
                     </div>
                   </div>
@@ -105,27 +124,27 @@ export default function SignUp() {
                         autoComplete="password"
                         required
                         className="block w-full rounded-md border-0 py-1.5 pl-1.5 shadow-sm outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        {...register("confirm_password", {
+                        {...register('confirm_password', {
                           required: true,
                           validate: (val: string) => {
                             if (watch('password') != val) {
-                              return "Your passwords do no match";
+                              return 'Your passwords do no match';
                             }
-                          },
-                         })}
+                          }
+                        })}
                       />
                     </div>
                   </div>
 
                   <div>
-                  {/* <form action="#" method="POST" className="space-y-6" onSubmit={handleFormSubmit}> */}
+                    {/* <form action="#" method="POST" className="space-y-6" onSubmit={handleFormSubmit}> */}
                     {/* <Link to="/superadmin"> */}
-                      <button
-                        type="submit"
-                        className="flex w-full justify-center rounded-md bg-royal-blue px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                      >
-                        Proceed to Checkout
-                      </button>
+                    <button
+                      type="submit"
+                      className="flex w-full justify-center rounded-md bg-royal-blue px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                      Sign Up
+                    </button>
                     {/* </Link> */}
                     {/* </form> */}
                   </div>
