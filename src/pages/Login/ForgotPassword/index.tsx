@@ -39,14 +39,14 @@ export default function ForgotPassword() {
                   </div>
 
                   <div>
-                    <Link to="/superadmin">
-                      <button
-                        type="submit"
-                        className="flex w-full justify-center rounded-md bg-royal-blue px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                      >
-                        Send Email
-                      </button>
-                    </Link>
+                    {/* <Link to="/superadmin"> */}
+                    <button
+                      type="submit"
+                      className="flex w-full justify-center rounded-md bg-royal-blue px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                      Send Email
+                    </button>
+                    {/* </Link> */}
                   </div>
 
                   <div className="text-sm leading-6">

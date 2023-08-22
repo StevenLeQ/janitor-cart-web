@@ -1,9 +1,9 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 confirmEmailCognito;
 import LogoSVG from '../../../../shared/assets/logo';
-import { confirmEmailCognito } from '../../../../auth/ConfirmEmail';
+import { confirmEmailCognito, resendEmailCognito } from '../../../../auth/ConfirmEmail';
 import { useState } from 'react';
 
 type Inputs = {
@@ -17,25 +17,28 @@ export default function ConfirmEmail() {
     handleSubmit
     // formState: { errors },
   } = useForm<Inputs>();
-
+  const navigate = useNavigate();
   const location = useLocation();
+
   const queryParams = new URLSearchParams(location.search);
-
-  // Access the query parameters using the get method
   const email = queryParams.get('email');
-
-  // const onSubmit: SubmitHandler<Inputs> = (data) => {
-  //   data.email = email ? email : '';
-  //   console.log(data);
-  //   confirmEmailCognito(data);
-  // };
-
   const [error, setError] = useState<null | string>(null);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    data.email = email ? email : '';
+    data.email = email ? decodeURIComponent(email) : '';
     try {
       await confirmEmailCognito(data);
+
+      navigate('/login');
+    } catch (error) {
+      console.error('Registration error:', error);
+      setError(error as string);
+    }
+  };
+
+  const onResend = async () => {
+    try {
+      await resendEmailCognito(email ? email : '');
     } catch (error) {
       console.error('Registration error:', error);
       setError(error as string);
@@ -85,23 +88,32 @@ export default function ConfirmEmail() {
                   </div>
 
                   <div>
-                    {/* <Link to="/superadmin"> */}
                     <button
                       type="submit"
                       className="flex w-full justify-center rounded-md bg-royal-blue px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
-                      Proceed to Checkout
+                      {/* Proceed to Checkout */}
+                      Confirm Email
                     </button>
-                    {/* </Link> */}
                   </div>
+                  <div className="flex items-center justify-between">
+                    <div className="text-sm leading-6">
+                      <Link
+                        to="/login"
+                        className="font-semibold text-indigo-600 hover:text-indigo-500"
+                      >
+                        Return to login
+                      </Link>
+                    </div>
 
-                  <div className="text-sm leading-6">
-                    <Link
-                      to="/login"
-                      className="font-semibold text-indigo-600 hover:text-indigo-500"
-                    >
-                      Return to login
-                    </Link>
+                    <div className="text-sm leading-6">
+                      <button
+                        onClick={onResend}
+                        className="font-semibold text-indigo-600 hover:text-indigo-500"
+                      >
+                        Resend email
+                      </button>
+                    </div>
                   </div>
                 </form>
               </div>

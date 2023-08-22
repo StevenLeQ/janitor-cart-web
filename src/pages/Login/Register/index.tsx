@@ -25,7 +25,7 @@ export default function Register() {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       await registerCognito(data);
-      navigate(`./confirm-email?email=${data.email}`);
+      navigate(`./confirm-email?email=${encodeURIComponent(data.email)}`);
     } catch (error) {
       console.error('Registration error:', error);
       setError(error as string);

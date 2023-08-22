@@ -24,3 +24,21 @@ export function confirmEmailCognito(data: Inputs) {
     });
   });
 }
+
+export function resendEmailCognito(email: string) {
+  const userPool = new CognitoUserPool(poolData);
+  return new Promise((resolve, reject) => {
+    const cognitoUser = new CognitoUser({
+      Username: email,
+      Pool: userPool
+    });
+
+    cognitoUser.resendConfirmationCode((err, result) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve(result);
+    });
+  });
+}
