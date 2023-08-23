@@ -18,6 +18,8 @@ import ConfirmEmail from '../pages/Login/Register/Confirm/index.tsx';
 import ForgotPassword from '../pages/Login/ForgotPassword';
 import ResetPassword from '../pages/Login/ResetPassword';
 
+import { AuthProvider } from '../auth/AuthContext.tsx';
+
 const App = () => {
   const location = useLocation();
 
@@ -25,7 +27,7 @@ const App = () => {
   const isSuperadmin = location.pathname.includes('/superadmin');
   return (
     // Span entire screen
-    <>
+    <AuthProvider>
       <div className="flex bg-stone-100">
         {isSuperadmin && (
           <div className="sticky top-0 h-screen">
@@ -54,7 +56,7 @@ const App = () => {
           </Routes>
         </div>
       </div>
-    </>
+    </AuthProvider>
   );
 };
 

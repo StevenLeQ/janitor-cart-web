@@ -1,24 +1,58 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
 import { registerCognito } from '../../../auth/Register';
 import LogoSVG from '../../../shared/assets/logo';
 import { useState } from 'react';
 
-type Inputs = {
-  name: string;
-  email: string;
-  password: string;
-  confirm_password: string;
-};
+const passwordSchema = z
+  .string()
+  .min(8, { message: 'Password must contain at least 8 character(s)' })
+  .refine(
+    (value) => {
+      // Use separate regular expressions for each criteria
+      const containsNumber = /[0-9]/.test(value);
+      const containsSpecialChar = /[!@#$%^&*]/.test(value);
+      const containsUppercase = /[A-Z]/.test(value);
+      const containsLowercase = /[a-z]/.test(value);
+
+      // Check if all criteria are met
+      return containsNumber && containsSpecialChar && containsUppercase && containsLowercase;
+    },
+    {
+      message: 'Password is incorrect'
+    }
+  );
+
+const validationSchema = z
+  .object({
+    name: z.string().max(50),
+    email: z.string().email('Invalid email format').min(6),
+    password: passwordSchema,
+    confirm_password: passwordSchema
+  })
+  .superRefine(({ confirm_password, password }, ctx) => {
+    if (confirm_password !== password) {
+      ctx.addIssue({
+        code: 'custom',
+        message: 'The passwords did not match'
+      });
+    }
+  });
+
+type Inputs = z.infer<typeof validationSchema>;
 
 export default function Register() {
   const {
     register,
     handleSubmit,
-    watch
-    // formState: { errors },
-  } = useForm<Inputs>();
+    watch,
+    formState: { errors }
+  } = useForm<Inputs>({
+    resolver: zodResolver(validationSchema)
+  });
   const navigate = useNavigate();
   const [error, setError] = useState<null | string>(null);
 
@@ -43,6 +77,9 @@ export default function Register() {
             </div>
 
             <div className="mt-5">
+              {errors.name?.message && (
+                <p className="mt-4 text-sm leading-6 text-red-500">{errors.name?.message}</p>
+              )}
               <div>
                 <form
                   action="#"
@@ -71,6 +108,9 @@ export default function Register() {
                   </div>
 
                   <div>
+                    {errors.email?.message && (
+                      <p className="mt-4 text-sm leading-6 text-red-500">{errors.email?.message}</p>
+                    )}
                     <label
                       htmlFor="email"
                       className="block text-sm font-medium leading-6 text-gray-900"
@@ -91,6 +131,11 @@ export default function Register() {
                   </div>
 
                   <div>
+                    {errors.password?.message && (
+                      <p className="mt-4 text-sm leading-6 text-red-500">
+                        {errors.password?.message}
+                      </p>
+                    )}
                     <label
                       htmlFor="password"
                       className="block text-sm font-medium leading-6 text-gray-900"
@@ -111,6 +156,11 @@ export default function Register() {
                   </div>
 
                   <div>
+                    {errors.confirm_password?.message && (
+                      <p className="mt-4 text-sm leading-6 text-red-500">
+                        {errors.confirm_password?.message}
+                      </p>
+                    )}
                     <label
                       htmlFor="password"
                       className="block text-sm font-medium leading-6 text-gray-900"

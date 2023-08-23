@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 
 import { UserIcon } from '@heroicons/react/24/solid';
 
+import { useAuth } from '../../auth/AuthContext';
+
 interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
   collapsed: boolean;
 }
@@ -13,6 +15,7 @@ const footerVariants = {
 };
 
 export const Footer: React.FC<FooterProps> = ({ collapsed }) => {
+  const { user } = useAuth();
   return (
     <div className="mb-8 ml-auto mr-10 flex items-center gap-2">
       <UserIcon role="img" className="ml-4 h-11 w-11 rounded-full bg-gray-300 fill-black p-1.5" />
@@ -23,8 +26,8 @@ export const Footer: React.FC<FooterProps> = ({ collapsed }) => {
         variants={footerVariants}
         data-testid="footer-collapsed-test"
       >
-        <motion.p className="text-base font-semibold ">Admin</motion.p>
-        <motion.p className="-mt-1 text-sm">admin@admin.com</motion.p>
+        <motion.p className="text-base font-semibold ">{user?.name}</motion.p>
+        <motion.p className="-mt-1 text-sm">{user?.email}</motion.p>
       </motion.div>
     </div>
   );

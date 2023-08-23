@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import LogoSVG from '../../../shared/assets/logo';
 
+// TODO NOT EVEN CLOSE TO DONE LOL
 export default function ForgotPassword() {
   return (
     <>

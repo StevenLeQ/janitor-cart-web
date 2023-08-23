@@ -1,48 +1,84 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
-import { loginCognito } from './Login';
+import { loginCognito } from '../auth/Login';
+import { GetUserCognito } from './CurrentUser';
+import { logoutCognito } from './Logout';
+// import { poolData } from '../config/cognito-cfg';
 
-const AuthContext = createContext<any>(null);
+type AuthContextType = {
+  user: UserData | null;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => void;
+};
 
-function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+// ? CURRENTLY SESSION IS NOT SAVED
+// type UserSession = {
+//   accessToken: string;
+//   idToken: string;
+//   refreshToken: string;
+//   expiresIn: number;
+// };
 
-  const getCurrentUser = async () => {
+type UserData = {
+  [key: string]: string;
+};
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
+
+interface ContainerProps {
+  children: React.ReactNode;
+}
+
+export const AuthProvider: React.FC<ContainerProps> = ({ children }) => {
+  const [user, setUser] = useState<UserData | null>(null);
+  // const [fullName, setFullName] = useState('');
+
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const result = await GetUserCognito();
+        console.log(result);
+        if (result.userData) {
+          setUser(result.userData);
+        } else {
+          setUser(null);
+        }
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    }
+
+    fetchUser();
+  }, []);
+
+  const login = async (email: string, password: string) => {
     try {
-      const user = await auth.getCurrentUser();
-      console.log('current user', user);
-      setUser(user);
-    } catch (err) {
-      // not logged in
-      console.log(err);
-      setUser(null);
+      const cognitoUser = await loginCognito({ email, password });
+      setUser(cognitoUser as UserData);
+    } catch (error) {
+      console.error('Login error:', error);
+      throw error;
     }
   };
 
-  useEffect(() => {
-    getCurrentUser()
-      .then(() => setIsLoading(false))
-      .catch(() => setIsLoading(false));
-  }, []);
-
-  const signIn = async (email: string, password: string) => {
-    await loginCognito({ email, password });
-    await getCurrentUser();
-  };
-  const signOut = async () => {
-    await auth.signOut();
+  const logout = () => {
+    logoutCognito;
     setUser(null);
   };
 
-  const authValue = {
+  const contextValue: AuthContextType = {
     user,
-    isLoading,
-    signIn,
-    signOut
+    login,
+    logout
   };
 
-  return <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>;
-}
-
-export { AuthProvider, AuthContext };
+  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
+};

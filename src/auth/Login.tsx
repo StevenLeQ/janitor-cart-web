@@ -23,7 +23,6 @@ export function loginCognito(data: Inputs) {
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: (result) => {
         resolve(result);
-        console.log(result);
       },
       onFailure: (err) => {
         reject(err);

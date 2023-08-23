@@ -14,7 +14,6 @@ type Inputs = {
 };
 
 export function registerCognito(data: Inputs) {
-  console.log(data);
   const userPool = new CognitoUserPool(poolData);
 
   const attributeList: CognitoUserAttribute[] = [];

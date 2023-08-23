@@ -72,7 +72,6 @@ const EllipsisButton: React.FC<EllipsisProps> = ({ ellipsis_data, isNearEnd }) =
           }`}
         >
           {ellipsis_data?.map((item, index) => {
-            console.log(`ellipsis-menu-${index}`);
             if (item.link) {
               return (
                 <Link

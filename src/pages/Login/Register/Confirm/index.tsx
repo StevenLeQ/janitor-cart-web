@@ -1,22 +1,34 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
 confirmEmailCognito;
 import LogoSVG from '../../../../shared/assets/logo';
 import { confirmEmailCognito, resendEmailCognito } from '../../../../auth/ConfirmEmail';
 import { useState } from 'react';
 
-type Inputs = {
-  email: string;
-  code: string;
-};
+const validationSchema = z.object({
+  email: z.string().email('Invalid email format').min(6),
+  code: z
+    .string()
+    .length(6)
+    .refine((value) => {
+      // Only numbers regex
+      return /^[0-9]+$/.test(value);
+    })
+});
+
+type Inputs = z.infer<typeof validationSchema>;
 
 export default function ConfirmEmail() {
   const {
     register,
-    handleSubmit
-    // formState: { errors },
-  } = useForm<Inputs>();
+    handleSubmit,
+    formState: { errors }
+  } = useForm<Inputs>({
+    resolver: zodResolver(validationSchema)
+  });
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -28,7 +40,6 @@ export default function ConfirmEmail() {
     data.email = email ? decodeURIComponent(email) : '';
     try {
       await confirmEmailCognito(data);
-
       navigate('/login');
     } catch (error) {
       console.error('Registration error:', error);
@@ -60,6 +71,9 @@ export default function ConfirmEmail() {
               <p className="mt-4 text-sm leading-6 text-red-500">{error?.toString()}</p>
             </div>
             <div className="mt-5">
+              {errors.code?.message && (
+                <p className="mt-4 text-sm leading-6 text-red-500">{errors.code?.message}</p>
+              )}
               <div>
                 <form
                   action="#"
