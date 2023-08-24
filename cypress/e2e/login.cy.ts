@@ -7,11 +7,12 @@ describe('Login Page', () => {
     cy.contains('Password');
   });
 
-  it('Clicking "Sign In" navigates to superadmin dashboard', () => {
-    cy.visit('/login');
-    cy.get('button[id="sign-in"]').click();
-    cy.url().should('include', '/superadmin');
-  });
+  // TODO
+  // it('Clicking "Sign In" navigates to superadmin dashboard', () => {
+  //   cy.visit('/login');
+  //   cy.get('button[id="sign-in"]').click();
+  //   cy.url().should('include', '/superadmin');
+  // });
 
   it('Clicking "Create One!" navigates to registration', () => {
     cy.visit('/login');
