@@ -14,7 +14,7 @@ import CreateVideos from '../pages/Superadmin/Videos/Create';
 import EditVideos from '../pages/Superadmin/Videos/Edit';
 import Login from '../pages/Login';
 import Register from '../pages/Login/Register';
-import ConfirmEmail from '../pages/Login/Register/Confirm/index.tsx';
+import ConfirmEmail from '../pages/Login/Register/Confirm';
 import ForgotPassword from '../pages/Login/ForgotPassword';
 import ResetPassword from '../pages/Login/ResetPassword';
 

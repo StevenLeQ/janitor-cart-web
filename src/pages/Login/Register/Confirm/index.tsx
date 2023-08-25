@@ -2,14 +2,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-
-confirmEmailCognito;
 import LogoSVG from '../../../../shared/assets/logo';
 import { confirmEmailCognito, resendEmailCognito } from '../../../../auth/ConfirmEmail';
 import { useState } from 'react';
 
 const validationSchema = z.object({
-  email: z.string().email('Invalid email format').min(6),
   code: z
     .string()
     .length(6)
@@ -34,12 +31,14 @@ export default function ConfirmEmail() {
 
   const queryParams = new URLSearchParams(location.search);
   const email = queryParams.get('email');
+  const finalEmail = email ? decodeURIComponent(email) : '';
+
   const [error, setError] = useState<null | string>(null);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    data.email = email ? decodeURIComponent(email) : '';
+    console.log('HERE');
     try {
-      await confirmEmailCognito(data);
+      await confirmEmailCognito(data.code, finalEmail);
       navigate('/login');
     } catch (error) {
       console.error('Registration error:', error);
@@ -75,12 +74,7 @@ export default function ConfirmEmail() {
                 <p className="mt-4 text-sm leading-6 text-red-500">{errors.code?.message}</p>
               )}
               <div>
-                <form
-                  action="#"
-                  method="POST"
-                  className="space-y-6"
-                  onSubmit={handleSubmit(onSubmit)}
-                >
+                <form method="POST" className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                   <div>
                     <label
                       htmlFor="code"
@@ -106,7 +100,6 @@ export default function ConfirmEmail() {
                       type="submit"
                       className="flex w-full justify-center rounded-md bg-royal-blue px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
-                      {/* Proceed to Checkout */}
                       Confirm Email
                     </button>
                   </div>

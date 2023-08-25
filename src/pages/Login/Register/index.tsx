@@ -169,7 +169,7 @@ export default function Register() {
                     </label>
                     <div className="mt-2">
                       <input
-                        id="password"
+                        id="confirm-password"
                         type="password"
                         autoComplete="password"
                         required

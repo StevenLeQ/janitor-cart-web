@@ -7,13 +7,14 @@ type Inputs = {
   code: string;
 };
 
-export function confirmEmailCognito(data: Inputs) {
+export function confirmEmailCognito(data: Inputs, email: string) {
   const userPool = new CognitoUserPool(poolData);
   return new Promise((resolve, reject) => {
     const cognitoUser = new CognitoUser({
-      Username: data.email,
+      Username: email,
       Pool: userPool
     });
+    console.log(cognitoUser);
 
     cognitoUser.confirmRegistration(data.code, true, (err, result) => {
       if (err) {
